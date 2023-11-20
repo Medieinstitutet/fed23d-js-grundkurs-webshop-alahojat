@@ -67,9 +67,7 @@
 <!-------------------------------------------------------------------------------------
 ----------------------------SECTION 2 - CART OPEN--------------------------------------
 -------------------------------------------------------------------------------------->
-
     <div class="cart_container">
-        
         <section class="cartorder_container">
             <h2>Order summary</h2>
             <span> ORDERED ITEMS</span>
@@ -78,8 +76,6 @@
             <button class="plus">+</button>
             <button>Remove item</button>
         </section>
-
-
         <section class="cartform_container">
             <h2>Payment details</h2>
             <form class="cartform">
@@ -141,15 +137,42 @@
                     </label>
                 </div>
                 <div>
-                    <label for="">Cardnumber
+                    <label for="">Expiry date
                         <input type="date">
+                    </label>
+                </div>
+                <div>
+                    <label for="number">CVC
+                        <input type="number">
                     </label>
                 </div>
             </form>
 
 
+            <button>Invoice</button>
+            <form class="cart_invoice">
+                <div>
+                    <label for="number">Personal ID
+                        <input type="number">
+                    </label>
+                </div>
+               
+            </form>
 
+            <div class="cart_personaldata">
+                <label> 
+                    <input type="checkbox" name="Cardpayment">
+                    I consent to my personal data being collected for order processing, 
+                    as outlined in the privacy policy
+                </label>
+            </div>
 
+            <div class="cart_newsletter">
+                <label> 
+                    <input type="checkbox" name="Cardpayment" checked>
+                    Count me in for the newsletter!
+                </label>
+             </div>
 
 
         </section>
