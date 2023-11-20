@@ -51,7 +51,36 @@ p, h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
-/*body {
+body {
+  background-color: #dddddd;
+  font-family: "Inter", sans-serif;
+}
+body img {
+  padding: 15px;
+  border-radius: 80px;
+  object-fit: cover;
+  object-position: center;
+}
+body h1, body h2, body h3, body h4 {
+  color: #002fa7;
+  text-transform: uppercase;
+  text-align: center;
+}
+body p {
+  color: #d35400;
+  text-align: center;
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background-color: #d35400;
+  border-radius: 50px;
+}
+
+/*
+
+body {
     display: flex;
     flex-direction: column;
     background-color: #dddd;

@@ -1,3 +1,36 @@
+body {
+    background-color: #dddddd;
+    font-family: 'Inter', sans-serif;
+    
+    img {
+        @include image_style;
+        object-fit: cover;
+        object-position: center;
+    }
+
+
+    h1, h2, h3, h4 {
+        color: #002fa7;
+        text-transform: uppercase;
+        text-align: center;
+        
+    }
+    p {
+        color: #d35400;
+        text-align: center;
+        
+    }
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    background-color: #d35400;
+    border-radius: 50px;
+}
+
+
+
 
 /*
 

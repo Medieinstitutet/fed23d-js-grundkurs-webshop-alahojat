@@ -17,32 +17,51 @@
         <div class="pagetitle">
             <h1>Bowls</h1>
             <h2>by Baba</h2>
+            <div class="circle"></div>
             <span class="material-symbols-outlined">
                 shopping_bag
             </span>
         </div>  
     </header>
+    <div class="about">
+        <p>
+        We're a creative bunch passionate about crafting unique handmade wooden bowls! 
+        Check out our webshop for an awesome collection that's all about style and quality. 
+        Each bowl is a work of art, made with love and care. Join us in celebrating craftsmanship and cool 
+        designs.
+        </p>
+    </div>
 
 <!-------------------------------------------------------------------------------------
 ----------------------------SECTION 1 - WEBSHOPP--------------------------------------
 -------------------------------------------------------------------------------------->
-    <div class="page_closedcart">
+    <div class="product_container">
+
         <div class="page_closedcart_container">
-
-
             <img src="assets/bowls/triplet-set.jpg" alt="">
-            <p> round round</p>
+            <h3>Triplets</h3>
             <p>Price <span>10kr</span></p>
             <p>rating?</p>
-
             <div>
                 <button class="minus">-</button>
                 <input type="number">
                 <button class="plus">+</button>
             </div>
-
-
         </div>
+        <div class="page_closedcart_container">
+            <img src="assets/bowls/twin-set-bowls.jpg" alt="">
+            <h3>Triplets</h3>
+            <p>Price <span>10kr</span></p>
+            <p>rating?</p>
+            <div>
+                <button class="minus">-</button>
+                <input type="number">
+                <button class="plus">+</button>
+            </div>
+        </div>
+      
+
+
     </div>
 
 
@@ -52,7 +71,95 @@
 ----------------------------SECTION 2 - CART OPEN--------------------------------------
 -------------------------------------------------------------------------------------->
 
-    <div class="page_opencart">
+    <div class="cart_container">
+        
+        <section class="cartorder_container">
+            <h2>Order summary</h2>
+            <span> ORDERED ITEMS</span>
+            <button class="minus">-</button>
+            <input type="number">
+            <button class="plus">+</button>
+            <button>Remove item</button>
+        </section>
+
+
+        <section class="cartform_container">
+            <h2>Payment details</h2>
+            <form class="cartform">
+                <div>
+                    <label for="text">First name
+                        <input type="text">
+                    </label>
+                </div>
+
+                <div>
+                    <label for="text">Surname
+                        <input type="text">
+                    </label> 
+                </div>
+
+                <div>
+                    <label for="text">Adress
+                        <input type="text">
+                    </label>
+                </div>
+
+                <div>
+                    <label for="number">Postcode
+                        <input type="number">
+                    </label>
+                </div>
+
+                <div>
+                    <label for="text">City
+                        <input type="text">
+                    </label>
+                </div>
+
+                <div>
+                    <label for="number">Entry code
+                        <input type="number">
+                    </label>
+                </div>
+
+                <div>
+                    <label for="number">Number
+                        <input type="number">
+                    </label>
+                </div>
+                
+                <div>
+                    <label for="email">Email
+                        <input type="email">
+                    </label>
+                </div>
+
+            </form>
+
+            <button>Cardpayment</button>
+            <form class="cartcard">
+                <div>
+                    <label for="number">Cardnumber
+                        <input type="number">
+                    </label>
+                </div>
+                <div>
+                    <label for="">Cardnumber
+                        <input type="date">
+                    </label>
+                </div>
+            </form>
+
+
+
+
+
+
+        </section>
+
+
+      
+    
 
 
     </div>
