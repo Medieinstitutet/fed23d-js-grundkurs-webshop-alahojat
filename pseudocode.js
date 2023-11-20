@@ -9,7 +9,7 @@
 
 
 /* Function: change value of cart based on rules... IF..ELSE
-    
+    - 
 */
 
 
@@ -35,19 +35,24 @@
 
 
 /* Function: toggleView (toggles between the shopview and the cartview)
-    - when cart icon is clicked, the order page appears
-    - when cart icon is clicked again, the order page disappears
+    - when cart icon is clicked, the order page appears:
+        Function: orderSummary (show an overview of items displayShoppingCart in the order summary) 
+        - IF order placed before 10am on a monday, 10% off is applied on full amount of the cart
+        - order summary shows text "Måndagsrabatt: 10 % på hela beställningen"
+
+    
+        - when cart icon is clicked again, the order page disappears
 */
 
-/* Function: orderSummary (show an overview of items displayShoppingCart in the order summary) 
-    - when 
-        - IF order placed before 10am on a monday, 10% off is applied on full amount of the cart
-        - order summary shows "Måndagsrabatt: 10 % på hela beställningen"
-*/
+
+
+
+
 
 /* Function: removeItem (removes item from order summary)
-    - when button is clicked, value input resets to 0
+    - when button is clicked, value input is reset to 0
 */
+
 
 /* Function: paymentCard (activates payment form)
     - when card-button is clicked, new inputfields for cardnumber, date/year and CVC appear
@@ -55,7 +60,9 @@
 
 /* Function: paymentInvoice (activats invoice form)
     - when invoice-button is clicked, new inputfield for swedish ID number appears
+        - IF total amount is > 800kr, this function is returned.
 */
+// create function that toggles visibility of paymentCard and paymentInvoice once clicked?
 
 
 /* Function: resetForm (resets both form and orders upon click)
