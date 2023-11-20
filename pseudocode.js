@@ -5,16 +5,15 @@
     - A total next to the cart is updated
     - IF the value reaches 0 customer the function of the minus-button no longer works
     - when the plus-button is clicked the value of the input increases by 1 (number)
-    */
+    
+*/
 
 
 /* Function: change value of cart based on rules... IF..ELSE
     - 
 */
 
-
 // Function: displayShoppingCart (connect and style cart based off values from array with items)
-
 
 
 /* Function: array filters
