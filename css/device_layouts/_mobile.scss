@@ -1,5 +1,4 @@
 body {
-    
     background-color: #dddddd;
     font-family: 'Inter', sans-serif;
     
@@ -13,7 +12,6 @@ body {
         color: #002fa7;
         text-transform: uppercase;
         text-align: center;
-        
     }
     p {
         color: #d35400;
@@ -60,11 +58,6 @@ header {
 }
 
 
-label {
-    @include labels;
-}
-
-
 
 .about {
     padding: 20px;
@@ -74,22 +67,40 @@ label {
 .product_container {
     display: flex;
     flex-direction: column;
+    .product_items {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        .product_buttons {
+            display: inline;
+            input {
+                width: 50px;
+            }
+            .minus, .plus {
+                @include add_buttons;
+            }
+        
+        }
+
+    }
+    
+     
+
+
+    
 }
-.product_buttons {
-    display: inline-block;
-    input {
-        width: 50px;
+
+
+
+
+.cart_container {
+    visibility: hidden;
+    .cartorder_buttons {
+        @include blue_buttons;
     }
 }
 
-
-.minus, .plus {
-    @include add_buttons;
-}
-
-
-.cartorder_buttons {
-    @include blue_buttons;
+.confirmation_container {
+    visibility: hidden;
 }
 
 

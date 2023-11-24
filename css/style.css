@@ -107,10 +107,6 @@ header .circle {
   border-radius: 50px;
 }
 
-label {
-  color: black;
-}
-
 .about {
   padding: 20px;
   text-transform: uppercase;
@@ -120,15 +116,17 @@ label {
   display: flex;
   flex-direction: column;
 }
-
-.product_buttons {
-  display: inline-block;
+.product_container .product_items {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-.product_buttons input {
+.product_container .product_items .product_buttons {
+  display: inline;
+}
+.product_container .product_items .product_buttons input {
   width: 50px;
 }
-
-.minus, .plus {
+.product_container .product_items .product_buttons .minus, .product_container .product_items .product_buttons .plus {
   background-color: #002fa7;
   padding-left: 15px;
   padding-right: 15px;
@@ -138,13 +136,20 @@ label {
   border: none;
 }
 
-.cartorder_buttons {
+.cart_container {
+  visibility: hidden;
+}
+.cart_container .cartorder_buttons {
   padding: 5px;
   background-color: #002fa7;
   color: white;
   text-transform: uppercase;
   border-radius: 10px;
   border: none;
+}
+
+.confirmation_container {
+  visibility: hidden;
 }
 
 /*
