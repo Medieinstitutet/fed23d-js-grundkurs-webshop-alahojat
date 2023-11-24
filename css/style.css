@@ -107,6 +107,10 @@ header .circle {
   border-radius: 50px;
 }
 
+label {
+  color: black;
+}
+
 .about {
   padding: 20px;
   text-transform: uppercase;
@@ -118,10 +122,29 @@ header .circle {
 }
 
 .product_buttons {
-  display: inline;
+  display: inline-block;
 }
 .product_buttons input {
   width: 50px;
+}
+
+.minus, .plus {
+  background-color: #002fa7;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: none;
+}
+
+.cartorder_buttons {
+  padding: 5px;
+  background-color: #002fa7;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: none;
 }
 
 /*

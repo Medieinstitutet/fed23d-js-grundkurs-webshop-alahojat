@@ -1,4 +1,5 @@
 body {
+    
     background-color: #dddddd;
     font-family: 'Inter', sans-serif;
     
@@ -59,6 +60,11 @@ header {
 }
 
 
+label {
+    @include labels;
+}
+
+
 
 .about {
     padding: 20px;
@@ -70,10 +76,20 @@ header {
     flex-direction: column;
 }
 .product_buttons {
-    display: inline;
+    display: inline-block;
     input {
         width: 50px;
     }
+}
+
+
+.minus, .plus {
+    @include add_buttons;
+}
+
+
+.cartorder_buttons {
+    @include blue_buttons;
 }
 
 

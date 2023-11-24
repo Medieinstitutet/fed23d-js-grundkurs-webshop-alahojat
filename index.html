@@ -56,137 +56,137 @@
                 <button class="plus">+</button>
             </div>
         </div>
-      
-
-
     </div>
-
-
 
 
 <!-------------------------------------------------------------------------------------
 ----------------------------SECTION 2 - CART OPEN--------------------------------------
 -------------------------------------------------------------------------------------->
+   
     <div class="cart_container">
-        <section class="cartorder_container">
-            <h2>Order summary</h2>
-            <span> ORDERED ITEMS</span>
-            <button class="minus">-</button>
-            <input type="number">
-            <button class="plus">+</button>
-            <button>Remove item</button>
-        </section>
-        <section class="cartform_container">
-            <h2>Payment details</h2>
-            <form class="cartform">
-                <div>
-                    <label for="text">First name
-                        <input type="text">
-                    </label>
-                </div>
+            <section class="cartorder_container">
+                <h2>Order summary</h2>
+                <span> ORDERED ITEMS</span>
+                <button class="minus">-</button>
+                <input type="number">
+                <button class="plus">+</button>
+                <button>Remove item</button>
+            </section>
+            <section class="cartform_container">
+                <h2>Payment details</h2>
+                <form class="cartform">
+                    <div>
+                        <label for="text">First name
+                            <input type="text">
+                        </label>
+                    </div>
 
-                <div>
-                    <label for="text">Surname
-                        <input type="text">
-                    </label> 
-                </div>
+                    <div>
+                        <label for="text">Surname
+                            <input type="text">
+                        </label> 
+                    </div>
 
-                <div>
-                    <label for="text">Adress
-                        <input type="text">
-                    </label>
-                </div>
+                    <div>
+                        <label for="text">Adress
+                            <input type="text">
+                        </label>
+                    </div>
 
-                <div>
-                    <label for="number">Postcode
-                        <input type="number">
-                    </label>
-                </div>
+                    <div>
+                        <label for="number">Postcode
+                            <input type="number">
+                        </label>
+                    </div>
 
-                <div>
-                    <label for="text">City
-                        <input type="text">
-                    </label>
-                </div>
+                    <div>
+                        <label for="text">City
+                            <input type="text">
+                        </label>
+                    </div>
 
-                <div>
-                    <label for="number">Entry code
-                        <input type="number">
-                    </label>
-                </div>
+                    <div>
+                        <label for="number">Entry code
+                            <input type="number">
+                        </label>
+                    </div>
 
-                <div>
-                    <label for="number">Number
-                        <input type="number">
-                    </label>
-                </div>
+                    <div>
+                        <label for="number">Number
+                            <input type="number">
+                        </label>
+                    </div>
+                    
+                    <div>
+                        <label for="email">Email
+                            <input type="email">
+                        </label>
+                    </div>
+
+                </form>
+
+                <button class="cartorder_buttons">Cardpayment</button>
+                <form class="cartcard">
+                    <div>
+                        <label for="number">Cardnumber
+                            <input type="number">
+                        </label>
+                    </div>
+                    <div>
+                        <label for="">Expiry date
+                            <input type="date">
+                        </label>
+                    </div>
+                    <div>
+                        <label for="number">CVC
+                            <input type="number">
+                        </label>
+                    </div>
+                </form>
+
+
+                <button class="cartorder_buttons">Invoice</button>
+                <form class="cart_invoice">
+                    <div>
+                        <label for="number">Personal ID
+                            <input type="number">
+                        </label>
+                    </div>
                 
-                <div>
-                    <label for="email">Email
-                        <input type="email">
+                </form>
+
+                <div class="cart_personaldata">
+                    <label> 
+                        <input type="checkbox" name="Cardpayment">
+                        I consent to my personal data being collected for order processing, 
+                        as outlined in the privacy policy
                     </label>
                 </div>
 
-            </form>
-
-            <button>Cardpayment</button>
-            <form class="cartcard">
-                <div>
-                    <label for="number">Cardnumber
-                        <input type="number">
+                <div class="cart_newsletter">
+                    <label> 
+                        <input type="checkbox" name="Cardpayment" checked>
+                        Count me in for the newsletter!
                     </label>
                 </div>
-                <div>
-                    <label for="">Expiry date
-                        <input type="date">
-                    </label>
-                </div>
-                <div>
-                    <label for="number">CVC
-                        <input type="number">
-                    </label>
-                </div>
-            </form>
 
 
-            <button>Invoice</button>
-            <form class="cart_invoice">
-                <div>
-                    <label for="number">Personal ID
-                        <input type="number">
-                    </label>
-                </div>
-               
-            </form>
-
-            <div class="cart_personaldata">
-                <label> 
-                    <input type="checkbox" name="Cardpayment">
-                    I consent to my personal data being collected for order processing, 
-                    as outlined in the privacy policy
-                </label>
-            </div>
-
-            <div class="cart_newsletter">
-                <label> 
-                    <input type="checkbox" name="Cardpayment" checked>
-                    Count me in for the newsletter!
-                </label>
-             </div>
-
-
-        </section>
-
-
-      
-    
-
-
+            </section>
     </div>
     
-    
-   
-    
+<!-------------------------------------------------------------------------------------
+----------------------------SECTION 2 - CART OPEN--------------------------------------
+-------------------------------------------------------------------------------------->
+   <div class="confirmation_container">
+        <section>
+            <h2>Thank you for placing your order!</h2>
+            <p> Here's a summary of your purchase along with delivery information. Your order will be dispatched shortly, 
+                expect delivery in 3-5 working days. For any queries about delivery or assistance, please don't hesitate to reach out.</p>
+        </section>
+
+   </div>
+
+
 
 
 <!-------------------------------------------------------------------------------------
@@ -195,8 +195,7 @@
 
 
     <footer>
-
-
+        <p> &copy;Bowls by Baba. All rights reserved</p>
     </footer>
 </body>
 </html>

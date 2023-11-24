@@ -3,4 +3,32 @@
     border-radius: 90px;
 }
 
+@mixin blue_buttons {
+    padding: 5px;
+    background-color: #002fa7;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 10px;
+    border: none;
+}
 
+
+@mixin labels {
+    color: black;
+}
+
+
+@mixin add_buttons {
+    background-color: #002fa7;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 10px;
+    border: none;
+}
+
+
+@mixin positions {
+    padding: 20px;
+}
