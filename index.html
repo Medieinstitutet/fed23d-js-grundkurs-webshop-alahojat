@@ -48,9 +48,11 @@
             <section class="cartorder_container">
                 <h2>Order summary</h2>
                 <span> ORDERED ITEMS</span>
-                <button class="minus">-</button>
-                <input type="number">
-                <button class="plus">+</button>
+                <div>
+                    <button class="minus">-</button>
+                    <input type="number">
+                    <button class="plus">+</button>
+                </div>
                 <button>Remove item</button>
             </section>
 
@@ -106,10 +108,12 @@
                     </div>
                 </form>
 
-                <button class="cartorder_buttons">Cardpayment</button>
+                <div class="payment_buttons">
 
-                <button class="cartorder_buttons">Invoice</button>
-                
+                    <button class="cartorder_buttons">Cardpayment</button>
+
+                    <button class="cartorder_buttons">Invoice</button>
+                </div>
                 <form class="cartcard">
                     <div>
                         <label for="cardno">Cardnumber

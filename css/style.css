@@ -145,14 +145,48 @@ header div button {
   align-items: center;
   padding-top: 20px;
   padding-bottom: 20px;
+  border-bottom: 3px solid #002fa7;
 }
-#product_container .product_items .product_buttons input {
+#product_container .product_items h3 {
+  font-size: 2rem;
+}
+#product_container .product_items .product_price {
+  font-size: 1.8rem;
+}
+#product_container .product_items .product_buttons {
+  display: flex;
+  flex-direction: row;
+}
+#product_container .product_items .product_buttons p {
   width: 50px;
   text-align: center;
   background: none;
   border: none;
+  color: black;
+  font-size: 1.2rem;
 }
 #product_container .product_items .product_buttons .minus, #product_container .product_items .product_buttons .plus {
+  background-color: #002fa7;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: none;
+}
+
+.cartorder_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cartform_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cartform_container .payment_buttons {
   background-color: #002fa7;
   padding-left: 15px;
   padding-right: 15px;

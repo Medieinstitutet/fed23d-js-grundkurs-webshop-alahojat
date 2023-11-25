@@ -204,7 +204,7 @@ function printItems() {
     `<div class="product_items">
     <img src='${shopItems[i].img.source}'>
     <h3> ${shopItems[i].name} </h3>
-    <p> ${shopItems[i].price} ${shopItems[i].unit}</p>
+    <p class="product_price"> ${shopItems[i].price} ${shopItems[i].unit}</p>
     <div class="product_buttons">
         <button class="minus" id="minus-${i}">-</button>
         <p id="amountInput"> ${shopItems[i].amount} </p>
