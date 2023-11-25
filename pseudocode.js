@@ -1,11 +1,13 @@
-// Create array with items
+// Create array with items DONE
 
-/* Function: addItem (adds item to cart on start page)
+/* 
+-----DONE
+Function: addItem (adds item to cart on start page)
     - when the minus-button is clicked the value of the input decreases by 1 (number)
     - A total next to the cart is updated
     - IF the value reaches 0 customer the function of the minus-button no longer works
     - when the plus-button is clicked the value of the input increases by 1 (number)
-    
+
 */
 
 
@@ -14,7 +16,6 @@
 */
 
 // Function: displayShoppingCart (connect and style cart based off values from array with items)
-
 
 /* Function: array filters
     Function: sortItemsName (enables items to be filtered based on name)
@@ -32,18 +33,13 @@
 
 
 
-
 /* Function: toggleView (toggles between the shopview and the cartview)
     - when cart icon is clicked, the order page appears:
         Function: orderSummary (show an overview of items displayShoppingCart in the order summary) 
         - IF order placed before 10am on a monday, 10% off is applied on full amount of the cart
         - order summary shows text "Måndagsrabatt: 10 % på hela beställningen"
-
-    
         - when cart icon is clicked again, the order page disappears
 */
-
-
 
 
 

@@ -108,15 +108,8 @@ header {
             .minus, .plus {
                 @include add_buttons;
             }
-        
         }
-
-    }
-    
-     
-
-
-    
+    }    
 }
 
 .visually_hidden {

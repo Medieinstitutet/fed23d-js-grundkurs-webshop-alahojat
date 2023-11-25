@@ -1,7 +1,10 @@
 // Toggle pageview with cart clicks
+
+// variable for the cartbutton icon
 const cartBtn = document.querySelector('#cartBtn');
 cartBtn.addEventListener('click', orderSummary);
 
+//function that toggles the page view between products vs order summary
 function orderSummary() {
    const productPage = document.querySelector('#product_container');
    productPage.classList.toggle('visually_hidden');
@@ -9,12 +12,6 @@ function orderSummary() {
    const orderConfirmation = document.querySelector('#orderConfirmation');
    orderConfirmation.classList.toggle('visually_hidden');
 }
-
-
-
-
-// function that calls on the orderpage view
-
 
 
 // array with all shopitems in objects
@@ -138,14 +135,70 @@ let shopItems = [
         amount: 0,
     },
 
+    {
+        img: {
+            source: 'assets/bowls/triplet-set.jpg',
+            alt: 'Three wooden bowls with single fruits next to each other on white cloth',
+            width: 250,
+            height: 250, 
+        },
+        name: 'Triplets set',
+        price: 550,
+        unit: 'kr',
+        rating: 5,
+        category: 'Bowls',
+        amount: 0,
+    },
+
+    {
+        img: {
+            source: 'assets/bowls/triplet-set.jpg',
+            alt: 'Three wooden bowls with single fruits next to each other on white cloth',
+            width: 250,
+            height: 250, 
+        },
+        name: 'Triplets set',
+        price: 550,
+        unit: 'kr',
+        rating: 5,
+        category: 'Bowls',
+        amount: 0,
+    },
+
     
 ]
 
 const itemContainer = document.querySelector("#product_container");
 
+printItems();
+
+
+
+// function to increase amount with click on plusbutton
+function increaseAmount(e) {
+    let index = e.target.id.replace('plus-', '');
+    index = Number(index);
+    shopItems[index].amount += 1;
+
+    printItems();  
+} 
+
+
+// function to decrease amount with click on minusbutton
+function decreaseAmount(e) {
+    let index = e.target.id.replace('minus-', '');
+    index = Number(index);
+    shopItems[index].amount -= 1;
+
+    printItems();  
+} 
+
+
 
 // function to print out all the shopitems onto the webpage
 function printItems() {
+    itemContainer.innerHTML = '';
+
     for(let i = 0; i < shopItems.length; i++) {
     itemContainer.innerHTML +=
     `<div class="product_items">
@@ -153,57 +206,32 @@ function printItems() {
     <h3> ${shopItems[i].name} </h3>
     <p> ${shopItems[i].price} ${shopItems[i].unit}</p>
     <div class="product_buttons">
-        <button class="minus">-</button>
-        <input class="item_input" type="number">
-        <button class="plus">+</button>
+        <button class="minus" id="minus-${i}">-</button>
+        <p id="amountInput"> ${shopItems[i].amount} </p>
+        <button class="plus" id="plus-${i}">+</button>
     </div>
     <p> Rating: ${shopItems[i].rating}</p>
     <p class"category"> Category: ${shopItems[i].category}</p>
-    </div>
-    `;  
+    </div>`;  
+    } 
 
-    // <p class"totalamount"> Total ${shopItems[i].amount} kr</p>
-    }
 
-    // function for plus and minusbuttons to increase/decrease value of input
     const plusBtn = document.querySelectorAll('.plus');
-    plusBtn.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            const input = button.parentNode.querySelector('.item_input');
-            input.value = Number(input.value) + 1;
-        });
-    });
+    for (let i = 0; i < plusBtn.length; i++) {
+        plusBtn[i].addEventListener('click', increaseAmount)
+    };
 
-    // function for plus and minusbuttons to increase/decrease value of input
     const minusBtn = document.querySelectorAll('.minus');
-    minusBtn.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            const input = button.parentNode.querySelector('.item_input');
-            if (input.value > 0) {
-                input.value = Number(input.value) - 1;
-            } 
-        });
-    });
-
-
-     //function to update number next to cart-icon when buttons are pressed
-   function updateCart() {
-    const cartAmount =  document.querySelector('.cartNumber');
-    cartAmount.innerHTML = '';
-
-    for (let i = 0; i < printItems.length; i++) {
-        if (printItems[i].amount > 0) {
-            console.log('hejfdfa');
-        }
-    }
-    updateCart();
-    
-}
+    for (let i = 0; i < minusBtn.length; i++) {
+        minusBtn[i].addEventListener('click', decreaseAmount)
+    };
 }
 
-printItems();
 
-   
+
+
+
+
 
     
 
@@ -248,7 +276,18 @@ function decrease() {
 
 
 
+  //function to update number next to cart-icon when buttons are pressed
+   /*function updateCart() {
+    const cartAmount =  document.querySelector('.cartNumber');
+    cartAmount.innerHTML = '';
 
+    for (let i = 0; i < printItems.length; i++) {
+        if (printItems[i].amount > 0) {
+            console.log('hejfdfa');
+        }
+    }
+    updateCart();   
+}*/
 
 
 
