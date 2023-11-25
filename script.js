@@ -8,9 +8,8 @@ function orderSummary() {
    productPage.classList.toggle('hidden');
 }
 
+// function that calls on the orderpage view
 orderSummary();
-
-
 
 
 
@@ -152,22 +151,98 @@ function printItems() {
     <img src='${shopItems[i].img.source}'>
     <h3> ${shopItems[i].name} </h3>
     <p> ${shopItems[i].price} ${shopItems[i].unit}</p>
-    <p> Rating ${shopItems[i].rating}</p>
     <div class="product_buttons">
-        <button class="minus-${i}">-</button>
+        <button class="minus">-</button>
         <input class="item_input" type="number">
-        <button class="plus-${i}">+</button>
-    </div>`;
-       
-    const plusBtn = document.querySelector('.plus');
-    const minusBtn = document.querySelector('.minus');
-    let inputValue = document.querySelector('.item_input');
+        <button class="plus">+</button>
+    </div>
+    <p> Rating: ${shopItems[i].rating}</p>
+    <p class"category"> Category: ${shopItems[i].category}</p>
+    </div>
+    `;  
 
-    console.log(inputValue);
-    
+    // <p class"totalamount"> Total ${shopItems[i].amount} kr</p>
+    }
+
+
+    const plusBtn = document.querySelectorAll('.plus');
+    plusBtn.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const input = button.parentNode.querySelector('.item_input');
+            input.value = Number(input.value) + 1;
+        });
+    });
+
+    const minusBtn = document.querySelectorAll('.minus');
+    minusBtn.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const input = button.parentNode.querySelector('.item_input');
+            if (input.value > 0) {
+                input.value = Number(input.value) - 1;
+            } 
+        });
+    });
+
+   
 }
-}
+
 printItems();
+
+
+   /* const plusBtn = Array.from(document.querySelectorAll('.plus'));
+    for (let i = 0; i < plusBtn.length; i++) {
+        plusBtn[i].addEventListener('click', increase) 
+    }
+
+    let inputValue = document.querySelector('.item_input');
+    function increase() {
+        inputValue.value = Number(inputValue.value)  + 1;   
+    }*/
+
+
+
+
+
+
+
+   
+       
+           
+    
+     
+
+
+
+
+       /* 
+       
+
+
+    const minusBtn = document.querySelector('.minus');
+    
+    let totalAmount = document.querySelector('.totalamount')
+
+
+plusBtn.addEventListener('click', increase);
+function increase() {
+    
+} 
+
+minusBtn.addEventListener('click', decrease);
+function decrease() {
+    if (inputValue.value > 0) {
+        inputValue.value -= 1;
+    }
+}
+*/
+
+
+
+
+
+
+
+
 
 
 
