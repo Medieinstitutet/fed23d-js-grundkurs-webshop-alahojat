@@ -31,7 +31,6 @@ header {
         top: 9px;
         right: 10px;
     }
-   
 }
 
 .pagetop {
@@ -39,8 +38,9 @@ header {
     flex-direction: column;
     padding-top: 200px;
     position: relative;
-}
 
+
+    
 .pagetitle {
     width: 100%;
        
@@ -61,7 +61,6 @@ header {
     right: 25%;
 }
 
-
 .circle {
     position: absolute;
     left: 15%;
@@ -73,12 +72,13 @@ header {
 }
 }
 
-
 .about {
     padding: 20px;
     text-transform: uppercase;
     border-bottom: 3px solid #002fa7;
 }
+}
+
 
 
 
@@ -107,8 +107,6 @@ header {
     
 }
 
-.hidden {
-    display: none;
-}
+
 
 

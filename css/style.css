@@ -91,11 +91,10 @@ header span {
   padding-top: 200px;
   position: relative;
 }
-
-.pagetitle {
+.pagetop .pagetitle {
   width: 100%;
 }
-.pagetitle .pagetitle1 {
+.pagetop .pagetitle .pagetitle1 {
   position: absolute;
   top: 40%;
   left: 50%;
@@ -103,7 +102,7 @@ header span {
   font-size: 3rem;
   z-index: 3;
 }
-.pagetitle .pagetitle2 {
+.pagetop .pagetitle .pagetitle2 {
   position: absolute;
   font-weight: normal;
   font-style: italic;
@@ -111,7 +110,7 @@ header span {
   top: 45%;
   right: 25%;
 }
-.pagetitle .circle {
+.pagetop .pagetitle .circle {
   position: absolute;
   left: 15%;
   top: 20%;
@@ -120,8 +119,7 @@ header span {
   background-color: #d35400;
   border-radius: 50px;
 }
-
-.about {
+.pagetop .about {
   padding: 20px;
   text-transform: uppercase;
   border-bottom: 3px solid #002fa7;
@@ -149,8 +147,4 @@ header span {
   text-transform: uppercase;
   border-radius: 10px;
   border: none;
-}
-
-.hidden {
-  display: none;
 }/*# sourceMappingURL=style.css.map */
