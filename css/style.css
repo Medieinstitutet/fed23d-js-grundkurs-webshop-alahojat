@@ -79,10 +79,20 @@ header {
   background-color: #dddddd;
   z-index: 3;
 }
-header span {
+header div {
+  display: flex;
+  align-items: center;
   position: absolute;
-  top: 9px;
-  right: 10px;
+  top: 10px;
+  right: 20px;
+}
+header div p {
+  font-size: 1.3rem;
+  color: black;
+}
+header div button {
+  background: none;
+  border: none;
 }
 
 .pagetop {
@@ -90,6 +100,11 @@ header span {
   flex-direction: column;
   padding-top: 200px;
   position: relative;
+}
+.pagetop .about {
+  padding: 20px;
+  text-transform: uppercase;
+  border-bottom: 3px solid #002fa7;
 }
 .pagetop .pagetitle {
   width: 100%;
@@ -119,25 +134,23 @@ header span {
   background-color: #d35400;
   border-radius: 50px;
 }
-.pagetop .about {
-  padding: 20px;
-  text-transform: uppercase;
-  border-bottom: 3px solid #002fa7;
-}
 
 #product_container {
   display: flex;
   flex-direction: column;
 }
 #product_container .product_items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-top: 20px;
   padding-bottom: 20px;
 }
-#product_container .product_items .product_buttons {
-  display: inline;
-}
 #product_container .product_items .product_buttons input {
   width: 50px;
+  text-align: center;
+  background: none;
+  border: none;
 }
 #product_container .product_items .product_buttons .minus, #product_container .product_items .product_buttons .plus {
   background-color: #002fa7;
@@ -147,4 +160,14 @@ header span {
   text-transform: uppercase;
   border-radius: 10px;
   border: none;
+}
+
+.visually_hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }/*# sourceMappingURL=style.css.map */

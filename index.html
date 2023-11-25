@@ -5,7 +5,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,9 +15,13 @@
 <body>
     <header> 
         <h1>Baba's</h1>
-        <span class="material-symbols-outlined">
-            shopping_bag
-        </span>
+        <div>
+            <p class="cartNumber"></p>
+            <button id="cartBtn" class="material-symbols-outlined">
+                shopping_bag
+            </button>
+        </div>
+ 
     </header>
     
     <div class="pagetop">
@@ -40,7 +44,7 @@
     </div>
  
 
-    <div id="hidden">
+    <div id="orderConfirmation" class="visually_hidden">
             <section class="cartorder_container">
                 <h2>Order summary</h2>
                 <span> ORDERED ITEMS</span>
@@ -104,6 +108,9 @@
                 </form>
 
                 <button class="cartorder_buttons">Cardpayment</button>
+
+                <button class="cartorder_buttons">Invoice</button>
+                
                 <form class="cartcard">
                     <div>
                         <label for="number">Cardnumber
@@ -122,8 +129,6 @@
                     </div>
                 </form>
 
-
-                <button class="cartorder_buttons">Invoice</button>
                 <form class="cart_invoice">
                     <div>
                         <label for="number">Personal ID
@@ -150,15 +155,18 @@
 
 
             </section>
+            <button> beställ</button>
 
-            <div class="confirmation_container">
-                <section>
-                    <h2>Thank you for placing your order!</h2>
-                    <p> Here's a summary of your purchase along with delivery information. Your order will be dispatched shortly, 
-                        expect delivery in 3-5 working days. For any queries about delivery or assistance, please don't hesitate to reach out.</p>
-                </section>
-           </div>
+           
     </div>
+
+    <div class="confirmation_container">
+        <section>
+            <h2>Thank you for placing your order!</h2>
+            <p> Here's a summary of your purchase along with delivery information. Your order will be dispatched shortly, 
+                expect delivery in 3-5 working days. For any queries about delivery or assistance, please don't hesitate to reach out.</p>
+        </section>
+   </div>
     
 
     <footer>

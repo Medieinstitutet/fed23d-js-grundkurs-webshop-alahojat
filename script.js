@@ -1,22 +1,24 @@
-// toggle pageview with cart clicks
-
-const cartBtn = document.querySelector('.material-symbols-outlined');
-
+// Toggle pageview with cart clicks
+const cartBtn = document.querySelector('#cartBtn');
 cartBtn.addEventListener('click', orderSummary);
+
 function orderSummary() {
    const productPage = document.querySelector('#product_container');
-   productPage.classList.toggle('hidden');
+   productPage.classList.toggle('visually_hidden');
+
+   const orderConfirmation = document.querySelector('#orderConfirmation');
+   orderConfirmation.classList.toggle('visually_hidden');
 }
 
-// function that calls on the orderpage view
-orderSummary();
 
+
+
+// function that calls on the orderpage view
 
 
 
 // array with all shopitems in objects
 let shopItems = [
-
     {
         img: {
             source: 'assets/bowls/twin-set-bowls.jpg',
@@ -143,7 +145,6 @@ const itemContainer = document.querySelector("#product_container");
 
 
 // function to print out all the shopitems onto the webpage
-
 function printItems() {
     for(let i = 0; i < shopItems.length; i++) {
     itemContainer.innerHTML +=
@@ -164,7 +165,7 @@ function printItems() {
     // <p class"totalamount"> Total ${shopItems[i].amount} kr</p>
     }
 
-
+    // function for plus and minusbuttons to increase/decrease value of input
     const plusBtn = document.querySelectorAll('.plus');
     plusBtn.forEach((button, index) => {
         button.addEventListener('click', () => {
@@ -173,6 +174,7 @@ function printItems() {
         });
     });
 
+    // function for plus and minusbuttons to increase/decrease value of input
     const minusBtn = document.querySelectorAll('.minus');
     minusBtn.forEach((button, index) => {
         button.addEventListener('click', () => {
@@ -183,24 +185,27 @@ function printItems() {
         });
     });
 
-   
+
+     //function to update number next to cart-icon when buttons are pressed
+   function updateCart() {
+    const cartAmount =  document.querySelector('.cartNumber');
+    cartAmount.innerHTML = '';
+
+    for (let i = 0; i < printItems.length; i++) {
+        if (printItems[i].amount > 0) {
+            console.log('hejfdfa');
+        }
+    }
+    updateCart();
+    
+}
 }
 
 printItems();
 
+   
 
-   /* const plusBtn = Array.from(document.querySelectorAll('.plus'));
-    for (let i = 0; i < plusBtn.length; i++) {
-        plusBtn[i].addEventListener('click', increase) 
-    }
-
-    let inputValue = document.querySelector('.item_input');
-    function increase() {
-        inputValue.value = Number(inputValue.value)  + 1;   
-    }*/
-
-
-
+    
 
 
 
@@ -247,6 +252,6 @@ function decrease() {
 
 
 
-// function for plus and minusbuttons to increase/decrease value of input
+
 
 
