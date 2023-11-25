@@ -14,20 +14,25 @@
 </head>
 <body>
     <header> 
-        <div class="pagetitle">
-            <h1>Bowls</h1>
-            <h2>by Baba</h2>
-            <div class="circle"></div>
-            <span class="material-symbols-outlined">
-                shopping_bag
-            </span>
-        </div>  
+        <h1>Baba's</h1>
+        <span class="material-symbols-outlined">
+            shopping_bag
+        </span>
     </header>
-    <div class="about">
-        <p>
-        We are a creative bunch passionate about crafting unique handmade wooden bowls.  
-        Each bowl is a work of art, made with love and care.
-        </p>
+    
+    <div class="pagetop">
+        <section class="pagetitle">
+            <h2 class="pagetitle1">Bowls</h2>
+            <h2 class="pagetitle2">by Baba</h2>
+            <div class="circle"></div>
+        </section> 
+        
+        <div class="about">
+            <p>
+            We are a creative bunch passionate about crafting unique handmade wooden bowls.  
+            Each bowl is a work of art, made with love and care.
+            </p>
+        </div>
     </div>
 
 <!-------------------------------------------------------------------------------------
@@ -35,35 +40,15 @@
 -------------------------------------------------------------------------------------->
 
 
-    <div class="product_container">
-       
-
-            <!--------
-                 <div class="page_closedcart_container">
-                <img src="assets/bowls/triplet-set.jpg" 
-                
-            <h3>Triplet</h3>
-            <p>Price <span>10kr</span></p>
-            <p>rating?</p>
-            <div class="product_buttons">
-                <button class="minus">-</button>
-                <input type="number">
-                <button class="plus">+</button>
-            </div>
-             </div>
-            -->
-            
-       
-        
+    <div id="product_container">        
     </div>
 
 
 <!-------------------------------------------------------------------------------------
 ----------------------------SECTION 2 - CART OPEN--------------------------------------
 -------------------------------------------------------------------------------------->
-   
 
-    <div class="cart_container">
+    <div id="hidden">
             <section class="cartorder_container">
                 <h2>Order summary</h2>
                 <span> ORDERED ITEMS</span>
@@ -72,6 +57,7 @@
                 <button class="plus">+</button>
                 <button>Remove item</button>
             </section>
+
             <section class="cartform_container">
                 <h2>Payment details</h2>
                 <form class="cartform">
@@ -172,6 +158,14 @@
 
 
             </section>
+
+            <div class="confirmation_container">
+                <section>
+                    <h2>Thank you for placing your order!</h2>
+                    <p> Here's a summary of your purchase along with delivery information. Your order will be dispatched shortly, 
+                        expect delivery in 3-5 working days. For any queries about delivery or assistance, please don't hesitate to reach out.</p>
+                </section>
+           </div>
     </div>
     
 
@@ -181,13 +175,7 @@
 -------------------------------------------------------------------------------------->
    
 
-    <div class="confirmation_container">
-        <section>
-            <h2>Thank you for placing your order!</h2>
-            <p> Here's a summary of your purchase along with delivery information. Your order will be dispatched shortly, 
-                expect delivery in 3-5 working days. For any queries about delivery or assistance, please don't hesitate to reach out.</p>
-        </section>
-   </div>
+  
 
 
 

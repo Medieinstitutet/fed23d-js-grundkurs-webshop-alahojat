@@ -1,15 +1,52 @@
-// Create array with items - DONE
+// toggle pageview with cart clicks
 
-/* Function: addItem (adds item to cart on start page)
-    - when the minus-button is clicked the value of the input decreases by 1 (number)
-    - A total next to the cart is updated
-    - IF the value reaches 0 customer the function of the minus-button no longer works
-    - when the plus-button is clicked the value of the input increases by 1 (number)
+const cartBtn = document.querySelector('.material-symbols-outlined');
 
-*/
+cartBtn.addEventListener('click', orderSummary);
+function orderSummary() {
+   const productPage = document.querySelector('#product_container');
+   productPage.classList.toggle('hidden');
+}
 
-// array with all shop items
+orderSummary();
+
+
+
+
+
+
+// array with all shopitems in objects
 let shopItems = [
+
+    {
+        img: {
+            source: 'assets/bowls/twin-set-bowls.jpg',
+            alt: 'One wooden bowl stood on a second wooden bowl ontop of a red table',
+            width: 250,
+            height: 250, 
+        },
+        name: 'Twin bowls',
+        price: 300,
+        unit: 'kr',
+        rating: 5,
+        category: 'Bowls',
+        amount: 0,
+    },
+
+    {
+        img: {
+            source: 'assets/bowls/twin-set.jpg',
+            alt: 'A wooden bowl balancing on a second wooden bowl ontop of a red table',
+            width: 250,
+            height: 250, 
+        },
+        name: 'Twin set',
+        price: 280,
+        unit: 'kr',
+        rating: 5,
+        category: 'Bowls',
+        amount: 0,
+    },
     {
         img: {
             source: 'assets/bowls/flower-pot.jpg',
@@ -100,56 +137,41 @@ let shopItems = [
         amount: 0,
     },
 
-    {
-        img: {
-            source: 'assets/bowls/twin-set-bowls.jpg',
-            alt: 'One wooden bowl stood on a second wooden bowl ontop of a red table',
-            width: 250,
-            height: 250, 
-        },
-        name: 'Twin bowls',
-        price: 300,
-        unit: 'kr',
-        rating: 5,
-        category: 'Bowls',
-        amount: 0,
-    },
-
-    {
-        img: {
-            source: 'assets/bowls/twin-set.jpg',
-            alt: 'A wooden bowl balancing on a second wooden bowl ontop of a red table',
-            width: 250,
-            height: 250, 
-        },
-        name: 'Twin set',
-        price: 280,
-        unit: 'kr',
-        rating: 5,
-        category: 'Bowls',
-        amount: 0,
-    },
+    
 ]
 
-const itemContainer = document.querySelector(".product_container");
+const itemContainer = document.querySelector("#product_container");
+
+
+// function to print out all the shopitems onto the webpage
 
 function printItems() {
     for(let i = 0; i < shopItems.length; i++) {
     itemContainer.innerHTML +=
-    `
-    <div class="product_items">
+    `<div class="product_items">
     <img src='${shopItems[i].img.source}'>
     <h3> ${shopItems[i].name} </h3>
     <p> ${shopItems[i].price} ${shopItems[i].unit}</p>
     <p> Rating ${shopItems[i].rating}</p>
     <div class="product_buttons">
-        <button class="minus">-</button>
-        <input type="number">
-        <button class="plus">+</button>
-    </div>
-    `
-    }
+        <button class="minus-${i}">-</button>
+        <input class="item_input" type="number">
+        <button class="plus-${i}">+</button>
+    </div>`;
+       
+    const plusBtn = document.querySelector('.plus');
+    const minusBtn = document.querySelector('.minus');
+    let inputValue = document.querySelector('.item_input');
+
+    console.log(inputValue);
+    
 }
-
-
+}
 printItems();
+
+
+
+
+// function for plus and minusbuttons to increase/decrease value of input
+
+
