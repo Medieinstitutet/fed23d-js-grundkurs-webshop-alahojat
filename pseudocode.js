@@ -1,8 +1,8 @@
 // Create array with items DONE
 
-/* 
------DONE
-Function: addItem (adds item to cart on start page)
+
+// DONE
+/* Function: addItem (adds item to cart on start page)
     - when the minus-button is clicked the value of the input decreases by 1 (number)
     - A total next to the cart is updated
     - IF the value reaches 0 customer the function of the minus-button no longer works
@@ -10,6 +10,18 @@ Function: addItem (adds item to cart on start page)
 
 */
 
+//DONE
+/* Function: toggleView (toggles between the shopview and the cartview)
+    - when cart icon is clicked, the order page appears:
+        Function: orderSummary (show an overview of items displayShoppingCart in the order summary) 
+        - IF order placed before 10am on a monday, 10% off is applied on full amount of the cart
+        - order summary shows text "Måndagsrabatt: 10 % på hela beställningen"
+        - when cart icon is clicked again, the order page disappears
+*/
+
+
+//DONE
+// Function: addToCart (updates number next to cart icon when customer presses minus or plus)
 
 /* Function: change value of cart based on rules... IF..ELSE
     - 
@@ -33,13 +45,7 @@ Function: addItem (adds item to cart on start page)
 
 
 
-/* Function: toggleView (toggles between the shopview and the cartview)
-    - when cart icon is clicked, the order page appears:
-        Function: orderSummary (show an overview of items displayShoppingCart in the order summary) 
-        - IF order placed before 10am on a monday, 10% off is applied on full amount of the cart
-        - order summary shows text "Måndagsrabatt: 10 % på hela beställningen"
-        - when cart icon is clicked again, the order page disappears
-*/
+
 
 
 
@@ -83,3 +89,16 @@ However resets form after 15 min)
 
 
 
+/*
+let clickedCartIcon = document.querySelector('#cartBtn');
+let totalAmount = cartTotal.reduce((total, product) => total + product.amount, 0);
+clickedCartIcon.addEventListener('click', cartIconColor);
+function cartIconColor() {
+    if (totalAmount > 1) {
+        clickedCartIcon.classList.add('clickedButton');
+    };
+    
+}
+
+cartIconColor();
+*/

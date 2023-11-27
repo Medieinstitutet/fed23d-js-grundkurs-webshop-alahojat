@@ -56,7 +56,7 @@ body {
   font-family: "Inter", sans-serif;
 }
 body img {
-  padding: 30px;
+  padding: 20px;
   border-radius: 100px;
   object-fit: cover;
   object-position: center;
@@ -70,6 +70,9 @@ body p {
   color: #d35400;
   text-align: center;
 }
+body input {
+  border-radius: 10px;
+}
 
 header {
   max-height: 50px;
@@ -77,22 +80,30 @@ header {
   position: fixed;
   border-bottom: 3px solid #d35400;
   background-color: #dddddd;
-  z-index: 3;
+  z-index: 4;
 }
 header div {
   display: flex;
   align-items: center;
   position: absolute;
-  top: 10px;
-  right: 20px;
+  justify-content: center;
+  top: 0;
+  right: 5px;
 }
-header div p {
-  font-size: 1.3rem;
-  color: black;
+header div .cartNumber {
+  position: absolute;
+  font-size: 1rem;
+  top: 17px;
+  color: #002fa7;
 }
 header div button {
   background: none;
   border: none;
+  z-index: 3;
+}
+header div .material-symbols-outlined {
+  font-size: 45px;
+  color: #002fa7;
 }
 
 .pagetop {
@@ -148,7 +159,8 @@ header div button {
   border-bottom: 3px solid #002fa7;
 }
 #product_container .product_items h3 {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  color: black;
 }
 #product_container .product_items .product_price {
   font-size: 1.8rem;
@@ -178,22 +190,50 @@ header div button {
 .cartorder_container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  background-color: white;
 }
 
-.cartform_container {
+#orderConfirmation {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.cartform_container .payment_buttons {
-  background-color: #002fa7;
-  padding-left: 15px;
-  padding-right: 15px;
-  color: white;
-  text-transform: uppercase;
-  border-radius: 10px;
-  border: none;
+#orderConfirmation h2 {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+#orderConfirmation .discount_code {
+  padding-top: 20px;
+}
+#orderConfirmation .cartorder_container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: rgb(215, 208, 208);
+  border-radius: 40px;
+}
+#orderConfirmation .cartorder_container .cartorder_items {
+  padding: 10px 30px 10px 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#orderConfirmation .cartorder_container .cartorder_items .cartorder_info {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+#orderConfirmation .cartorder_container .cartorder_items img {
+  width: 130px;
+  border-radius: 50px;
+  height: auto;
+  padding: 5px;
+}
+#orderConfirmation .cartform_container {
+  padding: 30px;
+}
+#orderConfirmation .cartform_container .cartform {
+  display: flex;
+  flex-direction: column;
 }
 
 .visually_hidden {
@@ -204,4 +244,21 @@ header div button {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+#confirmation_container {
+  padding: 20px;
+  height: auto;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #d35400;
+}
+footer p {
+  color: black;
+  padding-top: 15px;
 }/*# sourceMappingURL=style.css.map */

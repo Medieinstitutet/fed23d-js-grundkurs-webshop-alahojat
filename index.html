@@ -16,7 +16,7 @@
     <header> 
         <h1>Baba's</h1>
         <div>
-            <p class="cartNumber"></p>
+            <span class="cartNumber"></span>
             <button id="cartBtn" class="material-symbols-outlined">
                 shopping_bag
             </button>
@@ -39,131 +39,132 @@
         </div>
     </div>
 
-
     <div id="product_container">        
     </div>
  
-
-    <div id="orderConfirmation" class="visually_hidden">
-            <section class="cartorder_container">
-                <h2>Order summary</h2>
-                <span> ORDERED ITEMS</span>
-                <div>
-                    <button class="minus">-</button>
-                    <input type="number">
-                    <button class="plus">+</button>
-                </div>
-                <button>Remove item</button>
-            </section>
-
-            <section class="cartform_container">
-                <h2>Payment details</h2>
-                <form class="cartform">
-                    <div>
-                        <label for="fname">First name
-                            <input type="text" id="fname">
-                        </label>
-                    </div>
-
-                    <div>
-                        <label for="lname">Surname
-                            <input type="text" id="lname">
-                        </label> 
-                    </div>
-
-                    <div>
-                        <label for="street-address">Address
-                            <input type="text" id="street-address">
-                        </label>
-                    </div>
-
-                    <div>
-                        <label for="zip">Postcode
-                            <input type="number" id="zip">
-                        </label>
-                    </div>
-
-                    <div>
-                        <label for="city">City
-                            <input type="text" id="city">
-                        </label>
-                    </div>
-
-                    <div>
-                        <label for="doorcode">Entry code
-                            <input type="number" id="doorcode">
-                        </label>
-                    </div>
-
-                    <div>
-                        <label for="tel">Number
-                            <input type="number" id="tel">
-                        </label>
-                    </div>
     
-                    <div>
-                        <label for="email">Email
-                            <input type="email" id="email">
-                        </label>
-                    </div>
-                </form>
-
-                <div class="payment_buttons">
-
-                    <button class="cartorder_buttons">Cardpayment</button>
-
-                    <button class="cartorder_buttons">Invoice</button>
-                </div>
-                <form class="cartcard">
-                    <div>
-                        <label for="cardno">Cardnumber
-                            <input type="number" id="cardno">
-                        </label>
-                    </div>
-                    <div>
-                        <label for="expirydate">Expiry date
-                            <input type="date" id="expirydate">
-                        </label>
-                    </div>
-                    <div>
-                        <label for="cvc">CVC
-                            <input type="number" id="cvc">
-                        </label>
-                    </div>
-                </form>
-
-                <form class="cart_invoice">
-                    <div>
-                        <label for="ssn">Personal ID
-                            <input type="number" id="ssn">
-                        </label>
-                    </div>
-                
-                </form>
-
-                <div class="cart_personaldata">
-                    <label> 
-                        <input type="checkbox" name="Cardpayment">
-                        I consent to my personal data being collected for order processing, 
-                        as outlined in the privacy policy
-                    </label>
-                </div>
-
-                <div class="cart_newsletter">
-                    <label> 
-                        <input type="checkbox" name="Cardpayment" checked>
-                        Count me in for the newsletter!
-                    </label>
-                </div>
-
-
+    <div id="orderConfirmation" class="visually_hidden">
+        <h2>Your order summary</h2>
+            <section class="cartorder_container">
+  
             </section>
-            <button> beställ</button>
 
-           
+            <div class="discount_code">
+                <p>Do you have a discount code?</p>
+                <input type="text">
+            </div>
+            <div class="cartform_container">
+                <section >
+                    <h2>Payment details</h2>
+                    <form class="cartform">
+                        <div>
+                            <label for="fname">First name
+                                <input type="text" id="fname">
+                            </label>
+                        </div>
+        
+                        <div>
+                            <label for="lname">Surname
+                                <input type="text" id="lname">
+                            </label> 
+                        </div>
+        
+                        <div>
+                            <label for="street-address">Address
+                                <input type="text" id="street-address">
+                            </label>
+                        </div>
+        
+                        <div>
+                            <label for="zip">Postcode
+                                <input type="number" id="zip">
+                            </label>
+                        </div>
+        
+                        <div>
+                            <label for="city">City
+                                <input type="text" id="city">
+                            </label>
+                        </div>
+        
+                        <div>
+                            <label for="doorcode">Entry code
+                                <input type="number" id="doorcode">
+                            </label>
+                        </div>
+        
+                        <div>
+                            <label for="tel">Number
+                                <input type="number" id="tel">
+                            </label>
+                        </div>
+        
+                        <div>
+                            <label for="email">Email
+                                <input type="email" id="email">
+                            </label>
+                        </div>
+                    </form>
+        
+                    <div class="payment_buttons">
+        
+                        <button class="cartorder_buttons">Cardpayment</button>
+        
+                        <button class="cartorder_buttons">Invoice</button>
+                    </div>
+        
+                    <form class="cartcard">
+                        <div>
+                            <label for="cardno">Cardnumber
+                                <input type="number" id="cardno">
+                            </label>
+                        </div>
+                        <div>
+                            <label for="expirydate">Expiry date
+                                <input type="date" id="expirydate">
+                            </label>
+                        </div>
+                        <div>
+                            <label for="cvc">CVC
+                                <input type="number" id="cvc">
+                            </label>
+                        </div>
+                    </form>
+        
+                    <form class="cart_invoice">
+                        <div>
+                            <label for="ssn">Personal ID
+                                <input type="number" id="ssn">
+                            </label>
+                        </div>
+                    
+                    </form>
+        
+                    <div class="cart_personaldata">
+                        <label> 
+                            <input type="checkbox" name="Cardpayment">
+                            I consent to my personal data being collected for order processing, 
+                            as outlined in the privacy policy
+                        </label>
+                    </div>
+        
+                    <div class="cart_newsletter">
+                        <label> 
+                            <input type="checkbox" name="Cardpayment" checked>
+                            Count me in for the newsletter!
+                        </label>
+                    </div>
+        
+        
+                </section>
+                <button id="order_button"> beställ</button>
+        
+            </div>
     </div>
 
-    <div class="confirmation_container">
+    
+
+    <div id="confirmation_container" class="visually_hidden">
         <section>
             <h2>Thank you for placing your order!</h2>
             <p> Here's a summary of your purchase along with delivery information. Your order will be dispatched shortly, 

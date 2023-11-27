@@ -1,10 +1,9 @@
 @mixin image_style {
-    padding: 30px;
+    padding: 20px;
     border-radius: 100px;
 }
 
 @mixin blue_buttons {
-    padding: 5px;
     background-color: #002fa7;
     color: white;
     text-transform: uppercase;
