@@ -1,13 +1,4 @@
-
-/**
- * 
- * 
- * TOGGLE PAGEVIEW
- * 
- * 
- */
 // Toggle pageview with cart clicks
-
 // variable for the cartbutton icon
 const cartBtn = document.querySelector('#cartBtn');
 cartBtn.addEventListener('click', orderSummary);
@@ -22,18 +13,10 @@ function orderSummary() {
 }
 
 
-/**
- * 
- * 
- * TOGGLE ORDER CONFIRMATION
- * 
- * 
- */
+
 
 // Toggle between order summary and confirmation order
-
 //variable for the orderbutton in order summary
-
 const orderBtn = document.querySelector('#order_button');
 orderBtn.addEventListener('click', thankYouNote);
 
@@ -221,10 +204,10 @@ const isFriday = today.getDay() === 5; // true or false
 const isMonday = today.getDay() === 1; // true or false
 const currentHour = today.getHours();
 
+let shippingCost = document.querySelector('.shipping_cost');
 
 
-
-
+//calling on the array to be printed out in the webshop
 printItems();
 
 //empty array for the ordersummary overview
@@ -254,8 +237,6 @@ function decreaseAmount(e) {
     printItems(); 
     calculateTotalAmount(); // calling on function which alters number next to carticon
 } 
-
-
 
 // specialrules
 function getPriceMultiplier() {
@@ -330,12 +311,15 @@ function cartOverview() {
     cartContainer.innerHTML = '';
     
     let sum = 0;
+    let orderedItemAmount = 0;
     let orderMsg = '';
     let priceIncrease = getPriceMultiplier();
 
      //loop that shows ordered products in cartoverview
     cartTotal.forEach((shopItems, index) => {
         summaryTotal.innerHTML += ``;
+        
+        orderedItemAmount += shopItems.amount;
 
        // discount for 10 or more donuts
         if (shopItems.amount > 0) {  
@@ -350,16 +334,17 @@ function cartOverview() {
 
             cartContainer.innerHTML += 
                 `<div class="cartorder_items">
-                <button class="remove_item">x</button>
-                <img src='${shopItems.img.source}' loading="lazy"> 
-                <div class="cartorder_info">
-                    <h3>${shopItems.name}</h3>
-                    <p>Total items: ${shopItems.amount}</p>
+                <h3>${shopItems.name}</h3>
+                <div class="image_wrapper">
+                    <img src='${shopItems.img.source}' loading="lazy">        
+                </div>       
+                <p>${shopItems.amount} items</p>                                
+                <div class="cartorder_buttons">
                     <button class="cart-plus" data-id="${index}">+</button>
                     <button class="cart-minus" data-id="${index}">-</button>
                 </div>
-                <p> ${shopItems.amount * newItemPrice}kr</p>
-                
+                <p> Total: ${shopItems.amount * newItemPrice}kr</p>        
+                <button class="remove_item">Remove</button>
                 </div>`
                 ;
         }        
@@ -368,14 +353,26 @@ function cartOverview() {
     summaryTotal.innerHTML = `${sum}`;
            
         // apply discount on mondays
-        if (today.getDay() === 2) {
+        if (today.getDay() === 1) {
             sum *= 0.9; //Monday discount on all of order
             orderMsg += '<p></p>';
             mondayMsg.innerHTML = 
             `<p>Yay! You have just received a Monday discount on your order!</p>
             `;
         }
+
         
+        //shippingCost.innerHTML += ``;
+       
+        if (orderedItemAmount > 15) {
+            shippingCost.innerHTML = `Shipping is free with your order!`;
+        } else {
+            shippingCost.innerHTML = `Shipping: ${Math.round(25 + (0.1 * sum))} kr`;
+        }
+
+
+
+       
         //variable for the plusbutton inside order summary
         const cartPlus = document.querySelectorAll('.cart-plus');
         for (let i = 0; i < cartPlus.length; i++) {
@@ -386,7 +383,9 @@ function cartOverview() {
         const cartMinus = document.querySelectorAll('.cart-minus');
         for (let i = 0; i < cartMinus.length; i++) {
             cartMinus[i].addEventListener('click', decreaseCartMinus)
-        };              
+        }; 
+        
+        
 }
 
 
