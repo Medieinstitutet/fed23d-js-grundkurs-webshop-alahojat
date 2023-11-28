@@ -102,3 +102,30 @@ function cartIconColor() {
 
 cartIconColor();
 */
+
+
+
+// måndagsrabatt
+
+/*
+if (today.getDay() === 1) {
+    sum *= 0.9; 
+}
+
+
+
+
+
+
+
+Ändra minusknapp till removeitem
+else if (cartTotal[index].amount === 1) { 
+        cartTotal[index].amount -= 1;
+        replaceMinus.innerHTML = `Remove item`;
+        updateViews();
+        calculateTotalAmount();
+        console.log(replaceMinus);
+    }   
+
+
+*/

@@ -198,31 +198,38 @@ header div .material-symbols-outlined {
   flex-direction: column;
   align-items: center;
 }
-#orderConfirmation h2 {
-  padding-bottom: 20px;
-  padding-top: 20px;
-}
-#orderConfirmation .discount_code {
-  padding-top: 20px;
-}
-#orderConfirmation .cartorder_container {
-  padding-top: 20px;
-  padding-bottom: 20px;
+#orderConfirmation .summary_container {
+  padding: 10px 20px 10px 20px;
   background-color: rgb(215, 208, 208);
   border-radius: 40px;
 }
-#orderConfirmation .cartorder_container .cartorder_items {
+#orderConfirmation .summary_container h2 {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+#orderConfirmation .summary_container article {
+  padding-top: 20px;
+}
+#orderConfirmation .summary_container .discount_code {
+  padding-top: 20px;
+  display: inline-block;
+}
+#orderConfirmation .summary_container .cartorder_container {
+  background-color: rgb(222, 221, 221);
+  border-radius: 40px;
+}
+#orderConfirmation .summary_container .cartorder_container .cartorder_items {
   padding: 10px 30px 10px 30px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-#orderConfirmation .cartorder_container .cartorder_items .cartorder_info {
+#orderConfirmation .summary_container .cartorder_container .cartorder_items .cartorder_info {
   padding-left: 20px;
   display: flex;
   flex-direction: column;
 }
-#orderConfirmation .cartorder_container .cartorder_items img {
+#orderConfirmation .summary_container .cartorder_container .cartorder_items img {
   width: 130px;
   border-radius: 50px;
   height: auto;

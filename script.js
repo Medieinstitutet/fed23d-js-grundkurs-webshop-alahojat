@@ -45,8 +45,6 @@ function thankYouNote() {
     orderConfirmation.classList.toggle('visually_hidden');
 }
 
-
-
 /**
  * 
  * 
@@ -212,6 +210,20 @@ let shopItems = [
 let cartViewNumber = document.querySelector('.cartNumber');
 
 const itemContainer = document.querySelector("#product_container");
+const summaryTotal = document.querySelector('.order_amount');
+const mondayMsg = document.querySelector('.monday_message');
+
+const cartContainer = document.querySelector('.cartorder_container');
+const today = new Date();
+
+
+const isFriday = today.getDay() === 5; // true or false
+const isMonday = today.getDay() === 1; // true or false
+const currentHour = today.getHours();
+
+
+
+
 
 printItems();
 
@@ -243,16 +255,31 @@ function decreaseAmount(e) {
     calculateTotalAmount(); // calling on function which alters number next to carticon
 } 
 
+
+
+// specialrules
+function getPriceMultiplier() {
+    if (isFriday && currentHour >= 15 || isMonday && currentHour <= 3 ) {
+        return 1.15;
+    }
+    return 1;
+}
+
+
 // function to print out all the shopitems onto the webpage
 function printItems() {
     itemContainer.innerHTML = '';
+
+
+    let priceIncrease = getPriceMultiplier();
+
 
     for(let i = 0; i < shopItems.length; i++) {
     itemContainer.innerHTML += // container for all HTML code for products
     `<div class="product_items"> 
     <img src='${shopItems[i].img.source}' loading="lazy">
     <h3> ${shopItems[i].name} </h3>
-    <p class="product_price"> ${shopItems[i].price} ${shopItems[i].unit}</p>
+    <p class="product_price"> ${Math.round(shopItems[i].price * priceIncrease)} ${shopItems[i].unit}</p>
     <div class="product_buttons">
         <button class="minus" id="minus-${i}">-</button>
         <p id="amountInput"> ${shopItems[i].amount} </p>
@@ -273,16 +300,8 @@ function printItems() {
     const minusBtn = document.querySelectorAll('.minus');
     for (let i = 0; i < minusBtn.length; i++) {
         minusBtn[i].addEventListener('click', decreaseAmount)
-    };
-
-    
+    };    
 }
-
-
-
-
-const cartContainer = document.querySelector('.cartorder_container');
-
 
 // function that increases item INSIDE order summary
 function increaseCartPlus(e) {
@@ -298,40 +317,65 @@ function decreaseCartMinus(e) {
     const replaceMinus = document.querySelector('.cart-minus');
     const index = e.currentTarget.dataset.id;
     
-    if (cartTotal[index].amount > 1) {
+    if (cartTotal[index].amount > 0) {
         cartTotal[index].amount -= 1;
         updateViews();
         calculateTotalAmount();
-    } else if (cartTotal[index].amount === 1) { 
-        cartTotal[index].amount -= 1;
-        replaceMinus.innerHTML = `Remove item`;
-        updateViews();
-        calculateTotalAmount();
-    }
-
-   
-    
+    } 
 }
+
 
 // function that pushes ordered amount into order summary overview
 function cartOverview() {
     cartContainer.innerHTML = '';
+    
+    let sum = 0;
+    let orderMsg = '';
+    let priceIncrease = getPriceMultiplier();
 
+     //loop that shows ordered products in cartoverview
     cartTotal.forEach((shopItems, index) => {
-        if (shopItems.amount > 0) {
-        cartContainer.innerHTML += 
-        `<div class="cartorder_items">
-        <img src='${shopItems.img.source}' loading="lazy"> 
-        <div class="cartorder_info">
-            <h3>${shopItems.name}</h3>
-            <p>Total items: ${shopItems.amount}</p>
-            <button class="cart-plus" data-id="${index}">+</button>
-            <button class="cart-minus" data-id="${index}">-</button>
-        </div>
-        </div>`;
-    }
-        });
+        summaryTotal.innerHTML += ``;
 
+       // discount for 10 or more donuts
+        if (shopItems.amount > 0) {  
+            let itemPrice = shopItems.price 
+            if (shopItems.amount >= 0) {
+                itemPrice *= 0.9;
+            }
+
+            const newItemPrice = Math.round(itemPrice * priceIncrease);
+
+            sum += shopItems.amount * newItemPrice;  
+
+            cartContainer.innerHTML += 
+                `<div class="cartorder_items">
+                <button class="remove_item">x</button>
+                <img src='${shopItems.img.source}' loading="lazy"> 
+                <div class="cartorder_info">
+                    <h3>${shopItems.name}</h3>
+                    <p>Total items: ${shopItems.amount}</p>
+                    <button class="cart-plus" data-id="${index}">+</button>
+                    <button class="cart-minus" data-id="${index}">-</button>
+                </div>
+                <p> ${shopItems.amount * newItemPrice}kr</p>
+                
+                </div>`
+                ;
+        }        
+    });
+    
+    summaryTotal.innerHTML = `${sum}`;
+           
+        // apply discount on mondays
+        if (today.getDay() === 2) {
+            sum *= 0.9; //Monday discount on all of order
+            orderMsg += '<p></p>';
+            mondayMsg.innerHTML = 
+            `<p>Yay! You have just received a Monday discount on your order!</p>
+            `;
+        }
+        
         //variable for the plusbutton inside order summary
         const cartPlus = document.querySelectorAll('.cart-plus');
         for (let i = 0; i < cartPlus.length; i++) {
@@ -342,10 +386,7 @@ function cartOverview() {
         const cartMinus = document.querySelectorAll('.cart-minus');
         for (let i = 0; i < cartMinus.length; i++) {
             cartMinus[i].addEventListener('click', decreaseCartMinus)
-        };    
-        
-    
-        
+        };              
 }
 
 
@@ -359,12 +400,47 @@ function calculateTotalAmount() {
     }
 }
 
-
-
 function updateViews() {
     printItems();
     cartOverview();
 }
+
+
+
+//function to print out cost and total amount of items together in order summary
+
+/*
+function printSummary() {
+    const summaryTotal = document.querySelector('.ordersummary_container');
+
+    summaryTotal.innerHTML = '';
+    
+    
+    let orderMsg = '';
+
+    shopItems.forEach(item => {
+        if (item.amount > 0) {
+            
+            summaryTotal.innerHTML += 
+            `
+            <article>
+                <span> ${item.name} </span>
+
+            </article>
+            `
+        };
+
+    });
+    
+    
+ 
+}; 
+
+*/
+
+
+
+
 
 
 
