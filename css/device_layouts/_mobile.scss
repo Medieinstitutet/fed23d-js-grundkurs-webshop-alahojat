@@ -231,6 +231,12 @@ header {
     .discount_code {
         padding-top: 20px;
         text-align: center;
+        input {
+            cursor: pointer;
+        }
+        input:hover {
+            border: 2px solid #002fa7;
+        }
         
     }
 
@@ -244,20 +250,24 @@ header {
             flex-direction: column;
             
             align-items: flex-start;
+            input {
+                cursor: pointer;
+            }
+            input:hover {
+                border: 2px solid #002fa7;
+            }
             
             div {
                 display: flex;
                 flex-direction: column;
-            
                 input {
                     width: 200px;
                     margin-bottom: 10px;
                 }
-
-               
-
-
             }
+
+
+
             
         }
         .cart_personaldata {
@@ -272,6 +282,24 @@ header {
             padding: 15px;
             button {
                 @include blue_buttons;
+            }
+        }
+
+        .cartcard {
+            input {
+                cursor: pointer;
+            }
+            input:hover {
+                border: 2px solid #002fa7;
+            }
+        }
+
+        .cart_invoice {
+            input {
+                cursor: pointer;
+            }
+            input:hover {
+                border: 2px solid #002fa7;
             }
         }
     } 

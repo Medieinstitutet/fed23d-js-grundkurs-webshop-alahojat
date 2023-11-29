@@ -86,55 +86,54 @@
                 <form class="cartform">
                     <div>
                         <label for="fname">First name
-                            <input type="text" id="fname">
+                            <input type="text" id="fname" required>
                         </label>
                     </div>
     
                     <div>
                         <label for="lname">Surname
-                            <input type="text" id="lname">
+                            <input type="text" id="lname" required>
                         </label> 
                     </div>
     
                     <div>
                         <label for="street-address">Address
-                            <input type="text" id="street-address">
+                            <input type="text" id="street-address" required>
                         </label>
                     </div>
     
                     <div>
                         <label for="zip">Postcode
-                            <input type="number" id="zip">
+                            <input type="number" id="zip" required>
                         </label>
                     </div>
     
                     <div>
                         <label for="city">City
-                            <input type="text" id="city">
+                            <input type="text" id="city" required>
                         </label>
                     </div>
     
                     <div>
                         <label for="doorcode">Entry code
-                            <input type="number" id="doorcode">
+                            <input type="number" id="doorcode" required>
                         </label>
                     </div>
     
                     <div>
                         <label for="tel">Number
-                            <input type="number" id="tel">
+                            <input type="number" id="tel" required>
                         </label>
                     </div>
     
                     <div>
                         <label for="email">Email
-                            <input type="email" id="email">
+                            <input type="email" id="email"required>
                         </label>
                     </div>
-                </form>
-    
-                
 
+                   
+                </form>
                 <div class="cart_personaldata">
                     <label> 
                         <input type="checkbox" name="Cardpayment">
@@ -175,17 +174,17 @@
                 <form class="cart_invoice">
                     <div>
                         <label for="ssn">Personal ID
-                            <input type="number" id="ssn">
+                            <input type="number" id="ssn" minlength="10" maxlength="10" required>
                         </label>
                     </div>
                 
                 </form>
+
+                <button type="submit" id="order_button"> beställ</button>
     
-                
-    
-    
+
             </section>
-            <button id="order_button"> beställ</button>
+            
     
         </div>
     </div>

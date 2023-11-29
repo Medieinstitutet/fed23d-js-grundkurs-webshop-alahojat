@@ -273,6 +273,12 @@ header div .material-symbols-outlined {
   padding-top: 20px;
   text-align: center;
 }
+#orderConfirmation .discount_code input {
+  cursor: pointer;
+}
+#orderConfirmation .discount_code input:hover {
+  border: 2px solid #002fa7;
+}
 #orderConfirmation .cartform_container {
   justify-content: center;
   padding: 30px;
@@ -281,6 +287,12 @@ header div .material-symbols-outlined {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+#orderConfirmation .cartform_container .cartform input {
+  cursor: pointer;
+}
+#orderConfirmation .cartform_container .cartform input:hover {
+  border: 2px solid #002fa7;
 }
 #orderConfirmation .cartform_container .cartform div {
   display: flex;
@@ -310,6 +322,18 @@ header div .material-symbols-outlined {
   text-transform: uppercase;
   border-radius: 10px;
   border: none;
+}
+#orderConfirmation .cartform_container .cartcard input {
+  cursor: pointer;
+}
+#orderConfirmation .cartform_container .cartcard input:hover {
+  border: 2px solid #002fa7;
+}
+#orderConfirmation .cartform_container .cart_invoice input {
+  cursor: pointer;
+}
+#orderConfirmation .cartform_container .cart_invoice input:hover {
+  border: 2px solid #002fa7;
 }
 
 .visually_hidden {
