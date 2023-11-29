@@ -1,3 +1,4 @@
+// DONE
 // Create array with items DONE
 
 
@@ -23,9 +24,16 @@
 //DONE
 // Function: addToCart (updates number next to cart icon when customer presses minus or plus)
 
+
+
+
+// DONE
 /* Function: change value of cart based on rules... IF..ELSE
     - 
 */
+
+
+
 
 // Function: displayShoppingCart (connect and style cart based off values from array with items)
 
@@ -49,7 +57,7 @@
 
 
 
-
+// DONE
 /* Function: removeItem (removes item from order summary)
     - when button is clicked, value input is reset to 0
 */
@@ -59,10 +67,14 @@
     - when card-button is clicked, new inputfields for cardnumber, date/year and CVC appear
 */
 
+
+// DONE
 /* Function: paymentInvoice (activats invoice form)
-    - when invoice-button is clicked, new inputfield for swedish ID number appears
-        - IF total amount is > 800kr, this function is returned.
+    DONE when invoice-button is clicked, new inputfield for swedish ID number appears
+    DONE IF total amount is > 800kr, this function is returned.
 */
+
+// DONE
 // create function that toggles visibility of paymentCard and paymentInvoice once clicked?
 
 
@@ -89,34 +101,12 @@ However resets form after 15 min)
 
 
 
-/*
-let clickedCartIcon = document.querySelector('#cartBtn');
-let totalAmount = cartTotal.reduce((total, product) => total + product.amount, 0);
-clickedCartIcon.addEventListener('click', cartIconColor);
-function cartIconColor() {
-    if (totalAmount > 1) {
-        clickedCartIcon.classList.add('clickedButton');
-    };
-    
-}
-
-cartIconColor();
-*/
 
 
 
-// måndagsrabatt
+
 
 /*
-if (today.getDay() === 1) {
-    sum *= 0.9; 
-}
-
-
-
-
-
-
 
 Ändra minusknapp till removeitem
 else if (cartTotal[index].amount === 1) { 

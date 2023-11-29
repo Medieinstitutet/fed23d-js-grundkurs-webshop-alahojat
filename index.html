@@ -104,7 +104,7 @@
     
                     <div>
                         <label for="zip">Postcode
-                            <input type="number" id="zip" required>
+                            <input type="number" id="zip" minlength="5" maxlength="5" required>
                         </label>
                     </div>
     
@@ -128,7 +128,7 @@
     
                     <div>
                         <label for="email">Email
-                            <input type="email" id="email"required>
+                            <input type="email" id="email" required>
                         </label>
                     </div>
 
@@ -136,7 +136,7 @@
                 </form>
                 <div class="cart_personaldata">
                     <label> 
-                        <input type="checkbox" name="Cardpayment">
+                        <input type="checkbox" name="Cardpayment" required>
                         I consent to my personal data being collected for order processing!
                     </label>
                 </div>
@@ -149,43 +149,58 @@
                 </div>
 
                 <div class="payment_buttons">
-                    <button class="cartorder_buttons">Cardpayment</button>
-                    <button class="cartorder_buttons">Invoice</button>
-                </div>
-    
-                <form class="cartcard">
-                    <div>
-                        <label for="cardno">Cardnumber
-                            <input type="number" id="cardno">
-                        </label>
-                    </div>
-                    <div>
-                        <label for="expirydate">Expiry date
-                            <input type="date" id="expirydate">
-                        </label>
-                    </div>
-                    <div>
-                        <label for="cvc">CVC
-                            <input type="number" id="cvc">
-                        </label>
-                    </div>
-                </form>
-    
-                <form class="cart_invoice">
-                    <div>
-                        <label for="ssn">Personal ID
-                            <input type="number" id="ssn" minlength="10" maxlength="10" required>
-                        </label>
-                    </div>
-                
-                </form>
+                    <label>
+                        <input type="radio" name="payment-option" value="card" checked>
+                        <span>Card</span>
+                    </label>
 
-                <button type="submit" id="order_button"> beställ</button>
+                    <label id="invoice_radio">
+                        <input type="radio"  name="payment-option" value="invoice">
+                        <span>Invoice</span>
+                    </label>
+ 
+                </div>
+
+                <div class="payment_info">
+                    <form class="payment_card" id="payment_card">
+                        <div>
+                            <label for="cardno">Cardnumber
+                                <input type="number" id="cardno">
+                            </label>
+                        </div>
+                        <div>
+                            <label for="expirydate">Expiry
+                                <input type="text" id="expirydate" size="2" placeholder="YY">
+                                <input type="text" id="expirydate" size="2" placeholder="MM">
+                            </label>
+                        </div>
+                        <div>
+                            <label for="cvc">CVC
+                                <input type="text" size="3" minlength="3" maxlength="3" id="cvc">
+                            </label>
+                        </div>
+                    </form>
+        
+                    <form class="payment_invoice hidden" id="payment_invoice">
+                        <div>
+                            <label for="ssn">Personal ID
+                                <input type="text" id="ssn" required>
+                            </label>
+            
+                        </div>
+                    
+                    </form>
+                    <button type="submit" id="order_button" disabled> beställ</button>
+
+
+                </div>
+                
     
 
             </section>
             
     
+           
         </div>
     </div>
 
@@ -198,6 +213,14 @@
                 expect delivery in 3-5 working days. For any queries about delivery or assistance, please don't hesitate to reach out.</p>
         </section>
    </div>
+
+   <div id="timeout_message" class="visually_hidden">
+    <section>
+        <h2>Sorry!</h2>
+        <p> You were unfortunately too slow, please fill out the form again!</p>
+        <button>Fill out</button>
+    </section>
+</div>
     
 
     <footer>
