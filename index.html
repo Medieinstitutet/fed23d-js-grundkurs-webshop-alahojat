@@ -62,22 +62,23 @@
          
             </article>
 
-            <article> 
-                <h3>Current total: <span class="order_amount"></span> kr</h3>
+            <article class="total_shipment_message">
+                <h3>Total order: <span class="order_amount"></span> kr</h3>
+                <h4><span class="shipping_cost"></span></h4> 
             </article>
                
 
 
             
 
-            <div class="discount_code">
-                <p>Do you have a discount code?</p>
-                <input type="text">
-            </div>
+            
         </div>
 
 
-
+        <div class="discount_code">
+            <p>Do you have a discount code?</p>
+            <input type="text">
+        </div>
 
         <div class="cartform_container">
             <section >
@@ -132,10 +133,24 @@
                     </div>
                 </form>
     
+                
+
+                <div class="cart_personaldata">
+                    <label> 
+                        <input type="checkbox" name="Cardpayment">
+                        I consent to my personal data being collected for order processing!
+                    </label>
+                </div>
+    
+                <div class="cart_newsletter">
+                    <label> 
+                        <input type="checkbox" name="Cardpayment" checked>
+                        Count me in for the newsletter!
+                    </label>
+                </div>
+
                 <div class="payment_buttons">
-    
                     <button class="cartorder_buttons">Cardpayment</button>
-    
                     <button class="cartorder_buttons">Invoice</button>
                 </div>
     
@@ -166,20 +181,7 @@
                 
                 </form>
     
-                <div class="cart_personaldata">
-                    <label> 
-                        <input type="checkbox" name="Cardpayment">
-                        I consent to my personal data being collected for order processing, 
-                        as outlined in the privacy policy
-                    </label>
-                </div>
-    
-                <div class="cart_newsletter">
-                    <label> 
-                        <input type="checkbox" name="Cardpayment" checked>
-                        Count me in for the newsletter!
-                    </label>
-                </div>
+                
     
     
             </section>
