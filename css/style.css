@@ -70,8 +70,12 @@ body p {
   color: #d35400;
   text-align: center;
 }
+body label {
+  color: #002fa7;
+}
 body input {
   border-radius: 10px;
+  border: 1px solid grey;
 }
 
 header {
@@ -187,21 +191,21 @@ header div .material-symbols-outlined {
   border: none;
 }
 
-.cartorder_container {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-}
-
 #orderConfirmation {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 #orderConfirmation .summary_container {
-  padding: 10px 20px 10px 20px;
-  background-color: rgb(215, 208, 208);
+  width: 100%;
+  padding: 0px 30px 10px 30px;
   border-radius: 40px;
+}
+#orderConfirmation .summary_container .total_shipment_message {
+  border-top: 2px solid #002fa7;
+}
+#orderConfirmation .summary_container .total_shipment_message h3, #orderConfirmation .summary_container .total_shipment_message h4 {
+  text-align: center;
 }
 #orderConfirmation .summary_container h2 {
   padding-bottom: 20px;
@@ -210,37 +214,102 @@ header div .material-symbols-outlined {
 #orderConfirmation .summary_container article {
   padding-top: 20px;
 }
-#orderConfirmation .summary_container .discount_code {
-  padding-top: 20px;
-  display: inline-block;
-}
 #orderConfirmation .summary_container .cartorder_container {
-  background-color: rgb(222, 221, 221);
+  background-color: rgb(215, 208, 208);
   border-radius: 40px;
+  padding-bottom: 20px;
 }
 #orderConfirmation .summary_container .cartorder_container .cartorder_items {
   padding: 10px 30px 10px 30px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 }
-#orderConfirmation .summary_container .cartorder_container .cartorder_items .cartorder_info {
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
+#orderConfirmation .summary_container .cartorder_container .cartorder_items .image_wrapper {
+  display: inline;
 }
-#orderConfirmation .summary_container .cartorder_container .cartorder_items img {
-  width: 130px;
+#orderConfirmation .summary_container .cartorder_container .cartorder_items .image_wrapper img {
+  width: 100px;
   border-radius: 50px;
   height: auto;
   padding: 5px;
 }
+#orderConfirmation .summary_container .cartorder_container .cartorder_items .cartorder_buttons {
+  gap: 5px;
+  display: flex;
+  flex-direction: row;
+}
+#orderConfirmation .summary_container .cartorder_container .cartorder_items .cartorder_buttons button {
+  background-color: #002fa7;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: none;
+}
+#orderConfirmation .summary_container .cartorder_container .cartorder_items .cartorder_info {
+  background-color: #002fa7;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+}
+#orderConfirmation .summary_container .cartorder_container .cartorder_items button {
+  border-radius: 10px;
+  border: none;
+  right: 20px;
+}
+#orderConfirmation .cartorder_container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+#orderConfirmation .discount_code {
+  padding-top: 20px;
+  text-align: center;
+}
 #orderConfirmation .cartform_container {
+  justify-content: center;
   padding: 30px;
 }
 #orderConfirmation .cartform_container .cartform {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+}
+#orderConfirmation .cartform_container .cartform div {
+  display: flex;
+  flex-direction: column;
+}
+#orderConfirmation .cartform_container .cartform div input {
+  width: 200px;
+  margin-bottom: 10px;
+}
+#orderConfirmation .cartform_container .cart_personaldata {
+  padding-top: 15px;
+  font-size: 0.7rem;
+}
+#orderConfirmation .cartform_container .cart_newsletter {
+  padding-top: 5px;
+  font-size: 0.7rem;
+}
+#orderConfirmation .cartform_container .payment_buttons {
+  padding: 15px;
+}
+#orderConfirmation .cartform_container .payment_buttons button {
+  background-color: #002fa7;
+  padding: 3px;
+  padding-left: 7px;
+  padding-right: 7px;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: none;
 }
 
 .visually_hidden {

@@ -5,6 +5,9 @@
 
 @mixin blue_buttons {
     background-color: #002fa7;
+    padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
     color: white;
     text-transform: uppercase;
     border-radius: 10px;
