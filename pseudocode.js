@@ -119,3 +119,44 @@ else if (cartTotal[index].amount === 1) {
 
 
 */
+
+
+/*
+let timeLimit; // Declare the timeLimit variable
+
+// function to increase amount with click on plus button
+function increaseAmount(e) {
+    if (cartTotal.length === 0) {
+        // If cart is empty and it's the first item being added, start the time limit
+        startTimer();
+    }
+
+    let index = e.target.id.replace('plus-', '');
+    index = Number(index);
+    shopItems[index].amount += 1;
+    cartTotal = shopItems.filter(item => item.amount > 0);
+    
+    printItems(); 
+    cartOverview();
+    calculateTotalAmount();
+}
+
+// Function to start the time limit
+function startTimer() {
+    timeLimit = setTimeout(tooSlow, 1000 * 3); // Set a time limit of 3 seconds (adjust as needed)
+}
+
+const orderSummaryClicked = document.querySelector('#orderConfirmation');
+const isOrderSummaryVisible = !orderSummaryClicked.classList.contains('visually_hidden');
+
+if (isOrderSummaryVisible) {
+    clearTimeout(timeLimit);
+    // If order summary is visible, clear the timeout and prevent 'tooSlow'
+    // You might add additional handling or logic here if needed
+}
+
+function tooSlow() {
+    alert('Sorry, your time has run out!');
+    // Perform actions when the time limit is reached and no item is added to the cart
+}
+*/

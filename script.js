@@ -31,13 +31,8 @@ function thankYouNote() {
     orderConfirmation.classList.toggle('visually_hidden');
 }
 
-/**
- * 
- * 
- * ARRAY WITH ITEMS
- * 
- * 
- */
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // array with all shopitems in objects
 let shopItems = [
@@ -203,29 +198,38 @@ let shopItems = [
     
 ]
 
+
+
+/////////////////////////////////      VARIABLES          /////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 let cartViewNumber = document.querySelector('.cartNumber');
 
-const itemContainer = document.querySelector("#product_container");
-const summaryTotal = document.querySelector('.order_amount');
-const mondayMsg = document.querySelector('.monday_message');
+const itemContainer = document.querySelector("#product_container"); // variable for product container on startpage
+const summaryTotal = document.querySelector('.order_amount'); 
+const mondayMsg = document.querySelector('.monday_message'); // variable for discount message on mondays
 
-const cartContainer = document.querySelector('.cartorder_container');
-const today = new Date();
+const cartContainer = document.querySelector('.cartorder_container'); // variable for printed products in order summary
+const today = new Date(); 
 
 
 const isFriday = today.getDay() === 5; // true or false
 const isMonday = today.getDay() === 1; // true or false
 const currentHour = today.getHours();
 
-let shippingCost = document.querySelector('.shipping_cost');
+let shippingCost = document.querySelector('.shipping_cost'); // variable for shipping cost container
+
+
+let timeLimit; 
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// variable for the delete button inside the cart for each item
-//const removeItemInCart = document.querySelector('.remove_item_cart');
+// let timeLimit = setTimeout(tooSlow, 1000); // variable for time limit for customer
 
-//let timeLimit = setTimeout(tooSlow, 1000); // variable for time limit for customer
+
 
 // variable for card and invoicebuttons in the ordersummary
 const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="payment-option"]')); 
@@ -245,9 +249,21 @@ function switchPaymentMethod(e) {
     cardOption.classList.toggle('hidden');
     invoiceOption.classList.toggle('hidden'); 
 
-    selectedPaymentOption = e.target.value;
-    
+    selectedPaymentOption = e.target.value;   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -272,7 +288,6 @@ function activateOrderButton() {
     } else if (selectedPaymentOption === 'card' && !isPersonalIdNumberValid()) {
         orderButton.setAttribute('disabled', '');
         console.log(selectedPaymentOption);
-
     };   
 }
 
@@ -298,6 +313,13 @@ let cartTotal = []
 
 // function to increase amount with click on plusbutton
 function increaseAmount(e) {
+
+    if (cartTotal.length === 0) {
+        startTimer();
+       
+    }
+    
+
     let index = e.target.id.replace('plus-', '');
     index = Number(index);
     shopItems[index].amount += 1;
@@ -308,6 +330,28 @@ function increaseAmount(e) {
     cartOverview();
     calculateTotalAmount();
 } 
+
+function startTimer() {
+    timeLimit = setTimeout(tooSlow, 1000 * 3); // Set a time limit of 3 seconds (adjust as needed)
+}
+
+/*
+const orderSummaryClicked = document.querySelector('#orderConfirmation');
+const isOrderSummaryVisibile = !orderSummaryClicked.classList.contains('visually_hidden');
+
+
+if (isOrderSummaryVisibile) {
+    tooSlow();
+} */
+
+
+// alert when the time has run out
+function tooSlow() {
+    alert('Sorry, your time has run out!'); 
+    
+}
+
+
 
 // function to decrease amount with click on minusbutton
 function decreaseAmount(e) {
@@ -424,7 +468,6 @@ function cartOverview() {
             }
 
             const newItemPrice = Math.round(itemPrice * priceIncrease);
-
             sum += shopItems.amount * newItemPrice;  
 
             cartContainer.innerHTML += 
@@ -440,8 +483,7 @@ function cartOverview() {
                 </div>
                 <p> Total: ${shopItems.amount * newItemPrice}kr</p>        
                 <button class="remove_item_cart" id="delete-${shopItems.id}">Remove</button>
-                </div>`
-                ;
+                </div>`;
         }        
     });
     
@@ -464,14 +506,11 @@ function cartOverview() {
             shippingCost.innerHTML = `Shipping: ${Math.round(25 + (0.1 * sum))} kr`;
         }
 
-
         let invoiceRadioOption = document.querySelector('#invoice_radio');
         //if order more than 800SEK, invoice option isn't available
         if (sum > 800) {
             invoiceRadioOption.classList.add('hidden'); 
         }
-
-       
              
         //variable for the plusbutton inside order summary
         const cartPlus = document.querySelectorAll('.cart-plus');
@@ -488,10 +527,11 @@ function cartOverview() {
          // remove single item in cart
          Array.from(document.querySelectorAll('.remove_item_cart')).forEach((btn) => {
             btn.addEventListener('click', deleteCartItem);
-        });
-
+        });   
         
+       
 }
+
 
 
 function calculateTotalAmount() {
@@ -510,44 +550,28 @@ function updateViews() {
 }
 
 
-/*
-// variable for the delete button inside the cart for each item
-const removeItemInCart = document.querySelector('.remove_item_cart');
 
-removeItemInCart.addEventListener('click', itemRemove);
-function itemRemove() {
-    console.log('heeeeeej');
-}
-*/
+
+/**
+ * When item has been added to a cart. when cartTotal.amount > 0
+ * Start timer
+ * when timer is done: message pops up
+ */
 
 
 
+        
 
-/*
-const orderSummaryClicked = document.querySelector('#orderConfirmation');
-const isOrderSummaryVisibile = !orderSummaryClicked.classList.contains('visually_hidden');
 
-if (isOrderSummaryVisibile) {
-    clearTimeout(timeLimit);
-    tooSlow();  
+        
 
-} 
-*/
+
+
 
 
 
 /*
-  let timeLimit = setTimeout(tooSlow, 1000); // variable for time limit for customer
-
-        const orderSummaryClicked = document.querySelector('#orderConfirmation');
-        const isOrderSummaryVisibile = !orderSummaryClicked.classList.contains('visually_hidden');
-
-        if (isOrderSummaryVisibile) {
-            clearTimeout(timeLimit);
-            tooSlow();  
-            resetCart();
-        } 
-
+  
 
 
 // function that resets the cartamount to 0
