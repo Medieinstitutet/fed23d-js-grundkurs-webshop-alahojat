@@ -214,22 +214,27 @@ const today = new Date();
 
 
 const isFriday = today.getDay() === 5; // true or false
+const isSaturday = today.getDay() === 6; // variable for true or false Saturday
+const isSunday = today.getDay() === 0;
 const isMonday = today.getDay() === 1; // true or false
 const currentHour = today.getHours();
 
 let shippingCost = document.querySelector('.shipping_cost'); // variable for shipping cost container
 
+const resetBtn = document.querySelector('.reset_button'); // variable for resetbutton at the end of the cart page that resets form input and cart total
+resetBtn.addEventListener('click', resetAll); // adds a click function to the button
 
-let timeLimit; 
+
+let timeLimitMessage = document.querySelector('#timeout_message'); // variable for container pop up message when customer is too slow
 
 
+let timeLimit; // declare a variable for the starting timer of popup-message for slow customer
+
+const timeoutBtn = document.querySelector('#timeout_button'); // variable for button that takes customer back to the form once popup message is triggered
+timeoutBtn.addEventListener('click', goBackBtn);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// let timeLimit = setTimeout(tooSlow, 1000); // variable for time limit for customer
-
-
 
 // variable for card and invoicebuttons in the ordersummary
 const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="payment-option"]')); 
@@ -253,21 +258,6 @@ function switchPaymentMethod(e) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // CART OR INVOICE BUTTONS
 const personalId = document.querySelector('#ssn');
 personalId.addEventListener('change', activateOrderButton);
@@ -278,30 +268,120 @@ function isPersonalIdNumberValid() {
     return personalIdRegEx.exec(personalId.value);
 }
 
-const orderButton = document.querySelector('#order_button');
-function activateOrderButton() {
-     
-    if ((selectedPaymentOption === 'invoice' && isPersonalIdNumberValid()) || selectedPaymentOption === 'card') {
-        orderButton.removeAttribute('disabled');
-        console.log(selectedPaymentOption);
 
-    } else if (selectedPaymentOption === 'card' && !isPersonalIdNumberValid()) {
+// ALL REGEX
+
+
+// RegEx for form - name input
+const nameInput = document.querySelector('#fname'); // variable for forminput: name
+const nameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name input
+nameInput.addEventListener('change', activateOrderButton); // when the inputfield for name changes, 
+
+// function to check if value of name input is correct
+function isNameInputValid() { //function to check if the name input is valid
+    console.log('korrekt input');
+    return nameRegEx.exec(nameInput.value);
+}
+
+
+// RegEx for form - surname input
+const surnameInput = document.querySelector('#lname');
+surnameInput.addEventListener('change', activateOrderButton);
+
+// function to check if value of surname input is correct
+function isSurnameValid() {
+    return nameRegEx.exec(surnameInput.value);
+}
+
+// RegEx for form - address input
+const adressRegEx = new RegExp('^\\d{3}\\s*\\d{2}$');
+
+
+// function to check if value of address input is correct
+
+
+
+// RegEx for form - postcode input
+const postcodeInput = document.querySelector('#zip');
+const postcodeRegEx = new RegExp('^\\d{3}\\s*\\d{2}$');
+postcodeInput.addEventListener('change', activateOrderButton);
+
+// function to check if value of postcode input is correct
+function isPostcodeValid() {
+    return postcodeRegEx.exec(postcodeInput.value);
+}
+
+// RegEx for form - city input
+const cityInput = document.querySelector('#city');
+const cityRegEx = new RegExp(/^[a-z ,.'-]+$/i);
+cityInput.addEventListener('change', activateOrderButton);
+
+// function to check if value of name input is correct
+function isCityValid() {
+    return cityRegEx.exec(cityInput.value);
+}
+
+// RegEx for form - number input
+const numberInput = document.querySelector('#tel');
+const numberRegEx = new RegExp(/^[0-9]+$/);
+numberInput.addEventListener('change', activateOrderButton);
+
+// function to check if value of number input is correct 
+function isNumberValid() {
+    return numberRegEx.exec(numberInput.value);
+}
+
+// RegEx for form - email input
+const emailInput = document.querySelector('#email');
+const emailRegEx = new RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,6}$/);
+emailInput.addEventListener('change', activateOrderButton);
+
+// function to check if value of email input is correct 
+function isEmailValid() {
+    return emailRegEx.exec(emailInput.value);
+}
+
+const orderButton = document.querySelector('#order_button');
+// function for when and how the order button is activated and enabled vs disabled.
+function activateOrderButton() {
+    if (
+        (selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') && 
+        isNameInputValid() && 
+        isSurnameValid() && 
+        isPostcodeValid() && 
+        isCityValid() && 
+        isNumberValid() && 
+        isEmailValid() && 
+        isPersonalIdNumberValid() &&
+        nameInput.value.trim() !== '' &&
+        surnameInput.value.trim() !== '' &&
+        postcodeInput.value.trim() !== '' &&
+        cityInput.value.trim() !== '' &&
+        numberInput.value.trim() !== '' &&
+        emailInput.value.trim() !== ''
+    ) {
+        orderButton.removeAttribute('disabled');
+        
+    } else if (
+        selectedPaymentOption === 'card' && 
+        !isNameInputValid() || 
+        !isSurnameValid() ||
+        !isPostcodeValid() || 
+        !isCityValid() || 
+        !isNumberValid() || 
+        !isEmailValid() || 
+        !isPersonalIdNumberValid() ||
+        nameInput.value.trim() === '' ||
+        surnameInput.value.trim() === '' ||
+        postcodeInput.value.trim() === '' ||
+        cityInput.value.trim() === '' ||
+        numberInput.value.trim() === '' ||
+        emailInput.value.trim() === ''
+        ) {
         orderButton.setAttribute('disabled', '');
         console.log(selectedPaymentOption);
     };   
 }
-
-
-/*
-function activateOrderButtonCard() {
-    if (selectedPaymentOption === 'card') {
-        orderButton.removeAttribute('disabled');
-        console.log('hejjj');
-    };
-}*/
-// CART OR INVOICE BUTTONS
-
-
 
 
 //calling on the array to be printed out in the webshop
@@ -313,18 +393,14 @@ let cartTotal = []
 
 // function to increase amount with click on plusbutton
 function increaseAmount(e) {
-
     if (cartTotal.length === 0) {
-        startTimer();
-       
+        startTimer();   
     }
     
-
     let index = e.target.id.replace('plus-', '');
     index = Number(index);
     shopItems[index].amount += 1;
     cartTotal = shopItems.filter(item => item.amount > 0);
-    
     
     printItems(); 
     cartOverview();
@@ -332,24 +408,9 @@ function increaseAmount(e) {
 } 
 
 function startTimer() {
-    timeLimit = setTimeout(tooSlow, 1000 * 3); // Set a time limit of 3 seconds (adjust as needed)
+    timeLimit = setTimeout(tooSlow, 1000 * 20); // Set a time limit of 3 seconds (adjust as needed)  
 }
 
-/*
-const orderSummaryClicked = document.querySelector('#orderConfirmation');
-const isOrderSummaryVisibile = !orderSummaryClicked.classList.contains('visually_hidden');
-
-
-if (isOrderSummaryVisibile) {
-    tooSlow();
-} */
-
-
-// alert when the time has run out
-function tooSlow() {
-    alert('Sorry, your time has run out!'); 
-    
-}
 
 
 
@@ -366,7 +427,7 @@ function decreaseAmount(e) {
 
 // specialrules
 function getPriceMultiplier() {
-    if (isFriday && currentHour >= 15 || isMonday && currentHour <= 3 ) {
+    if (isFriday && currentHour >= 15 || isSaturday || isSunday || isMonday && currentHour <= 3 ) {
         return 1.15;
     }
     return 1;
@@ -490,7 +551,7 @@ function cartOverview() {
     summaryTotal.innerHTML = `${sum}`;
            
         // apply discount on mondays
-        if (today.getDay() === 1) {
+        if (today.getDay() === 1 && today.getHours() < 10) {
             sum *= 0.9; //Monday discount on all of order
             orderMsg += '<p></p>';
             mondayMsg.innerHTML = 
@@ -533,9 +594,8 @@ function cartOverview() {
 }
 
 
-
+// function that changes the total amount of items in the carticon at the top of the page when customer adds or deducts a product
 function calculateTotalAmount() {
-
     let totalAmount = cartTotal.reduce((total, product) => total + product.amount, 0);
 
     const cartNumber = document.querySelector('.cartNumber');
@@ -547,27 +607,39 @@ function calculateTotalAmount() {
 function updateViews() {
     printItems();
     cartOverview();
+    
 }
 
+// Popup-message with a 15 minute timelimit. Display overlay element which notifies customer as well as resets the form inputs by customer.
+function tooSlow() {
+    timeLimitMessage.style.display = 'block';
+    document.querySelector('#cartform').reset();
+    console.log(cartTotal);
+    
+}
 
+// Button inside the 15-minute popup-message, when customer clicks on it, it removes the message overlay.
+function goBackBtn() {
+    timeLimitMessage.style.display = 'none';
+    emptyCart();
+    console.log('Knappen funkar');
+    
+}
 
+// function that resets all form inputs and cart total 
+function resetAll() {
+    document.querySelector('#cartform').reset(); // form for customer details
+    document.querySelector('.payment_card').reset(); // form for card payment info
+    document.querySelector('.payment_invoice').reset(); // form for invoice payment info
+    emptyCart();
+}
 
-/**
- * When item has been added to a cart. when cartTotal.amount > 0
- * Start timer
- * when timer is done: message pops up
- */
-
-
-
-        
-
-
-        
-
-
-
-
+function emptyCart() {
+    cartTotal = [];
+    cartOverview();
+    calculateTotalAmount();
+    printItems(); 
+}
 
 
 /*
