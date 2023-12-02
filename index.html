@@ -59,15 +59,16 @@
 
         <div class="discount_code">
             <p>Do you have a discount code?</p>
-            <input type="text">
+            <input type="text" aria-label="Type in your discount code">
         </div>
         <div class="cartform_container">
             <section >
                 <h2>Payment details</h2>
-                <form class="cartform">
+                <form class="cartform" id="cartform">
                     <div>
                         <label for="fname">First name
-                            <input type="text" id="fname" required>
+                            <input type="text" id="fname" aria-label="Enter your first name" required>
+                            <span id="name_error"></span>
                         </label>
                     </div>
     
@@ -97,7 +98,7 @@
     
                     <div>
                         <label for="doorcode">Entry code
-                            <input type="number" id="doorcode" required>
+                            <input type="number" id="doorcode" placeholder="Optional" required>
                         </label>
                     </div>
     
@@ -166,9 +167,11 @@
                             </label>
                         </div>
                     </form>
-                    <button type="submit" id="order_button" disabled> beställ</button>
+                    <button type="submit" id="order_button" disabled>Order</button>
                 </div>
             </section> 
+
+            <button class="reset_button">Reset everything</button>
         </div>
     </div>
     <div id="confirmation_container" class="visually_hidden">
@@ -178,17 +181,22 @@
                 expect delivery in 3-5 working days. For any queries about delivery or assistance, please don't hesitate to reach out.</p>
         </section>
     </div>
-    <div id="timeout_message" class="visually_hidden">
-    <section>
-        <h2>Sorry!</h2>
-        <p> You were unfortunately too slow, please fill out the form again!</p>
-        <button>Fill out</button>
-    </section>
+   
+   
+
+    <div class="timeout_message" id="timeout_message">
+        <div class="timeout_info">
+            <h3>Sorry!</h3>
+            <p>You were too slow to order. Please fill out your form again to proceed.</p> 
+            <button id="timeout_button">Go back</button>
+        </div>  
     </div>
+
+
     <footer>
         <p> &copy;Bowls by Baba. All rights reserved</p>
     </footer>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
 

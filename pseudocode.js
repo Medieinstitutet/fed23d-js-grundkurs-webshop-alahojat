@@ -34,8 +34,10 @@
 
 
 
-
+// DONE
 // Function: displayShoppingCart (connect and style cart based off values from array with items)
+
+
 
 /* Function: array filters
     Function: sortItemsName (enables items to be filtered based on name)
@@ -62,7 +64,7 @@
     - when button is clicked, value input is reset to 0
 */
 
-
+// DONE
 /* Function: paymentCard (activates payment form)
     - when card-button is clicked, new inputfields for cardnumber, date/year and CVC appear
 */
@@ -77,11 +79,14 @@
 // DONE
 // create function that toggles visibility of paymentCard and paymentInvoice once clicked?
 
-
+// DONE
 /* Function: resetForm (resets both form and orders upon click)
     - when button is clicked all input values are deleted
     - card or invoice is also reset
     */
+
+
+
 
 /* Function: orderButton (enables button to be pressed when form is correctly filled, activates "Thank You" note.
 However resets form after 15 min)
@@ -120,43 +125,3 @@ else if (cartTotal[index].amount === 1) {
 
 */
 
-
-/*
-let timeLimit; // Declare the timeLimit variable
-
-// function to increase amount with click on plus button
-function increaseAmount(e) {
-    if (cartTotal.length === 0) {
-        // If cart is empty and it's the first item being added, start the time limit
-        startTimer();
-    }
-
-    let index = e.target.id.replace('plus-', '');
-    index = Number(index);
-    shopItems[index].amount += 1;
-    cartTotal = shopItems.filter(item => item.amount > 0);
-    
-    printItems(); 
-    cartOverview();
-    calculateTotalAmount();
-}
-
-// Function to start the time limit
-function startTimer() {
-    timeLimit = setTimeout(tooSlow, 1000 * 3); // Set a time limit of 3 seconds (adjust as needed)
-}
-
-const orderSummaryClicked = document.querySelector('#orderConfirmation');
-const isOrderSummaryVisible = !orderSummaryClicked.classList.contains('visually_hidden');
-
-if (isOrderSummaryVisible) {
-    clearTimeout(timeLimit);
-    // If order summary is visible, clear the timeout and prevent 'tooSlow'
-    // You might add additional handling or logic here if needed
-}
-
-function tooSlow() {
-    alert('Sorry, your time has run out!');
-    // Perform actions when the time limit is reached and no item is added to the cart
-}
-*/

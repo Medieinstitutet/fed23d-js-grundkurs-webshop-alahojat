@@ -15,20 +15,48 @@ function orderSummary() {
 // function that toggles timeoutmessage
 const timeOutMessage = document.querySelector('.timeout_message');
 
-
-
-
 // Toggle between order summary and confirmation order
 //variable for the orderbutton in order summary
 const orderBtn = document.querySelector('#order_button');
 orderBtn.addEventListener('click', thankYouNote);
 
 function thankYouNote() {
+    // if all input fields are validated the thank you note is activated
+    if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') && 
+    isNameInputValid() && 
+    isSurnameValid() && 
+    isPostcodeValid() && 
+    isCityValid() && 
+    isNumberValid() && 
+    isEmailValid() && 
+    isPersonalIdNumberValid() &&
+    nameInput.value.trim() !== '' &&
+    surnameInput.value.trim() !== '' &&
+    postcodeInput.value.trim() !== '' &&
+    cityInput.value.trim() !== '' &&
+    numberInput.value.trim() !== '' &&
+    emailInput.value.trim() !== '') {
     const confirmationNote = document.querySelector('#confirmation_container');
     confirmationNote.classList.toggle('visually_hidden');
-
     const orderConfirmation = document.querySelector('#orderConfirmation');
     orderConfirmation.classList.toggle('visually_hidden');
+    } else {
+        // if all input fields AREN'T validated, then customer is alerted with an error message
+        
+        // if the name input is incorrectly typed out after 2 round of errors
+        if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
+        !isNameInputValid() && 
+        nameInput.value.trim() !== '') {
+            alert('One of your inputs are incorrect!');
+        }
+
+        if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
+        !isSurnameValid() && 
+        surnameInput.value.trim() !== '') {
+            alert('Your surname input is incorrect!');
+        }
+    }
+   
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,8 +226,6 @@ let shopItems = [
     
 ]
 
-
-
 /////////////////////////////////      VARIABLES          /////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -212,7 +238,6 @@ const mondayMsg = document.querySelector('.monday_message'); // variable for dis
 const cartContainer = document.querySelector('.cartorder_container'); // variable for printed products in order summary
 const today = new Date(); 
 
-
 const isFriday = today.getDay() === 5; // true or false
 const isSaturday = today.getDay() === 6; // variable for true or false Saturday
 const isSunday = today.getDay() === 0;
@@ -224,9 +249,7 @@ let shippingCost = document.querySelector('.shipping_cost'); // variable for shi
 const resetBtn = document.querySelector('.reset_button'); // variable for resetbutton at the end of the cart page that resets form input and cart total
 resetBtn.addEventListener('click', resetAll); // adds a click function to the button
 
-
 let timeLimitMessage = document.querySelector('#timeout_message'); // variable for container pop up message when customer is too slow
-
 
 let timeLimit; // declare a variable for the starting timer of popup-message for slow customer
 
@@ -248,15 +271,12 @@ const cardOption = document.querySelector('#payment_card');
 const invoiceOption = document.querySelector('#payment_invoice');
 let selectedPaymentOption = 'card';
 
-
 // switches between input fields for card vs invoice and toggles their visibility
 function switchPaymentMethod(e) {
     cardOption.classList.toggle('hidden');
     invoiceOption.classList.toggle('hidden'); 
-
     selectedPaymentOption = e.target.value;   
 }
-
 
 // CART OR INVOICE BUTTONS
 const personalId = document.querySelector('#ssn');
@@ -268,19 +288,26 @@ function isPersonalIdNumberValid() {
     return personalIdRegEx.exec(personalId.value);
 }
 
-
 // ALL REGEX
-
 
 // RegEx for form - name input
 const nameInput = document.querySelector('#fname'); // variable for forminput: name
+const nameError = document.querySelector('#name_error');
 const nameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name input
+let nameErrorShown = false;
 nameInput.addEventListener('change', activateOrderButton); // when the inputfield for name changes, 
 
 // function to check if value of name input is correct
-function isNameInputValid() { //function to check if the name input is valid
-    console.log('korrekt input');
-    return nameRegEx.exec(nameInput.value);
+function isNameInputValid() { //function to check if the name input is valid   
+    const nameValid = nameRegEx.exec(nameInput.value); 
+    if (!nameValid && !nameErrorShown) { 
+        nameErrorShown = true;
+        nameError.textContent = 'Please type your name using letters!';
+    } else if (nameValid && nameErrorShown) {  // if customer retypes in right value the error message is removed
+        nameErrorShown: false;
+        nameError.textContent = '';
+    }
+    return nameValid;
 }
 
 
