@@ -442,27 +442,37 @@ function printItems() {
 //calling on the array to be printed out in the webshop
 printItems();
 
+
+
+
 // function to increase amount with click on plusbutton
 function increaseAmount(e) {
-   if (cartTotal.length === 0) {
-        startTimer();   
+    if (cartTotal.length === 0) {
+        startTimer();   // starts timer when item is added to the cart
         console.log('item is added');
+    } else if (shopItems.every(item => item.amount < 1)) {
+        startTimer(); // restarts the timer again AFTER cart has manually been reduced to 0 by customer
+        console.log('timer has restarted');
     }
+  
     let index = e.target.id.replace('plus-', '');
     index = Number(index);
     shopItems[index].amount += 1;
     cartTotal = shopItems.filter(item => item.amount > 0);
 
-    /*
-    if (shopItems[index].amount === 0) {
-        startTimer();
-        console.log('item is added');
-    }*/
-    
+
     printItems(); 
     cartOverview();
     calculateTotalAmount();
 } 
+
+function stopTimer() {
+    if (shopItems.every(item => item.amount === 0)) {
+        clearTimeout(timeLimit);
+        console.log('timer stopped');
+    } 
+}
+
 
 // function to decrease amount with click on minusbutton
 function decreaseAmount(e) {
@@ -471,15 +481,8 @@ function decreaseAmount(e) {
         index = Number(index);
         shopItems[index].amount -= 1;
     }
-
-    if (shopItems.every(item => item.amount < 1)) {
-        clearTimeout(timeLimit);
-        console.log('timer stopped');
-    } else {
-       
-        console.log('timer has started again');
-    }
-
+   
+    stopTimer();
     printItems(); 
     calculateTotalAmount(); // calling on function which alters number next to carticon
 } 
@@ -503,6 +506,7 @@ function decreaseCartMinus(e) {
         updateViews();
         calculateTotalAmount();
     } 
+    stopTimer(); // stops the timer if cart is emptied INSIDE cartsummary
 }
 
 // function for the delete-button inside each item in the ordersummary
