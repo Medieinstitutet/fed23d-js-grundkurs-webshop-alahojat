@@ -4,12 +4,12 @@
 // VARIABLES - startpage
 const cartBtn = document.querySelector('#cartBtn'); // variable for the cartbutton icon in the header
 let cartViewNumber = document.querySelector('.cartNumber'); // variable for carticon in header
-const itemContainer = document.querySelector("#product_container"); // variable for product container on startpage
+const itemContainer = document.querySelector(".product_container"); // variable for product container on startpage
 const cartContainer = document.querySelector('.cartorder_container'); // variable for container of printed products in order summary
 const summaryTotal = document.querySelector('.order_amount'); // variable for the total price amount showing in the order summary section
-const today = new Date(); 
+const today = new Date();
 
-// vARIABLES - date and time for discounts
+// VARIABLES - date and time for discounts
 const isFriday = today.getDay() === 5; // variable for true or false Friday
 const isSaturday = today.getDay() === 6; // variable for true or false Saturday
 const isSunday = today.getDay() === 0; // variable for true or false Sunday
@@ -24,14 +24,12 @@ resetBtn.addEventListener('click', resetAll); // eventlistner for the end of pag
 
 // VARIABLES - inside ordersummary
 const orderBtn = document.querySelector('#order_button'); //variable for the orderbutton in order summary
-
 const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="payment-option"]')); // variable for card and invoicebuttons in the ordersummary
 
 //variables for card and invoice radiobuttons
 const cardOption = document.querySelector('#payment_card');
 const invoiceOption = document.querySelector('#payment_invoice');
 let selectedPaymentOption = 'card';
-
 
 // VARIABLES - orderform
 const orderButton = document.querySelector('#order_button');
@@ -65,14 +63,14 @@ const timeOutMessage = document.querySelector('.timeout_message'); // variable f
 //------------------------------ARRAYS-----------------------------------------------------
 // ----------------------------------------------------------------------------------------
 
-// array with all shopitems in objects
+// array with all products
 let shopItems = [
     {
         img: {
             source: 'assets/bowls/twin-set-bowls.jpg',
             alt: 'One wooden bowl stood on a second wooden bowl ontop of a red table',
             width: 250,
-            height: 250, 
+            height: 250,
         },
         name: 'Twin bowls',
         price: 300,
@@ -88,7 +86,7 @@ let shopItems = [
             source: 'assets/bowls/twin-set.jpg',
             alt: 'A wooden bowl balancing on a second wooden bowl ontop of a red table',
             width: 250,
-            height: 250, 
+            height: 250,
         },
         name: 'Twin set',
         price: 280,
@@ -103,7 +101,7 @@ let shopItems = [
             source: 'assets/bowls/flower-pot.jpg',
             alt: 'Wooden flower pot',
             width: 250,
-            height: 250, 
+            height: 250,
         },
         name: 'Flower pot',
         price: 299,
@@ -119,7 +117,7 @@ let shopItems = [
             source: 'assets/bowls/lime-plate.jpg',
             alt: 'Wooden plate with three limes against a red background',
             width: 250,
-            height: 250, 
+            height: 250,
         },
         name: 'Lime plate',
         price: 150,
@@ -135,7 +133,7 @@ let shopItems = [
             source: 'assets/bowls/single-bowl.jpg',
             alt: 'Wooden bowl with purple grapes against a red background',
             width: 250,
-            height: 250, 
+            height: 250,
         },
         name: 'Single bowl',
         price: 200,
@@ -151,7 +149,7 @@ let shopItems = [
             source: 'assets/bowls/single-plate.jpg',
             alt: 'Wooden plate on a red table',
             width: 250,
-            height: 250, 
+            height: 250,
         },
         name: 'Single plate',
         price: 180,
@@ -167,7 +165,7 @@ let shopItems = [
             source: 'assets/bowls/triple-bowls.jpg',
             alt: 'Three wooden bowls stacked ontop of each other on a red table',
             width: 250,
-            height: 250, 
+            height: 250,
         },
         name: 'Triplets',
         price: 450,
@@ -183,7 +181,7 @@ let shopItems = [
             source: 'assets/bowls/triplet-set.jpg',
             alt: 'Three wooden bowls with single fruits next to each other on white cloth',
             width: 250,
-            height: 250, 
+            height: 250,
         },
         name: 'Triplets set',
         price: 550,
@@ -199,7 +197,7 @@ let shopItems = [
             source: 'assets/bowls/triplet-set.jpg',
             alt: 'Three wooden bowls with single fruits next to each other on white cloth',
             width: 250,
-            height: 250, 
+            height: 250,
         },
         name: 'Triplets set',
         price: 550,
@@ -215,7 +213,7 @@ let shopItems = [
             source: 'assets/bowls/triplet-set.jpg',
             alt: 'Three wooden bowls with single fruits next to each other on white cloth',
             width: 250,
-            height: 250, 
+            height: 250,
         },
         name: 'Triplets set',
         price: 550,
@@ -226,10 +224,10 @@ let shopItems = [
         id: 9,
     },
 
-    
+
 ]
 
-//empty array for the ordersummary overview
+//empty array for the cartsummary for the products to be pushed to
 let cartTotal = []
 
 // ----------------------------------------------------------------------------------------
@@ -238,52 +236,54 @@ let cartTotal = []
 
 //function that toggles the page view between products vs order summary
 function orderSummary() {
-   const productPage = document.querySelector('#product_container');
-   productPage.classList.toggle('visually_hidden');
+    const productPage = document.querySelector('.product_container');
+    productPage.classList.toggle('visually_hidden');
 
-   const orderConfirmation = document.querySelector('#orderConfirmation');
-   orderConfirmation.classList.toggle('visually_hidden');
+
+    const orderConfirmation = document.querySelector('.order_confirmation');
+    orderConfirmation.classList.toggle('visually_hidden');
 }
+
 cartBtn.addEventListener('click', orderSummary); // ???????
 
 // Toggle between order summary and confirmation order
 function thankYouNote() {
     // if all input fields are validated the thank you note is activated
-    if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') && 
-    isNameInputValid() && 
-    isSurnameValid() && 
-    isPostcodeValid() && 
-    isCityValid() && 
-    isNumberValid() && 
-    isEmailValid() && 
-    isPersonalIdNumberValid() &&
-    nameInput.value.trim() !== '' &&
-    surnameInput.value.trim() !== '' &&
-    postcodeInput.value.trim() !== '' &&
-    cityInput.value.trim() !== '' &&
-    numberInput.value.trim() !== '' &&
-    emailInput.value.trim() !== '') {
-    const confirmationNote = document.querySelector('#confirmation_container');
-    confirmationNote.classList.toggle('visually_hidden');
-    const orderConfirmation = document.querySelector('#orderConfirmation');
-    orderConfirmation.classList.toggle('visually_hidden');
+    if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
+        isNameInputValid() &&
+        isSurnameValid() &&
+        isPostcodeValid() &&
+        isCityValid() &&
+        isNumberValid() &&
+        isEmailValid() &&
+        isPersonalIdNumberValid() &&
+        nameInput.value.trim() !== '' &&
+        surnameInput.value.trim() !== '' &&
+        postcodeInput.value.trim() !== '' &&
+        cityInput.value.trim() !== '' &&
+        numberInput.value.trim() !== '' &&
+        emailInput.value.trim() !== '') {
+        const confirmationNote = document.querySelector('.confirmation_container');
+        confirmationNote.classList.toggle('visually_hidden');
+        const orderConfirmation = document.querySelector('.order_confirmation');
+        orderConfirmation.classList.toggle('visually_hidden');
     } else {
         // if all input fields AREN'T validated, then customer is alerted with an error message
-        
+
         // if the name input is incorrectly typed out after 2 round of errors
         if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
-        !isNameInputValid() && 
-        nameInput.value.trim() !== '') {
+            !isNameInputValid() &&
+            nameInput.value.trim() !== '') {
             alert('One of your inputs are incorrect!');
         }
 
         if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
-        !isSurnameValid() && 
-        surnameInput.value.trim() !== '') {
+            !isSurnameValid() &&
+            surnameInput.value.trim() !== '') {
             alert('Your surname input is incorrect!');
         }
     }
-   
+
 }
 orderBtn.addEventListener('click', thankYouNote); // click-function that enables thank you note to popup
 
@@ -296,8 +296,8 @@ cardInvoiceRadios.forEach(radioButton => {
 // function switches between input fields for card vs invoice and toggles their visibility
 function switchPaymentMethod(e) {
     cardOption.classList.toggle('hidden');
-    invoiceOption.classList.toggle('hidden'); 
-    selectedPaymentOption = e.target.value;   
+    invoiceOption.classList.toggle('hidden');
+    selectedPaymentOption = e.target.value;
 }
 
 // RegEx functions and eventlisteners
@@ -308,8 +308,8 @@ personalId.addEventListener('change', activateOrderButton);
 
 // function to check if value of name input is correct
 function isNameInputValid() { //function to check if the name input is valid   
-    const nameValid = nameRegEx.exec(nameInput.value); 
-    if (!nameValid && !nameErrorShown) { 
+    const nameValid = nameRegEx.exec(nameInput.value);
+    if (!nameValid && !nameErrorShown) {
         nameErrorShown = true;
         nameError.textContent = 'Please type your name using letters!';
     } else if (nameValid && nameErrorShown) {  // if customer retypes in right value the error message is removed
@@ -353,16 +353,17 @@ function isEmailValid() {
 }
 emailInput.addEventListener('change', activateOrderButton); // eventlistener for when email-input changes
 
+
 // function for when and how the order button is activated and enabled vs disabled.
 function activateOrderButton() {
     if (
-        (selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') && 
-        isNameInputValid() && 
-        isSurnameValid() && 
-        isPostcodeValid() && 
-        isCityValid() && 
-        isNumberValid() && 
-        isEmailValid() && 
+        (selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
+        isNameInputValid() &&
+        isSurnameValid() &&
+        isPostcodeValid() &&
+        isCityValid() &&
+        isNumberValid() &&
+        isEmailValid() &&
         isPersonalIdNumberValid() &&
         nameInput.value.trim() !== '' &&
         surnameInput.value.trim() !== '' &&
@@ -372,15 +373,15 @@ function activateOrderButton() {
         emailInput.value.trim() !== ''
     ) {
         orderButton.removeAttribute('disabled');
-        
+
     } else if (
-        selectedPaymentOption === 'card' && 
-        !isNameInputValid() || 
+        selectedPaymentOption === 'card' &&
+        !isNameInputValid() ||
         !isSurnameValid() ||
-        !isPostcodeValid() || 
-        !isCityValid() || 
-        !isNumberValid() || 
-        !isEmailValid() || 
+        !isPostcodeValid() ||
+        !isCityValid() ||
+        !isNumberValid() ||
+        !isEmailValid() ||
         !isPersonalIdNumberValid() ||
         nameInput.value.trim() === '' ||
         surnameInput.value.trim() === '' ||
@@ -388,15 +389,15 @@ function activateOrderButton() {
         cityInput.value.trim() === '' ||
         numberInput.value.trim() === '' ||
         emailInput.value.trim() === ''
-        ) {
+    ) {
         orderButton.setAttribute('disabled', '');
         console.log(selectedPaymentOption);
-    };   
+    };
 }
 
 // specialrules
 function getPriceMultiplier() {
-    if (isFriday && currentHour >= 15 || isSaturday || isSunday || isMonday && currentHour <= 3 ) {
+    if (isFriday && currentHour >= 15 || isSaturday || isSunday || isMonday && currentHour <= 3) {
         return 1.15;
     }
     return 1;
@@ -410,9 +411,9 @@ function printItems() {
     let priceIncrease = getPriceMultiplier();
 
 
-    for(let i = 0; i < shopItems.length; i++) {
-    itemContainer.innerHTML += // container for all HTML code for products
-    `<div class="product_items"> 
+    for (let i = 0; i < shopItems.length; i++) {
+        itemContainer.innerHTML += // container for all HTML code for products
+            `<div class="product_items"> 
     <img src='${shopItems[i].img.source}' loading="lazy">
     <h3> ${shopItems[i].name} </h3>
     <p class="product_price"> ${Math.round(shopItems[i].price * priceIncrease)} ${shopItems[i].unit}</p>
@@ -423,8 +424,8 @@ function printItems() {
     </div>
     <p> Rating: ${shopItems[i].rating}</p>
     <p class"category"> Category: ${shopItems[i].category}</p>
-    </div>`;  
-    } 
+    </div>`;
+    }
 
     //variabel for the plus button and function
     const plusBtn = document.querySelectorAll('.plus');
@@ -432,18 +433,14 @@ function printItems() {
         plusBtn[i].addEventListener('click', increaseAmount)
     };
 
-     //variabel for the minus button and function
+    //variabel for the minus button and function
     const minusBtn = document.querySelectorAll('.minus');
     for (let i = 0; i < minusBtn.length; i++) {
         minusBtn[i].addEventListener('click', decreaseAmount)
-    };    
+    };
 }
 
-//calling on the array to be printed out in the webshop
-printItems();
-
-
-
+printItems(); //calling on the array to be printed out in the webshop
 
 // function to increase amount with click on plusbutton
 function increaseAmount(e) {
@@ -454,25 +451,24 @@ function increaseAmount(e) {
         startTimer(); // restarts the timer again AFTER cart has manually been reduced to 0 by customer
         console.log('timer has restarted');
     }
-  
+
     let index = e.target.id.replace('plus-', '');
     index = Number(index);
     shopItems[index].amount += 1;
     cartTotal = shopItems.filter(item => item.amount > 0);
 
 
-    printItems(); 
+    printItems();
     cartOverview();
     calculateTotalAmount();
-} 
+}
 
 function stopTimer() {
     if (shopItems.every(item => item.amount === 0)) {
         clearTimeout(timeLimit);
         console.log('timer stopped');
-    } 
+    }
 }
-
 
 // function to decrease amount with click on minusbutton
 function decreaseAmount(e) {
@@ -481,31 +477,30 @@ function decreaseAmount(e) {
         index = Number(index);
         shopItems[index].amount -= 1;
     }
-   
-    stopTimer();
-    printItems(); 
-    calculateTotalAmount(); // calling on function which alters number next to carticon
-} 
 
+    stopTimer();
+    printItems();
+    calculateTotalAmount(); // calling on function which alters number next to carticon
+}
 
 // function that increases item INSIDE order summary
 function increaseCartPlus(e) {
     const index = e.currentTarget.dataset.id;
-        cartTotal[index].amount += 1;
-        updateViews(); 
-        calculateTotalAmount();            
+    cartTotal[index].amount += 1;
+    updateViews();
+    calculateTotalAmount();
 }
 
 // function that decreases item INSIDE order summary
 function decreaseCartMinus(e) {
     const replaceMinus = document.querySelector('.cart-minus');
     const index = e.currentTarget.dataset.id;
-    
+
     if (cartTotal[index].amount > 0) {
         cartTotal[index].amount -= 1;
         updateViews();
         calculateTotalAmount();
-    } 
+    }
     stopTimer(); // stops the timer if cart is emptied INSIDE cartsummary
 }
 
@@ -513,44 +508,44 @@ function decreaseCartMinus(e) {
 function deleteCartItem(e) {
     const productId = Number(e.currentTarget.id.replace('delete-', ''));
     const i = cartTotal.findIndex((product) => product.id === productId);
-   console.log(productId);
-   console.log(i);
-   
-    
-   if (i !== -1) {
-    cartTotal.splice(i, 1);
-    cartOverview(); // Update the cart view after removing the item
-    calculateTotalAmount();
-    }    
+    console.log(productId);
+    console.log(i);
+
+
+    if (i !== -1) {
+        cartTotal.splice(i, 1);
+        cartOverview(); // Update the cart view after removing the item
+        calculateTotalAmount();
+    }
 
 }
 
 // function that pushes ordered amount into order summary overview
 function cartOverview() {
     cartContainer.innerHTML = '';
-    
+
     let sum = 0;
     let orderedItemAmount = 0;
     let orderMsg = '';
     let priceIncrease = getPriceMultiplier();
-    
-     //loop that shows ordered products in cartoverview
+
+    //loop that shows ordered products in cartoverview
     cartTotal.forEach((shopItems, index) => {
         summaryTotal.innerHTML += ``;
-        
+
         orderedItemAmount += shopItems.amount;
 
-       // discount for 10 or more donuts
-        if (shopItems.amount > 0) {  
-            let itemPrice = shopItems.price 
+        // discount for 10 or more donuts
+        if (shopItems.amount > 0) {
+            let itemPrice = shopItems.price
             if (shopItems.amount >= 0) {
                 itemPrice *= 0.9;
             }
 
             const newItemPrice = Math.round(itemPrice * priceIncrease);
-            sum += shopItems.amount * newItemPrice;  
+            sum += shopItems.amount * newItemPrice;
 
-            cartContainer.innerHTML += 
+            cartContainer.innerHTML +=
                 `<div class="cartorder_items">
                 <h3>${shopItems.name}</h3>
                 <div class="image_wrapper">
@@ -564,54 +559,55 @@ function cartOverview() {
                 <p> Total: ${shopItems.amount * newItemPrice}kr</p>        
                 <button class="remove_item_cart" id="delete-${shopItems.id}">Remove</button>
                 </div>`;
-        }        
+        }
     });
-    
+
     summaryTotal.innerHTML = `${sum}`;
-           
-        // apply discount on mondays
-        if (today.getDay() === 1 && today.getHours() < 10) {
-            sum *= 0.9; //Monday discount on all of order
-            orderMsg += '<p></p>';
-            mondayMsg.innerHTML = 
+
+    // apply discount on mondays
+    if (today.getDay() === 1 && today.getHours() < 10) {
+        sum *= 0.9; //Monday discount on all of order
+        orderMsg += '<p></p>';
+        mondayMsg.innerHTML =
             `<p>Yay! You have just received a Monday discount on your order!</p>
             `;
-        }
+    }
 
-        
-        //shipping free/discount when ordering 15 or more donuts       
-        if (orderedItemAmount > 15) {
-            shippingCost.innerHTML = `Shipping is free with your order!`;
-        } else {
-            shippingCost.innerHTML = `Shipping: ${Math.round(25 + (0.1 * sum))} kr`;
-        }
 
-        let invoiceRadioOption = document.querySelector('#invoice_radio');
-        //if order more than 800SEK, invoice option isn't available
-        if (sum > 800) {
-            invoiceRadioOption.classList.add('hidden'); 
-        }
-             
-        //variable for the plusbutton inside order summary
-        const cartPlus = document.querySelectorAll('.cart-plus');
-        for (let i = 0; i < cartPlus.length; i++) {
-            cartPlus[i].addEventListener('click', increaseCartPlus)
-        };
+    //shipping free/discount when ordering 15 or more donuts       
+    if (orderedItemAmount > 15) {
+        shippingCost.innerHTML = `Shipping is free with your order!`;
+    } else {
+        shippingCost.innerHTML = `Shipping: ${Math.round(25 + (0.1 * sum))} kr`;
+    }
 
-        //variable for the minusbutton inside order summary
-        const cartMinus = document.querySelectorAll('.cart-minus');
-        for (let i = 0; i < cartMinus.length; i++) {
-            cartMinus[i].addEventListener('click', decreaseCartMinus)
-        };     
-        
-         // remove single item in cart
-         Array.from(document.querySelectorAll('.remove_item_cart')).forEach((btn) => {
-            btn.addEventListener('click', deleteCartItem);
-        });   
-        
-       
+    let invoiceRadioOption = document.querySelector('#invoice_radio');
+    //if order more than 800SEK, invoice option isn't available
+    if (sum > 800) {
+        invoiceRadioOption.classList.add('hidden');
+    } else {
+        invoiceRadioOption.classList.remove('hidden');
+    }
+
+    //variable for the plusbutton inside order summary
+    const cartPlus = document.querySelectorAll('.cart-plus');
+    for (let i = 0; i < cartPlus.length; i++) {
+        cartPlus[i].addEventListener('click', increaseCartPlus)
+    };
+
+    //variable for the minusbutton inside order summary
+    const cartMinus = document.querySelectorAll('.cart-minus');
+    for (let i = 0; i < cartMinus.length; i++) {
+        cartMinus[i].addEventListener('click', decreaseCartMinus)
+    };
+
+    // remove single item in cart
+    Array.from(document.querySelectorAll('.remove_item_cart')).forEach((btn) => {
+        btn.addEventListener('click', deleteCartItem);
+    });
+
+
 }
-
 
 // function that changes the total amount of items in the carticon at the top of the page when customer adds or deducts a product
 function calculateTotalAmount() {
@@ -624,11 +620,8 @@ function calculateTotalAmount() {
 
 function updateViews() {
     printItems();
-    cartOverview();   
+    cartOverview();
 }
-
-
-// 15 MIN TIMER
 
 // function for the timer to be set to 15 minutes
 function startTimer() {
@@ -639,14 +632,14 @@ function startTimer() {
 function tooSlow() {
     timeLimitMessage.style.display = 'block';
     document.querySelector('#cartform').reset();
-    console.log('You were too slow'); 
+    console.log('You were too slow');
 }
 
 // Button inside the 15-minute popup-message, when customer clicks on it, it removes the message overlay.
 function goBackBtn() {
     timeLimitMessage.style.display = 'none';
     emptyCart();
-    console.log('Cart is emptied');  
+    console.log('Cart is emptied');
 }
 timeoutBtn.addEventListener('click', goBackBtn); // eventlistener: 'go back' button inside timelimit popup message
 
@@ -659,10 +652,12 @@ function resetAll() {
 }
 
 function emptyCart() {
+    shopItems.forEach((product) => {
+        product.amount = 0;
+    });
     cartTotal = [];
-    cartOverview();
     calculateTotalAmount();
-    printItems(); 
+    updateViews();
 }
 
 
