@@ -1,3 +1,16 @@
+/**
+ * Issues currently: when clicking on 'go back' button in the time out popupmessage I would like the page to reset.
+ * The invoice option doesnt reset if the previous cart has had more than 800SEKs worth of products in it
+ */
+
+
+/**
+ * Activate timer when item is added to cart
+ * if cart goes down to 0, return the function
+ * 
+ */
+
+
 // DONE
 // Create array with items DONE
 
@@ -123,5 +136,81 @@ else if (cartTotal[index].amount === 1) {
     }   
 
 
+*/
+
+/*
+// function that resets the cartamount to 0
+function resetCart() {
+    shopItems.forEach(item => {
+        item.amount = 0;
+    });
+  
+}
+*/
+
+
+/*
+// prints message to customer after 15 mins
+function tooSlow() {
+    alert('Sorry, your time has run out!');
+}
+*/
+
+
+
+//function to print out cost and total amount of items together in order summary
+
+/*
+function printSummary() {
+    const summaryTotal = document.querySelector('.ordersummary_container');
+
+    summaryTotal.innerHTML = '';
+    
+    
+    let orderMsg = '';
+
+    shopItems.forEach(item => {
+        if (item.amount > 0) {
+            
+            summaryTotal.innerHTML += 
+            `
+            <article>
+                <span> ${item.name} </span>
+
+            </article>
+            `
+        };
+
+    });
+    
+    
+ 
+}; 
+
+*/
+
+
+
+/*
+  let timeLimit = setTimeout(tooSlow, 1000); // variable for time limit for customer
+
+        const orderSummaryClicked = document.querySelector('#orderConfirmation');
+        const isOrderSummaryVisibile = !orderSummaryClicked.classList.contains('visually_hidden');
+
+        if (isOrderSummaryVisibile) {
+            clearTimeout(timeLimit);
+            tooSlow();  
+            resetCart();
+        } 
+
+
+
+// function that resets the cartamount to 0
+function resetCart() {
+    shopItems.forEach(item => {
+        item.amount = 0;
+    });
+  
+}
 */
 

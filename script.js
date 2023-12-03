@@ -1,66 +1,69 @@
-// Toggle pageview with cart clicks
-// variable for the cartbutton icon
-const cartBtn = document.querySelector('#cartBtn');
-cartBtn.addEventListener('click', orderSummary);
+// ----------------------------------------------------------------------------------------
+//------------------------------VARIABLES--------------------------------------------------
+// ----------------------------------------------------------------------------------------
+// VARIABLES - startpage
+const cartBtn = document.querySelector('#cartBtn'); // variable for the cartbutton icon in the header
+let cartViewNumber = document.querySelector('.cartNumber'); // variable for carticon in header
+const itemContainer = document.querySelector("#product_container"); // variable for product container on startpage
+const cartContainer = document.querySelector('.cartorder_container'); // variable for container of printed products in order summary
+const summaryTotal = document.querySelector('.order_amount'); // variable for the total price amount showing in the order summary section
+const today = new Date(); 
 
-//function that toggles the page view between products vs order summary
-function orderSummary() {
-   const productPage = document.querySelector('#product_container');
-   productPage.classList.toggle('visually_hidden');
+// vARIABLES - date and time for discounts
+const isFriday = today.getDay() === 5; // variable for true or false Friday
+const isSaturday = today.getDay() === 6; // variable for true or false Saturday
+const isSunday = today.getDay() === 0; // variable for true or false Sunday
+const isMonday = today.getDay() === 1; // variable for true or false Monday
+const currentHour = today.getHours(); // variable for setting the time
+const mondayMsg = document.querySelector('.monday_message'); // variable for discount message on mondays
 
-   const orderConfirmation = document.querySelector('#orderConfirmation');
-   orderConfirmation.classList.toggle('visually_hidden');
-}
+// VARIABLES - order and shipment overview
+let shippingCost = document.querySelector('.shipping_cost'); // variable for shipping cost container
+const resetBtn = document.querySelector('.reset_button'); // variable for resetbutton at the end of the cart page that resets form input and cart total
+resetBtn.addEventListener('click', resetAll); // eventlistner for the end of page resetbutton, to reset all forminput and product in cart
 
-// function that toggles timeoutmessage
-const timeOutMessage = document.querySelector('.timeout_message');
+// VARIABLES - inside ordersummary
+const orderBtn = document.querySelector('#order_button'); //variable for the orderbutton in order summary
 
-// Toggle between order summary and confirmation order
-//variable for the orderbutton in order summary
-const orderBtn = document.querySelector('#order_button');
-orderBtn.addEventListener('click', thankYouNote);
+const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="payment-option"]')); // variable for card and invoicebuttons in the ordersummary
 
-function thankYouNote() {
-    // if all input fields are validated the thank you note is activated
-    if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') && 
-    isNameInputValid() && 
-    isSurnameValid() && 
-    isPostcodeValid() && 
-    isCityValid() && 
-    isNumberValid() && 
-    isEmailValid() && 
-    isPersonalIdNumberValid() &&
-    nameInput.value.trim() !== '' &&
-    surnameInput.value.trim() !== '' &&
-    postcodeInput.value.trim() !== '' &&
-    cityInput.value.trim() !== '' &&
-    numberInput.value.trim() !== '' &&
-    emailInput.value.trim() !== '') {
-    const confirmationNote = document.querySelector('#confirmation_container');
-    confirmationNote.classList.toggle('visually_hidden');
-    const orderConfirmation = document.querySelector('#orderConfirmation');
-    orderConfirmation.classList.toggle('visually_hidden');
-    } else {
-        // if all input fields AREN'T validated, then customer is alerted with an error message
-        
-        // if the name input is incorrectly typed out after 2 round of errors
-        if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
-        !isNameInputValid() && 
-        nameInput.value.trim() !== '') {
-            alert('One of your inputs are incorrect!');
-        }
+//variables for card and invoice radiobuttons
+const cardOption = document.querySelector('#payment_card');
+const invoiceOption = document.querySelector('#payment_invoice');
+let selectedPaymentOption = 'card';
 
-        if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
-        !isSurnameValid() && 
-        surnameInput.value.trim() !== '') {
-            alert('Your surname input is incorrect!');
-        }
-    }
-   
-}
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
+// VARIABLES - orderform
+const orderButton = document.querySelector('#order_button');
+
+// VARIABLES - all RegEx and inputs in order form
+const nameInput = document.querySelector('#fname'); // variable for forminput: name
+const nameError = document.querySelector('#name_error'); // variable for the errormessage in the name inputfield
+let nameErrorShown = false; // lets errormessage = false by default.
+const surnameInput = document.querySelector('#lname'); // variable to declare the 'surname' input
+const nameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
+// RegEx for form - address input
+const adressRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the address RegEx
+const postcodeInput = document.querySelector('#zip'); // variable to declare the 'postcode' input
+const postcodeRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the postcode RegEx
+const cityInput = document.querySelector('#city'); // variable to declare the 'city' input
+const cityRegEx = new RegExp(/^[a-z ,.'-]+$/i); // variable for the city RegEx
+const numberInput = document.querySelector('#tel'); // variable to declare the 'number' (phonenumber) input
+const numberRegEx = new RegExp(/^[0-9]+$/); // variable for the number RegEx
+const emailInput = document.querySelector('#email'); // variable to declare the 'email' input
+const emailRegEx = new RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,6}$/); // variable for the email RegEx
+const personalId = document.querySelector('#ssn'); // variable to declare the 'personal ID' input
+const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8} \d{4}|\d{6} \d{4})/); // variable for the Swedish Persona number RegEx
+
+// VARIABLES - 15 minute timelimit and popup-message
+let timeLimitMessage = document.querySelector('#timeout_message'); // variable for container pop up message when customer is too slow
+let timeLimit; // variable for the starting timer of popup-message for slow customer
+const timeoutBtn = document.querySelector('#timeout_button'); // variable for button that takes customer back to the form once popup message is triggered
+const timeOutMessage = document.querySelector('.timeout_message'); // variable for popup message that shows when customers time has run out
+
+// ----------------------------------------------------------------------------------------
+//------------------------------ARRAYS-----------------------------------------------------
+// ----------------------------------------------------------------------------------------
 
 // array with all shopitems in objects
 let shopItems = [
@@ -226,76 +229,82 @@ let shopItems = [
     
 ]
 
-/////////////////////////////////      VARIABLES          /////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//empty array for the ordersummary overview
+let cartTotal = []
 
-let cartViewNumber = document.querySelector('.cartNumber');
+// ----------------------------------------------------------------------------------------
+//--------------------------FUNCTIONS AND EVENTLISTENERS-----------------------------------
+// ----------------------------------------------------------------------------------------
 
-const itemContainer = document.querySelector("#product_container"); // variable for product container on startpage
-const summaryTotal = document.querySelector('.order_amount'); 
-const mondayMsg = document.querySelector('.monday_message'); // variable for discount message on mondays
+//function that toggles the page view between products vs order summary
+function orderSummary() {
+   const productPage = document.querySelector('#product_container');
+   productPage.classList.toggle('visually_hidden');
 
-const cartContainer = document.querySelector('.cartorder_container'); // variable for printed products in order summary
-const today = new Date(); 
+   const orderConfirmation = document.querySelector('#orderConfirmation');
+   orderConfirmation.classList.toggle('visually_hidden');
+}
+cartBtn.addEventListener('click', orderSummary); // ???????
 
-const isFriday = today.getDay() === 5; // true or false
-const isSaturday = today.getDay() === 6; // variable for true or false Saturday
-const isSunday = today.getDay() === 0;
-const isMonday = today.getDay() === 1; // true or false
-const currentHour = today.getHours();
+// Toggle between order summary and confirmation order
+function thankYouNote() {
+    // if all input fields are validated the thank you note is activated
+    if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') && 
+    isNameInputValid() && 
+    isSurnameValid() && 
+    isPostcodeValid() && 
+    isCityValid() && 
+    isNumberValid() && 
+    isEmailValid() && 
+    isPersonalIdNumberValid() &&
+    nameInput.value.trim() !== '' &&
+    surnameInput.value.trim() !== '' &&
+    postcodeInput.value.trim() !== '' &&
+    cityInput.value.trim() !== '' &&
+    numberInput.value.trim() !== '' &&
+    emailInput.value.trim() !== '') {
+    const confirmationNote = document.querySelector('#confirmation_container');
+    confirmationNote.classList.toggle('visually_hidden');
+    const orderConfirmation = document.querySelector('#orderConfirmation');
+    orderConfirmation.classList.toggle('visually_hidden');
+    } else {
+        // if all input fields AREN'T validated, then customer is alerted with an error message
+        
+        // if the name input is incorrectly typed out after 2 round of errors
+        if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
+        !isNameInputValid() && 
+        nameInput.value.trim() !== '') {
+            alert('One of your inputs are incorrect!');
+        }
 
-let shippingCost = document.querySelector('.shipping_cost'); // variable for shipping cost container
+        if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
+        !isSurnameValid() && 
+        surnameInput.value.trim() !== '') {
+            alert('Your surname input is incorrect!');
+        }
+    }
+   
+}
+orderBtn.addEventListener('click', thankYouNote); // click-function that enables thank you note to popup
 
-const resetBtn = document.querySelector('.reset_button'); // variable for resetbutton at the end of the cart page that resets form input and cart total
-resetBtn.addEventListener('click', resetAll); // adds a click function to the button
 
-let timeLimitMessage = document.querySelector('#timeout_message'); // variable for container pop up message when customer is too slow
-
-let timeLimit; // declare a variable for the starting timer of popup-message for slow customer
-
-const timeoutBtn = document.querySelector('#timeout_button'); // variable for button that takes customer back to the form once popup message is triggered
-timeoutBtn.addEventListener('click', goBackBtn);
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// variable for card and invoicebuttons in the ordersummary
-const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="payment-option"]')); 
-
+// loop that adds a function to the radiobuttons for card/invoice payment option
 cardInvoiceRadios.forEach(radioButton => {
     radioButton.addEventListener('change', switchPaymentMethod);
 });
 
-//variables for card and invoice radiobuttons
-const cardOption = document.querySelector('#payment_card');
-const invoiceOption = document.querySelector('#payment_invoice');
-let selectedPaymentOption = 'card';
-
-// switches between input fields for card vs invoice and toggles their visibility
+// function switches between input fields for card vs invoice and toggles their visibility
 function switchPaymentMethod(e) {
     cardOption.classList.toggle('hidden');
     invoiceOption.classList.toggle('hidden'); 
     selectedPaymentOption = e.target.value;   
 }
 
-// CART OR INVOICE BUTTONS
-const personalId = document.querySelector('#ssn');
-personalId.addEventListener('change', activateOrderButton);
-
-const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8} \d{4}|\d{6} \d{4})/);
-
+// RegEx functions and eventlisteners
 function isPersonalIdNumberValid() {
     return personalIdRegEx.exec(personalId.value);
 }
-
-// ALL REGEX
-
-// RegEx for form - name input
-const nameInput = document.querySelector('#fname'); // variable for forminput: name
-const nameError = document.querySelector('#name_error');
-const nameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name input
-let nameErrorShown = false;
-nameInput.addEventListener('change', activateOrderButton); // when the inputfield for name changes, 
+personalId.addEventListener('change', activateOrderButton);
 
 // function to check if value of name input is correct
 function isNameInputValid() { //function to check if the name input is valid   
@@ -309,66 +318,41 @@ function isNameInputValid() { //function to check if the name input is valid
     }
     return nameValid;
 }
-
-
-// RegEx for form - surname input
-const surnameInput = document.querySelector('#lname');
-surnameInput.addEventListener('change', activateOrderButton);
+nameInput.addEventListener('change', activateOrderButton); // when the inputfield for name changes, 
 
 // function to check if value of surname input is correct
 function isSurnameValid() {
     return nameRegEx.exec(surnameInput.value);
 }
-
-// RegEx for form - address input
-const adressRegEx = new RegExp('^\\d{3}\\s*\\d{2}$');
-
+surnameInput.addEventListener('change', activateOrderButton); // eventlistener for when surname input changes
 
 // function to check if value of address input is correct
-
-
-
-// RegEx for form - postcode input
-const postcodeInput = document.querySelector('#zip');
-const postcodeRegEx = new RegExp('^\\d{3}\\s*\\d{2}$');
-postcodeInput.addEventListener('change', activateOrderButton);
+// eventlistener for when address input changes
 
 // function to check if value of postcode input is correct
 function isPostcodeValid() {
     return postcodeRegEx.exec(postcodeInput.value);
 }
-
-// RegEx for form - city input
-const cityInput = document.querySelector('#city');
-const cityRegEx = new RegExp(/^[a-z ,.'-]+$/i);
-cityInput.addEventListener('change', activateOrderButton);
+postcodeInput.addEventListener('change', activateOrderButton); // eventlistener for when postcode-input changes
 
 // function to check if value of name input is correct
 function isCityValid() {
     return cityRegEx.exec(cityInput.value);
 }
-
-// RegEx for form - number input
-const numberInput = document.querySelector('#tel');
-const numberRegEx = new RegExp(/^[0-9]+$/);
-numberInput.addEventListener('change', activateOrderButton);
+cityInput.addEventListener('change', activateOrderButton); // eventlistener for when number-input changes
 
 // function to check if value of number input is correct 
 function isNumberValid() {
     return numberRegEx.exec(numberInput.value);
 }
-
-// RegEx for form - email input
-const emailInput = document.querySelector('#email');
-const emailRegEx = new RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,6}$/);
-emailInput.addEventListener('change', activateOrderButton);
+numberInput.addEventListener('change', activateOrderButton); // eventlistener for when number-input changes
 
 // function to check if value of email input is correct 
 function isEmailValid() {
     return emailRegEx.exec(emailInput.value);
 }
+emailInput.addEventListener('change', activateOrderButton); // eventlistener for when email-input changes
 
-const orderButton = document.querySelector('#order_button');
 // function for when and how the order button is activated and enabled vs disabled.
 function activateOrderButton() {
     if (
@@ -409,48 +393,6 @@ function activateOrderButton() {
         console.log(selectedPaymentOption);
     };   
 }
-
-
-//calling on the array to be printed out in the webshop
-printItems();
-
-//empty array for the ordersummary overview
-let cartTotal = []
-
-
-// function to increase amount with click on plusbutton
-function increaseAmount(e) {
-    if (cartTotal.length === 0) {
-        startTimer();   
-    }
-    
-    let index = e.target.id.replace('plus-', '');
-    index = Number(index);
-    shopItems[index].amount += 1;
-    cartTotal = shopItems.filter(item => item.amount > 0);
-    
-    printItems(); 
-    cartOverview();
-    calculateTotalAmount();
-} 
-
-function startTimer() {
-    timeLimit = setTimeout(tooSlow, 1000 * 20); // Set a time limit of 3 seconds (adjust as needed)  
-}
-
-
-
-
-// function to decrease amount with click on minusbutton
-function decreaseAmount(e) {
-    let index = e.target.id.replace('minus-', '');
-    if (shopItems[index].amount > 0) {
-        index = Number(index);
-        shopItems[index].amount -= 1;
-}
-    printItems(); 
-    calculateTotalAmount(); // calling on function which alters number next to carticon
-} 
 
 // specialrules
 function getPriceMultiplier() {
@@ -497,13 +439,58 @@ function printItems() {
     };    
 }
 
+//calling on the array to be printed out in the webshop
+printItems();
+
+// function to increase amount with click on plusbutton
+function increaseAmount(e) {
+   if (cartTotal.length === 0) {
+        startTimer();   
+        console.log('item is added');
+    }
+    let index = e.target.id.replace('plus-', '');
+    index = Number(index);
+    shopItems[index].amount += 1;
+    cartTotal = shopItems.filter(item => item.amount > 0);
+
+    /*
+    if (shopItems[index].amount === 0) {
+        startTimer();
+        console.log('item is added');
+    }*/
+    
+    printItems(); 
+    cartOverview();
+    calculateTotalAmount();
+} 
+
+// function to decrease amount with click on minusbutton
+function decreaseAmount(e) {
+    let index = e.target.id.replace('minus-', '');
+    if (shopItems[index].amount > 0) {
+        index = Number(index);
+        shopItems[index].amount -= 1;
+    }
+
+    if (shopItems.every(item => item.amount < 1)) {
+        clearTimeout(timeLimit);
+        console.log('timer stopped');
+    } else {
+       
+        console.log('timer has started again');
+    }
+
+    printItems(); 
+    calculateTotalAmount(); // calling on function which alters number next to carticon
+} 
+
+
 // function that increases item INSIDE order summary
 function increaseCartPlus(e) {
     const index = e.currentTarget.dataset.id;
         cartTotal[index].amount += 1;
         updateViews(); 
-        calculateTotalAmount(); 
-             
+        calculateTotalAmount();            
 }
 
 // function that decreases item INSIDE order summary
@@ -518,6 +505,7 @@ function decreaseCartMinus(e) {
     } 
 }
 
+// function for the delete-button inside each item in the ordersummary
 function deleteCartItem(e) {
     const productId = Number(e.currentTarget.id.replace('delete-', ''));
     const i = cartTotal.findIndex((product) => product.id === productId);
@@ -624,7 +612,6 @@ function cartOverview() {
 // function that changes the total amount of items in the carticon at the top of the page when customer adds or deducts a product
 function calculateTotalAmount() {
     let totalAmount = cartTotal.reduce((total, product) => total + product.amount, 0);
-
     const cartNumber = document.querySelector('.cartNumber');
     if (cartNumber) {
         cartNumber.textContent = totalAmount;
@@ -633,25 +620,31 @@ function calculateTotalAmount() {
 
 function updateViews() {
     printItems();
-    cartOverview();
-    
+    cartOverview();   
+}
+
+
+// 15 MIN TIMER
+
+// function for the timer to be set to 15 minutes
+function startTimer() {
+    timeLimit = setTimeout(tooSlow, 1000 * 20); // Set a time limit of 3 seconds (adjust as needed)  
 }
 
 // Popup-message with a 15 minute timelimit. Display overlay element which notifies customer as well as resets the form inputs by customer.
 function tooSlow() {
     timeLimitMessage.style.display = 'block';
     document.querySelector('#cartform').reset();
-    console.log(cartTotal);
-    
+    console.log('You were too slow'); 
 }
 
 // Button inside the 15-minute popup-message, when customer clicks on it, it removes the message overlay.
 function goBackBtn() {
     timeLimitMessage.style.display = 'none';
     emptyCart();
-    console.log('Knappen funkar');
-    
+    console.log('Cart is emptied');  
 }
+timeoutBtn.addEventListener('click', goBackBtn); // eventlistener: 'go back' button inside timelimit popup message
 
 // function that resets all form inputs and cart total 
 function resetAll() {
@@ -669,102 +662,3 @@ function emptyCart() {
 }
 
 
-/*
-  
-
-
-// function that resets the cartamount to 0
-function resetCart() {
-    shopItems.forEach(item => {
-        item.amount = 0;
-    });
-  
-}
-*/
-
-
-/*
-// prints message to customer after 15 mins
-function tooSlow() {
-    alert('Sorry, your time has run out!');
-}
-*/
-
-
-
-//function to print out cost and total amount of items together in order summary
-
-/*
-function printSummary() {
-    const summaryTotal = document.querySelector('.ordersummary_container');
-
-    summaryTotal.innerHTML = '';
-    
-    
-    let orderMsg = '';
-
-    shopItems.forEach(item => {
-        if (item.amount > 0) {
-            
-            summaryTotal.innerHTML += 
-            `
-            <article>
-                <span> ${item.name} </span>
-
-            </article>
-            `
-        };
-
-    });
-    
-    
- 
-}; 
-
-*/
-
-
-
-
-
-
-
-/*
-  let timeLimit = setTimeout(tooSlow, 1000); // variable for time limit for customer
-
-        const orderSummaryClicked = document.querySelector('#orderConfirmation');
-        const isOrderSummaryVisibile = !orderSummaryClicked.classList.contains('visually_hidden');
-
-        if (isOrderSummaryVisibile) {
-            clearTimeout(timeLimit);
-            tooSlow();  
-            resetCart();
-        } 
-
-
-
-// function that resets the cartamount to 0
-function resetCart() {
-    shopItems.forEach(item => {
-        item.amount = 0;
-    });
-  
-}
-*/
-
-/*  
-switch toggle??
-switch(e.target.value) {
-        case 'card':
-            cardOption.classList.remove('hidden');
-            invoiceOption.classList.add('hidden');
-            break;
-        case 'invoice':
-            cardOption.classList.add('hidden');
-            invoiceOption.classList.remove('hidden');
-            break;
-        default:
-            console.error('Unknown payment option');
-        break;
-    }
-    */
