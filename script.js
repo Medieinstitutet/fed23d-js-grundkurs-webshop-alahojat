@@ -298,11 +298,12 @@ function switchPaymentMethod(e) {
     cardOption.classList.toggle('hidden');
     invoiceOption.classList.toggle('hidden');
     selectedPaymentOption = e.target.value;
+    activateOrderButton();
 }
 
 // RegEx functions and eventlisteners
 function isPersonalIdNumberValid() {
-    return personalIdRegEx.exec(personalId.value);
+    return personalIdRegEx.exec(personalId.value) !== null;
 }
 personalId.addEventListener('change', activateOrderButton);
 
@@ -313,16 +314,16 @@ function isNameInputValid() { //function to check if the name input is valid
         nameErrorShown = true;
         nameError.textContent = 'Please type your name using letters!';
     } else if (nameValid && nameErrorShown) {  // if customer retypes in right value the error message is removed
-        nameErrorShown: false;
+        nameErrorShown = false;
         nameError.textContent = '';
     }
-    return nameValid;
+    return nameValid !== null;
 }
 nameInput.addEventListener('change', activateOrderButton); // when the inputfield for name changes, 
 
 // function to check if value of surname input is correct
 function isSurnameValid() {
-    return nameRegEx.exec(surnameInput.value);
+    return nameRegEx.exec(surnameInput.value) !== null;
 }
 surnameInput.addEventListener('change', activateOrderButton); // eventlistener for when surname input changes
 
@@ -331,68 +332,59 @@ surnameInput.addEventListener('change', activateOrderButton); // eventlistener f
 
 // function to check if value of postcode input is correct
 function isPostcodeValid() {
-    return postcodeRegEx.exec(postcodeInput.value);
+    return postcodeRegEx.exec(postcodeInput.value) !== null;
 }
 postcodeInput.addEventListener('change', activateOrderButton); // eventlistener for when postcode-input changes
 
 // function to check if value of name input is correct
 function isCityValid() {
-    return cityRegEx.exec(cityInput.value);
+    return cityRegEx.exec(cityInput.value) !== null;
 }
 cityInput.addEventListener('change', activateOrderButton); // eventlistener for when number-input changes
 
 // function to check if value of number input is correct 
 function isNumberValid() {
-    return numberRegEx.exec(numberInput.value);
+    return numberRegEx.exec(numberInput.value) !== null;
 }
 numberInput.addEventListener('change', activateOrderButton); // eventlistener for when number-input changes
 
 // function to check if value of email input is correct 
 function isEmailValid() {
-    return emailRegEx.exec(emailInput.value);
+    return emailRegEx.exec(emailInput.value) !== null;
 }
 emailInput.addEventListener('change', activateOrderButton); // eventlistener for when email-input changes
 
 
 // function for when and how the order button is activated and enabled vs disabled.
 function activateOrderButton() {
-    if (
-        (selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
-        isNameInputValid() &&
+
+    const allPersonFieldsValid = isNameInputValid() &&
         isSurnameValid() &&
         isPostcodeValid() &&
         isCityValid() &&
         isNumberValid() &&
         isEmailValid() &&
-        isPersonalIdNumberValid() &&
         nameInput.value.trim() !== '' &&
         surnameInput.value.trim() !== '' &&
         postcodeInput.value.trim() !== '' &&
         cityInput.value.trim() !== '' &&
         numberInput.value.trim() !== '' &&
-        emailInput.value.trim() !== ''
-    ) {
-        orderButton.removeAttribute('disabled');
+        emailInput.value.trim() !== '';
 
-    } else if (
-        selectedPaymentOption === 'card' &&
-        !isNameInputValid() ||
-        !isSurnameValid() ||
-        !isPostcodeValid() ||
-        !isCityValid() ||
-        !isNumberValid() ||
-        !isEmailValid() ||
-        !isPersonalIdNumberValid() ||
-        nameInput.value.trim() === '' ||
-        surnameInput.value.trim() === '' ||
-        postcodeInput.value.trim() === '' ||
-        cityInput.value.trim() === '' ||
-        numberInput.value.trim() === '' ||
-        emailInput.value.trim() === ''
-    ) {
-        orderButton.setAttribute('disabled', '');
-        console.log(selectedPaymentOption);
-    };
+    if (allPersonFieldsValid) {
+        if (selectedPaymentOption === 'card') {
+            orderButton.removeAttribute('disabled');    
+            return;
+        }
+
+        if (selectedPaymentOption === 'invoice' && isPersonalIdNumberValid()) {
+            orderButton.removeAttribute('disabled');
+            return;
+        }
+    }
+
+    // In all other cases, disable the order button
+    orderButton.setAttribute('disabled', '');
 }
 
 // specialrules
