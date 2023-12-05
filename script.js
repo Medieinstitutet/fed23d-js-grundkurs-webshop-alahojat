@@ -45,22 +45,32 @@ const surnameError = document.querySelector('#surname_error'); // variable for e
 let surnameErrorShown = false; // lets errormessage = false by default.
 const surnameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
 
+const addressInput = document.querySelector('#street-address');
+const addressRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the address RegEx
+const addressError = document.querySelector('#address_error');
 
-
-// RegEx for form - address input
-const adressRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the address RegEx
 const postcodeInput = document.querySelector('#zip'); // variable to declare the 'postcode' input
 const postcodeRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the postcode RegEx
+const postcodeError = document.querySelector('#postcode_error');
+
 const cityInput = document.querySelector('#city'); // variable to declare the 'city' input
 const cityRegEx = new RegExp(/^[a-z ,.'-]+$/i); // variable for the city RegEx
 const cityError = document.querySelector('#city_error');
+
+
 const numberInput = document.querySelector('#tel'); // variable to declare the 'number' (phonenumber) input
 const numberRegEx = new RegExp(/^[0-9]+$/); // variable for the number RegEx
+const numberError = document.querySelector('#number_error');
+
+
 const emailInput = document.querySelector('#email'); // variable to declare the 'email' input
 const emailRegEx = new RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,6}$/); // variable for the email RegEx
 const emailError = document.querySelector('#email_error');
+
+
 const personalId = document.querySelector('#ssn'); // variable to declare the 'personal ID' input
 const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8} \d{4}|\d{6} \d{4})/); // variable for the Swedish Persona number RegEx
+const personalIdError = document.querySelector('#personalid_error');
 
 // VARIABLES - 15 minute timelimit and popup-message
 let timeLimitMessage = document.querySelector('#timeout_message'); // variable for container pop up message when customer is too slow
@@ -315,23 +325,15 @@ function isPersonalIdNumberValid() {
     return personalIdRegEx.exec(personalId.value) !== null;
 }
 personalId.addEventListener('change', activateOrderButton);
+personalId.addEventListener('change', displayPersonalIdError);
+
 
 // function to check if value of name input is correct
 function isNameInputValid() { //function to check if the name input is valid   
     return nameRegEx.exec(nameInput.value) !== null;
-
-   /* const nameValid = nameRegEx.exec(nameInput.value);
-    if (!nameValid && !nameErrorShown) {
-        nameErrorShown = true;
-        nameError.textContent = 'Please type your name using letters!';
-        console.log('name is wrong');
-    } else if (nameValid && nameErrorShown) {  // if customer retypes in right value the error message is removed
-        nameErrorShown = false;
-        nameError.textContent = '';
-    }
-    return nameValid !== null;*/
 }
 nameInput.addEventListener('input', activateOrderButton); // when the inputfield for name changes, 
+nameInput.addEventListener('input', displayNameError); // when the inputfield for name changes, 
 
 // function to check if value of surname input is correct
 function isSurnameValid() {
@@ -350,41 +352,67 @@ function isSurnameValid() {
     
 }
 surnameInput.addEventListener('input', activateOrderButton); // eventlistener for when surname input changes
+surnameInput.addEventListener('input', displaySurnameError); // eventlistener for when surname input changes
+
 
 // function to check if value of address input is correct
-// eventlistener for when address input changes
+function isAddressInputValid() { //function to check if the name input is valid   
+    return addressRegEx.exec(addressInputInput.value) !== null;
+}
+addressInput.addEventListener('input', activateOrderButton); // eventlistener for when address input changes
+addressInput.addEventListener('input', displayAddressError); // eventlistener for when address input changes
+
 
 // function to check if value of postcode input is correct
 function isPostcodeValid() {
     return postcodeRegEx.exec(postcodeInput.value) !== null;
 }
 postcodeInput.addEventListener('input', activateOrderButton); // eventlistener for when postcode-input changes
+postcodeInput.addEventListener('input', displayPostcodeError); // eventlistener for when postcode-input changes
 
 // function to check if value of name input is correct
 function isCityValid() {
     return cityRegEx.exec(cityInput.value) !== null;
 }
 cityInput.addEventListener('input', activateOrderButton); // eventlistener for when number-input changes
+cityInput.addEventListener('input', displayCityError); // eventlistener for when number-input changes
 
 // function to check if value of number input is correct 
 function isNumberValid() {
     return numberRegEx.exec(numberInput.value) !== null;
 }
 numberInput.addEventListener('input', activateOrderButton); // eventlistener for when number-input changes
+numberInput.addEventListener('input', displayNumberError); // eventlistener for when number-input changes
+
 
 // function to check if value of email input is correct 
 function isEmailValid() {
     return emailRegEx.exec(emailInput.value) !== null;
 }
 emailInput.addEventListener('input', activateOrderButton); // eventlistener for when email-input changes
+emailInput.addEventListener('input', displayEmailError); // eventlistener for when email-input changes
 
+function displayPersonalIdError() {
+    const personalIdMatch = personalIdRegEx.exec(personalId.value);
+    if (personalIdMatch === null) {
+        personalId.classList.add('error_input');
+        personalIdError.textContent = 'Invalid Personal ID input!'
+        console.log('Invalid ID');
+        return true;
+       } else {
+        personalId.classList.remove('error_input');
+        personalIdErrorr.textContent = ''
+        console.log('Valid ID');
+        return false;
+       }
+}
 
 
 function displayNameError() {
     const nameMatch = nameRegEx.exec(nameInput.value);
     if (nameMatch === null) {
         nameInput.classList.add('error_input');
-        nameError.textContent = 'Invalid input!'
+        nameError.textContent = 'Invalid name input!'
         console.log('Invalid name');
         return true;
         
@@ -397,11 +425,12 @@ function displayNameError() {
 }
 
 
+
 function displaySurnameError() {
     const surnameMatch = surnameRegEx.exec(surnameInput.value);
     if (surnameMatch === null) {
         surnameInput.classList.add('error_input');
-        surnameError.textContent = 'Invalid input!'
+        surnameError.textContent = 'Invalid surname input!'
         console.log('FEL SURNAME');
         return true;
        } else {
@@ -413,40 +442,103 @@ function displaySurnameError() {
 }
 
 
-/*
+
+
+
+function displayAddressError() {
+    const addressMatch = addressRegEx.exec(addressInputInput.value);
+    if (addressMatch === null) {
+        addressInput.classList.add('error_input');
+        addressError.textContent = 'Invalid address input!'
+        console.log('Wrong address');
+        return true;
+       } else {
+        addressInput.classList.remove('error_input');
+        addressError.textContent = ''
+        console.log('Right address');
+        return false;
+       }
+}
+
+
+
+function displayPostcodeError() {
+    const postcodeMatch = postcodeRegEx.exec(postcodeInput.value);
+    if (postcodeMatch === null) {
+        postcodeInput.classList.add('error_input');
+        postcodeError.textContent = 'Invalid postcode input!'
+        console.log('FEL POSTCODE');
+        return true;
+       } else {
+        postcodeInput.classList.remove('error_input');
+        postcodeError.textContent = ''
+        console.log('RÄTT POSTCODE');
+        return false;
+       }
+}
+
+
+
 function displayCityError() {
-    if (cityRegEx.exec(cityInput.value) === null) {
+    const cityMatch = cityRegEx.exec(cityInput.value);
+    if (cityMatch === null) {
         cityInput.classList.add('error_input');
-        cityError.textContent = 'Invalid input!'
+        cityError.textContent = 'Invalid city input!'
         console.log('FEL CITY');
-       } else if (cityRegEx.exec(cityInput.value) !== null) {
+        return true;
+       } else {
         cityInput.classList.remove('error_input');
         cityError.textContent = ''
         console.log('RÄTT CITY');
+        return false;
+       }
+}
+
+
+
+
+function displayNumberError() {
+    const numberMatch = numberRegEx.exec(numberInput.value);
+    if (numberMatch === null) {
+        numberInput.classList.add('error_input');
+        numberError.textContent = 'Invalid number input!'
+        console.log('FEL NUMBER');
+        return true;
+       } else {
+        numberInput.classList.remove('error_input');
+        numberError.textContent = ''
+        console.log('RÄTT NUMBER');
+        return false;
        }
 }
 
 
 function displayEmailError() {
-    if (emailRegEx.exec(emailInput.value) === null) {
+    const emailMatch = emailRegEx.exec(emailInput.value)
+    if (emailMatch === null) {
         emailInput.classList.add('error_input');
-        emailError.textContent = 'Invalid input!'
+        emailError.textContent = 'Invalid email input!'
         console.log('FEL EMAIL');
-       } else if (emailRegEx.exec(emailInput.value) !== null) {
+        return true;
+       } else {
         emailInput.classList.remove('error_input');
         emailError.textContent = ''
         console.log('RÄTT EMAIL');
-        return true;
+        return false;
        }
 }
-*/
+
 
 // function for when and how the order button is activated and enabled vs disabled.
 function activateOrderButton() {   
-    const isNameError = displayNameError();
+    // const isNameError = displayNameError();
     // const isSurnameError = displaySurnameError();
-   //  const isCityError = displayCityError();
-    
+    // const isAddresserror
+    // const isPostcodeError
+    // const isCityError = displayCityError();
+    // const isNumberError = displayNumberError();
+    // const isEmailError = displayEmailError();
+
     const allPersonFieldsValid = 
     isNameInputValid() &&
     isSurnameValid() &&
@@ -461,8 +553,18 @@ function activateOrderButton() {
     numberInput.value.trim() !== '' &&
     emailInput.value.trim() !== '';
 
-    if (allPersonFieldsValid && !isNameError && !isSurnameError) {
-        if (selectedPaymentOption === 'card') {
+    if (isNameInputValid )
+
+
+    
+
+    if (selectedPaymentOption === 'card')
+ {
+        if (allPersonFieldsValid /* && !isNameError && 
+        !isSurnameError && 
+        !isCityError && 
+        !isNumberError && 
+        !isEmailError)*/) {
             orderButton.removeAttribute('disabled');
             return;
         }
@@ -473,11 +575,7 @@ function activateOrderButton() {
             return;
     }
 
-    orderButton.setAttribute('disabled', '');
-
-
-    
-  
+    orderButton.setAttribute('disabled', '');    
 }
 
 // specialrules

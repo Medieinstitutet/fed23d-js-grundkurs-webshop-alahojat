@@ -372,11 +372,11 @@ function activateOrderButton() {
     
     const allPersonFieldsValid = 
     isNameInputValid();
-   /* isSurnameValid() &&
+    isSurnameValid() &&
     isPostcodeValid() &&
     isEmailValid() &&
     isNumberValid() &&
-    isEmailValid();*/
+    isEmailValid();
 
     if (allPersonFieldsValid && selectedPaymentOption === 'card') {
         orderButton.removeAttribute('disabled');
