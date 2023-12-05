@@ -38,13 +38,8 @@
 // Function: addToCart (updates number next to cart icon when customer presses minus or plus)
 
 
-
-
 // DONE
-/* Function: change value of cart based on rules... IF..ELSE
-    - 
-*/
-
+// Function: change value of cart based on rules... IF..ELSE
 
 
 // DONE

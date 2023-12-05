@@ -36,15 +36,14 @@ const orderButton = document.querySelector('#order_button');
 
 // VARIABLES - all RegEx and inputs in order form
 const nameInput = document.querySelector('#fname'); // variable for forminput: name
-const nameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
 const nameError = document.querySelector('#name_error'); // variable for the errormessage in the name inputfield
 let nameErrorShown = false; // lets errormessage = false by default.
+const nameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
 
 const surnameInput = document.querySelector('#lname'); // variable to declare the 'surname' input
 const surnameError = document.querySelector('#surname_error'); // variable for errormessage in name input
 let surnameErrorShown = false; // lets errormessage = false by default.
 const surnameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
-
 
 
 // RegEx for form - address input
@@ -252,47 +251,14 @@ function orderSummary() {
     const orderConfirmation = document.querySelector('.order_confirmation');
     orderConfirmation.classList.toggle('visually_hidden');
 }
-
 cartBtn.addEventListener('click', orderSummary); // ???????
 
 // Toggle between order summary and confirmation order
-function thankYouNote() {
-    // if all input fields are validated the thank you note is activated
-   /* if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
-        isNameInputValid() &&
-        isSurnameValid() &&
-        isPostcodeValid() &&
-        isCityValid() &&
-        isNumberValid() &&
-        isEmailValid() &&
-        isPersonalIdNumberValid() &&
-        nameInput.value.trim() !== '' &&
-        surnameInput.value.trim() !== '' &&
-        postcodeInput.value.trim() !== '' &&
-        cityInput.value.trim() !== '' &&
-        numberInput.value.trim() !== '' &&
-        emailInput.value.trim() !== '') {*/
-        const confirmationNote = document.querySelector('.confirmation_container');
-        confirmationNote.classList.toggle('visually_hidden');
-        const orderConfirmation = document.querySelector('.order_confirmation');
-        orderConfirmation.classList.toggle('visually_hidden');
-    /*} else {
-        // if all input fields AREN'T validated, then customer is alerted with an error message
-
-        // if the name input is incorrectly typed out after 2 round of errors
-        if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
-            !isNameInputValid() &&
-            nameInput.value.trim() !== '') {
-            alert('One of your inputs are incorrect!');
-        }
-
-        if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
-            !isSurnameValid() &&
-            surnameInput.value.trim() !== '') {
-            alert('Your surname input is incorrect!');
-        }
-    }*/
-
+function thankYouNote() { 
+    const confirmationNote = document.querySelector('.confirmation_container');
+    confirmationNote.classList.toggle('visually_hidden');
+    const orderConfirmation = document.querySelector('.order_confirmation');
+    orderConfirmation.classList.toggle('visually_hidden');
 }
 orderBtn.addEventListener('click', thankYouNote); // click-function that enables thank you note to popup
 
@@ -318,103 +284,48 @@ personalId.addEventListener('change', activateOrderButton);
 
 // function to check if value of name input is correct
 function isNameInputValid() { //function to check if the name input is valid   
-    return nameRegEx.exec(nameInput.value) !== null;
-
-   /* const nameValid = nameRegEx.exec(nameInput.value);
-    if (!nameValid && !nameErrorShown) {
-        nameErrorShown = true;
-        nameError.textContent = 'Please type your name using letters!';
-        console.log('name is wrong');
-    } else if (nameValid && nameErrorShown) {  // if customer retypes in right value the error message is removed
-        nameErrorShown = false;
-        nameError.textContent = '';
-    }
-    return nameValid !== null;*/
+   if (nameRegEx.exec(nameInput.value) === null) {
+    nameInput.classList.add('error_input');
+    nameError.textContent = 'Invalid input!'
+    console.log('LISSNE');
+    return false;
+   } else if (nameRegEx.exec(nameInput.value) !== null) {
+    nameInput.classList.remove('error_input');
+    nameError.textContent = ''
+    console.log('helloo');
+    return true;
+   }
 }
-nameInput.addEventListener('input', activateOrderButton); // when the inputfield for name changes, 
+nameInput.addEventListener('input', isNameInputValid); // when the inputfield for name changes, 
 
 // function to check if value of surname input is correct
 function isSurnameValid() {
-
-    return nameRegEx.exec(surnameInput.value) !== null;
-    /*const surnameValid = nameRegEx.exec(surnameInput.value);
-    if (!surnameValid && !surnameErrorShown) {
-        surnameErrorShown = true;
-        surnameError.textContent = 'Please type your surname using letters!';
-        console.log('surname is wrong');
-    } else if (surnameValid && surnameErrorShown) {  // if customer retypes in right value the error message is removed
-        surnameErrorShown = false;
-        surnameError.textContent = '';
-    }
-    return surnameValid !== null;*/
+    if (surnameRegEx.exec(surnameInput.value) === null) {
+        surnameInput.classList.add('error_input');
+        surnameError.textContent = 'Invalid input!'
+        console.log('FEL SURNAME');
+       } else if (surnameRegEx.exec(surnameInput.value) !== null) {
+        surnameInput.classList.remove('error_input');
+        surnameError.textContent = ''
+        console.log('RÄTT SURNAME');
+       }
     
 }
-surnameInput.addEventListener('input', activateOrderButton); // eventlistener for when surname input changes
+
+surnameInput.addEventListener('input', isSurnameValid); // eventlistener for when surname input changes
 
 // function to check if value of address input is correct
 // eventlistener for when address input changes
 
 // function to check if value of postcode input is correct
 function isPostcodeValid() {
+    
     return postcodeRegEx.exec(postcodeInput.value) !== null;
 }
-postcodeInput.addEventListener('input', activateOrderButton); // eventlistener for when postcode-input changes
+postcodeInput.addEventListener('input', isPostcodeValid); // eventlistener for when postcode-input changes
 
 // function to check if value of name input is correct
 function isCityValid() {
-    return cityRegEx.exec(cityInput.value) !== null;
-}
-cityInput.addEventListener('input', activateOrderButton); // eventlistener for when number-input changes
-
-// function to check if value of number input is correct 
-function isNumberValid() {
-    return numberRegEx.exec(numberInput.value) !== null;
-}
-numberInput.addEventListener('input', activateOrderButton); // eventlistener for when number-input changes
-
-// function to check if value of email input is correct 
-function isEmailValid() {
-    return emailRegEx.exec(emailInput.value) !== null;
-}
-emailInput.addEventListener('input', activateOrderButton); // eventlistener for when email-input changes
-
-
-
-function displayNameError() {
-    const nameMatch = nameRegEx.exec(nameInput.value);
-    if (nameMatch === null) {
-        nameInput.classList.add('error_input');
-        nameError.textContent = 'Invalid input!'
-        console.log('Invalid name');
-        return true;
-        
-       } else {
-        nameInput.classList.remove('error_input');
-        nameError.textContent = ''
-        console.log('Valid name');
-        return false;
-       }
-}
-
-
-function displaySurnameError() {
-    const surnameMatch = surnameRegEx.exec(surnameInput.value);
-    if (surnameMatch === null) {
-        surnameInput.classList.add('error_input');
-        surnameError.textContent = 'Invalid input!'
-        console.log('FEL SURNAME');
-        return true;
-       } else {
-        surnameInput.classList.remove('error_input');
-        surnameError.textContent = ''
-        console.log('RÄTT SURNAME');
-        return false
-       }
-}
-
-
-/*
-function displayCityError() {
     if (cityRegEx.exec(cityInput.value) === null) {
         cityInput.classList.add('error_input');
         cityError.textContent = 'Invalid input!'
@@ -422,12 +333,24 @@ function displayCityError() {
        } else if (cityRegEx.exec(cityInput.value) !== null) {
         cityInput.classList.remove('error_input');
         cityError.textContent = ''
-        console.log('RÄTT CITY');
+        console.log('JAAA CITY');
        }
+
+
+
+    // return cityRegEx.exec(cityInput.value) !== null;
 }
+cityInput.addEventListener('input', isCityValid); // eventlistener for when number-input changes
+
+// function to check if value of number input is correct 
+function isNumberValid() {
+    return numberRegEx.exec(numberInput.value) !== null;
+}
+numberInput.addEventListener('input', isNumberValid); // eventlistener for when number-input changes
 
 
-function displayEmailError() {
+// function to check if value of email input is correct 
+function isEmailValid() {
     if (emailRegEx.exec(emailInput.value) === null) {
         emailInput.classList.add('error_input');
         emailError.textContent = 'Invalid input!'
@@ -438,47 +361,44 @@ function displayEmailError() {
         console.log('RÄTT EMAIL');
         return true;
        }
+       
 }
-*/
+emailInput.addEventListener('input', isEmailValid); // eventlistener for when email-input changes
+
 
 // function for when and how the order button is activated and enabled vs disabled.
 function activateOrderButton() {   
-    const isNameError = displayNameError();
-    // const isSurnameError = displaySurnameError();
-   //  const isCityError = displayCityError();
+    // DisplayErrors();
     
     const allPersonFieldsValid = 
-    isNameInputValid() &&
-    isSurnameValid() &&
+    isNameInputValid();
+   /* isSurnameValid() &&
     isPostcodeValid() &&
-    isCityValid() &&
-    isNumberValid() &&
     isEmailValid() &&
-    nameInput.value.trim() !== '' &&
-    surnameInput.value.trim() !== '' &&
-    postcodeInput.value.trim() !== '' &&
-    cityInput.value.trim() !== '' &&
-    numberInput.value.trim() !== '' &&
-    emailInput.value.trim() !== '';
+    isNumberValid() &&
+    isEmailValid();*/
 
-    if (allPersonFieldsValid && !isNameError && !isSurnameError) {
-        if (selectedPaymentOption === 'card') {
-            orderButton.removeAttribute('disabled');
-            return;
-        }
+    if (allPersonFieldsValid && selectedPaymentOption === 'card') {
+        orderButton.removeAttribute('disabled');
+        return;
     }
 
-    if (selectedPaymentOption === 'invoice' && isPersonalIdNumberValid()) {
+    if (allPersonFieldsValid && selectedPaymentOption === 'invoice' && isPersonalIdNumberValid()) {
         orderButton.removeAttribute('disabled');
             return;
     }
 
     orderButton.setAttribute('disabled', '');
-
-
     
-  
 }
+
+// inside allPersonFieldsValid const
+//nameInput.value.trim() !== '' &&
+    //surnameInput.value.trim() !== '' &&
+    //postcodeInput.value.trim() !== '' &&
+    //cityInput.value.trim() !== '' &&
+    //numberInput.value.trim() !== '' &&
+    //emailInput.value.trim() !== '' 
 
 // specialrules
 function getPriceMultiplier() {

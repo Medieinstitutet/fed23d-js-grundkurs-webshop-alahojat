@@ -1,6 +1,6 @@
 body {
    
-    background-color: #dddddd;
+    background-color: #f1f1f1;
     font-family: 'Inter', sans-serif;
     
     img {
@@ -22,168 +22,14 @@ body {
     label {
         color: #002fa7;
     }
+   
     input {
         border-radius: 10px;
         border: 1px solid grey;
     }
 }
 
-.order_confirmation {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .summary_container {
-        width: 100%;
-        padding: 0px 30px 10px 30px;    
-        border-radius: 40px;
-        .total_shipment_message {
-            border-top: 2px solid #002fa7;
-            h3, h4 {
-                text-align: center;
-            } 
-        }
-        h2 {
-            padding-bottom: 20px;
-            padding-top: 20px;
-        }
-        article {
-            padding-top: 20px;
-        }
-        
-        .cartorder_container { 
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            background-color: rgb(215, 208, 208);
-            border-radius: 40px;
-            padding-bottom: 20px;
-            .cartorder_items {
-                padding: 10px 30px 10px 30px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                .image_wrapper {
-                    display: inline;
-                    img {
-                        width: 100px;
-                        border-radius: 50px;
-                        height: auto;
-                        padding: 5px;
-                    }  
-                }
-                .cartorder_buttons {
-                    gap: 5px;
-                    display: flex;
-                    flex-direction: row;
-                    button {
-                        @include add_buttons;
-                    }
-                }
-                .cartorder_info {
-                    @include add_buttons;
-                    display: flex;
-                    flex-direction: row;
-                }
-                button { 
-                    border-radius: 10px;
-                    border: none;
-                    right: 20px;
-                }
-            }   
-        }
-       
-    
 
-
-
-
-
-    }
-    
-        
-   
-    
-    .discount_code {
-        padding-top: 20px;
-        text-align: center;
-        input {
-            cursor: pointer;
-        }
-        input:hover {
-            border: 2px solid #002fa7;
-        }
-        
-    }
-
-
-
-    .cartform_container {  
-        justify-content: center;
-        padding: 30px;
-        .cartform {
-            display: flex;
-            flex-direction: column;
-            
-            align-items: flex-start;
-            input {
-                cursor: pointer;
-            }
-            input:hover {
-                border: 2px solid #002fa7;
-            }
-            input:user-invalid {
-                border: 3px solid #e91414;
-                
-            }
-           
-            div {
-                display: flex;
-                flex-direction: column;
-                input {
-                    width: 200px;
-                    margin-bottom: 10px;
-                }
-            }    
-        }
-        .cart_personaldata {
-            padding-top: 15px;
-            font-size: 0.7rem;
-        }
-        .cart_newsletter {
-            padding-top: 5px;
-            font-size: 0.7rem;
-        }
-        .payment_buttons {
-            padding: 15px;
-            button {
-                @include blue_buttons;
-            }
-        }
-
-        .payment_info {
-            .payment_card {
-                input {
-                    cursor: pointer;
-                }
-                input:hover {
-                    border: 2px solid #002fa7;
-                }
-            }
-    
-            .payment_invoice {
-                input {
-                    cursor: pointer;
-                }
-                input:hover {
-                    border: 2px solid #002fa7;
-                }
-            }
-
-
-        }
-        
-    } 
-}
 
 .hidden {
     display: none;
@@ -198,6 +44,10 @@ body {
     position: absolute;
     white-space: nowrap;
     width: 1px;
+}
+
+.error_input {
+    border: 3px dotted red;
 }
 
 
@@ -315,11 +165,169 @@ header {
     }    
 }
 
+.order_confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .summary_container {
+        width: 100%;
+        padding: 0px 30px 10px 30px;    
+        border-radius: 40px;
+        .total_shipment_message {
+            border-top: 2px solid #002fa7;
+            h3, h4 {
+                text-align: center;
+            } 
+        }
+        h2 {
+            padding-bottom: 20px;
+            padding-top: 20px;
+        }
+        article {
+            padding-top: 20px;
+        }
+        .cartorder_container { 
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            background-color: rgb(215, 208, 208);
+            border-radius: 40px;
+            padding-bottom: 20px;
+            .cartorder_items {
+                padding: 10px 30px 10px 30px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .image_wrapper {
+                    display: inline;
+                    img {
+                        width: 100px;
+                        border-radius: 50px;
+                        height: auto;
+                        padding: 5px;
+                    }  
+                }
+                .cartorder_buttons {
+                    gap: 5px;
+                    display: flex;
+                    flex-direction: row;
+                    button {
+                        @include add_buttons;
+                    }
+                }
+                .cartorder_info {
+                    @include add_buttons;
+                    display: flex;
+                    flex-direction: row;
+                }
+                button { 
+                    border-radius: 10px;
+                    border: none;
+                    right: 20px;
+                }
+            }   
+        }
+    }
+    
+    .discount_code {
+        padding-top: 20px;
+        text-align: center;
+        input {
+            cursor: pointer;
+        }
+        input:hover {
+            border: 2px solid #002fa7;
+        } 
+    }
+
+
+
+    .cartform_container {  
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        .cartform {
+            display: flex;
+            flex-direction: column;
+            
+            align-items: flex-start;
+            input {
+                margin-bottom: 0;
+                width: 200px;
+                cursor: pointer;
+            }
+            input:hover {
+                border: 2px solid #002fa7;
+                
+            }
+            span {
+                display: block;
+                color: red;
+                font-weight: 500;
+                font-size: 0.8rem;
+            }
+            div {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 10px;
+                
+            }    
+        }
+
+        .cart_personaldata {
+            padding-top: 15px;
+            font-size: 0.7rem;
+        }
+        .cart_newsletter {
+            padding-top: 5px;
+            font-size: 0.7rem;
+        }
+        .payment_buttons {
+            padding: 15px;
+            
+        }
+
+        .payment_info {
+            display: flex;
+            margin-bottom: 30px;
+            .payment_card {
+                margin-bottom: 30px;
+                input {
+                    cursor: pointer;
+                }
+                input:hover {
+                    border: 2px solid #002fa7;
+                }
+            }
+    
+            .payment_invoice {
+                margin-bottom: 30px;
+                input {
+                    cursor: pointer;
+                }
+                input:hover {
+                    border: 2px solid #002fa7;
+                }
+            }
+
+
+        }
+        .reset_button {
+            
+            @include blue_buttons;
+          
+        }
+        
+    } 
+}
 
 .confirmation_container {
     padding: 20px;
     height: auto;
 }
+
+
 
 .timeout_message {
     background-color: #002fa797;
