@@ -62,7 +62,7 @@ header {
     width: 100%;
     position: fixed;
     border-bottom: 3px solid #d35400;
-    background-color: #dddddd;
+    background-color: #f1f1f1;
     z-index: 4;
     div {
         display: flex;
@@ -193,7 +193,7 @@ header {
         padding-bottom: 20px;
         border-bottom: 3px solid #002fa7;
         img {
-            width: 450px;
+            width: 400px;
         }
         h3 {
             font-size: 1.5rem;
@@ -252,7 +252,6 @@ header {
         .cartorder_container { 
             display: flex;
             flex-direction: column;
-            background-color: white;
             background-color: rgb(215, 208, 208);
             border-radius: 40px;
             padding-bottom: 20px;
@@ -296,11 +295,18 @@ header {
         padding-top: 20px;
         text-align: center;
         input {
+            width: 300px;
             cursor: pointer;
         }
         input:hover {
             border: 2px solid #002fa7;
         } 
+        button {
+            margin-top: 10px;
+            @include blue_buttons;
+            
+            
+        }
     }
 
 
@@ -313,16 +319,24 @@ header {
         .cartform {
             display: flex;
             flex-direction: column;
-            
-            align-items: flex-start;
+            justify-content: center; 
+            align-items: center;        
+            label {
+                display: inline-block;
+                width: 300px;
+                text-align: left;
+                margin: 0;
+                padding: 0;
+                
+            }
             input {
-                margin-bottom: 0;
-                width: 200px;
+                margin: 0;
+                padding: 0;
+                width: 300px;
                 cursor: pointer;
             }
             input:hover {
-                border: 2px solid #002fa7;
-                
+                border: 2px solid #002fa7;  
             }
             span {
                 display: block;
@@ -334,10 +348,8 @@ header {
                 display: flex;
                 flex-direction: column;
                 margin-bottom: 10px;
-                
             }    
         }
-
         .cart_personaldata {
             padding-top: 15px;
             font-size: 0.7rem;
@@ -347,15 +359,31 @@ header {
             font-size: 0.7rem;
         }
         .payment_buttons {
-            padding: 15px;
-            
+            padding: 15px; 
+            display: flex;
+            flex-direction: row;
+            justify-content: center; 
+            align-items: center;  
+            gap: 70px;
         }
-
         .payment_info {
             margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; 
+            align-items: center; 
             .payment_card {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between; 
+                align-items: center; 
                 margin-bottom: 30px;
+                label {
+                    display: inline-block;
+                    text-align: left;
+                    }
                 input {
+                    
                     cursor: pointer;
                 }
                 input:hover {
@@ -364,7 +392,11 @@ header {
             }
     
             .payment_invoice {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
                 margin-bottom: 30px;
+                
                 input {
                     cursor: pointer;
                 }
@@ -406,14 +438,10 @@ header {
     right: 0;
     bottom: 0;
     z-index: 4;
-    button {
-        @include other_buttons;
-        font-size: 1rem;
-        
-    }
+    
     .timeout_info {
         padding: 40px;
-        background-color: #dddddd;
+        background-color: #f1f1f1;
         border-radius: 30px;
         position: absolute;
         top: 50%;
@@ -428,6 +456,15 @@ header {
         p {
             font-size: 1.2rem;
         }
+        button {
+            @include other_buttons;
+            font-size: 1rem;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            
+        }
     }
 }
 
@@ -438,6 +475,7 @@ footer {
     width: 100%;
     height: 100px;
     background-color: #d35400;
+    
     p {
         color: black;
         padding-top: 15px;

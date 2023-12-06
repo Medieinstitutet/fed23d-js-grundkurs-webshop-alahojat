@@ -95,7 +95,7 @@ let shopItems = [
             height: 250,
         },
         name: 'Twin bowls',
-        price: 300,
+        price: 450,
         unit: 'kr',
         rating: 5,
         category: 'Bowls',
@@ -111,7 +111,7 @@ let shopItems = [
             height: 250,
         },
         name: 'Twin set',
-        price: 280,
+        price: 400,
         unit: 'kr',
         rating: 5,
         category: 'Bowls',
@@ -126,7 +126,7 @@ let shopItems = [
             height: 250,
         },
         name: 'Flower pot',
-        price: 299,
+        price: 349,
         unit: 'kr',
         rating: 5,
         category: 'Pots',
@@ -142,7 +142,7 @@ let shopItems = [
             height: 250,
         },
         name: 'Lime plate',
-        price: 150,
+        price: 299,
         unit: 'kr',
         rating: 5,
         category: 'Plates',
@@ -158,9 +158,9 @@ let shopItems = [
             height: 250,
         },
         name: 'Single bowl',
-        price: 200,
+        price: 249,
         unit: 'kr',
-        rating: 3,
+        rating: 4.5,
         category: 'Bowls',
         amount: 0,
         id: 4,
@@ -190,7 +190,7 @@ let shopItems = [
             height: 250,
         },
         name: 'Triplets',
-        price: 450,
+        price: 699,
         unit: 'kr',
         rating: 5,
         category: 'Bowls',
@@ -205,10 +205,10 @@ let shopItems = [
             width: 250,
             height: 250,
         },
-        name: 'Triplets set',
-        price: 550,
+        name: 'Set of three',
+        price: 749,
         unit: 'kr',
-        rating: 5,
+        rating: 4.9,
         category: 'Bowls',
         amount: 0,
         id: 7,
@@ -626,7 +626,7 @@ function activateOrderButton() {
 
 //--------------------------PRINTING PRODUCTS AND DISCOUNTS-----------------------------------------------
 
-// specialrules
+// function for weekend price increase
 function getPriceMultiplier() {
     if (isFriday && currentHour >= 15 || isSaturday || isSunday || isMonday && currentHour <= 3) {
         return 1.15;
@@ -647,7 +647,7 @@ function printItems() {
         `<div class="product_items"> 
         <img src='${shopItems[i].img.source}'>
         <h3> ${shopItems[i].name} </h3>
-        <p class="product_price"> ${Math.round(shopItems[i].price * priceIncrease)} ${shopItems[i].unit}</p>
+        <p class="product_price"> ${Math.round(shopItems[i].price * priceIncrease)} sek</p>
         <div class="product_buttons">
         <button class="minus" id="minus-${i}">-</button>
         <p id="amountInput"> ${shopItems[i].amount} </p>
@@ -784,12 +784,12 @@ function cartOverview() {
                 <div class="image_wrapper">
                     <img src='${shopItems.img.source}' loading="lazy">        
                 </div>       
-                <p>${shopItems.amount} items</p>                                
+                <p>Quantity: ${shopItems.amount}</p>                                
                 <div class="cartorder_buttons">
-                    <button class="cart-plus" data-id="${index}">+</button>
                     <button class="cart-minus" data-id="${index}">-</button>
+                    <button class="cart-plus" data-id="${index}">+</button>
                 </div>
-                <p> Total: ${shopItems.amount * newItemPrice}kr</p>        
+                <p> Total: ${shopItems.amount * newItemPrice} sek</p>        
                 <button class="remove_item_cart" id="delete-${shopItems.id}">Remove</button>
                 </div>`;
         }
@@ -811,7 +811,7 @@ function cartOverview() {
     if (orderedItemAmount > 15) {
         shippingCost.innerHTML = `Shipping is free with your order!`;
     } else {
-        shippingCost.innerHTML = `Shipping: ${Math.round(25 + (0.1 * sum))} kr`;
+        shippingCost.innerHTML = `Shipping: ${Math.round(25 + (0.1 * sum))} sek`;
     }
 
     let invoiceRadioOption = document.querySelector('#invoice_radio');
