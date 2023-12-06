@@ -1,5 +1,6 @@
 body {
-   
+    width: 100%;
+    min-height: 100vh;
     background-color: #f1f1f1;
     font-family: 'Inter', sans-serif;
     
@@ -19,6 +20,7 @@ body {
         text-align: center; 
     }
 
+
     label {
         color: #002fa7;
     }
@@ -26,13 +28,17 @@ body {
     input {
         border-radius: 10px;
         border: 1px solid grey;
+        
+    }
+    button {
+        cursor: pointer;
     }
 }
 
 
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 
@@ -129,6 +135,52 @@ header {
 
 }
 
+.sortproduct_title {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    .sortproduct_button {
+        @include other_buttons;
+        margin-top: 10px;
+        margin-left: 10px;
+        display: flex;
+        padding: 5px;
+        font-size: 1rem;
+        #sortproduct_icon {
+            font-size: 0.9rem;
+            padding-right: 5px;
+        }
+    }
+    .sortproduct_button:hover {
+        font-weight: bold;
+    }
+
+
+}
+
+
+.sortproduct_content {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding: 0;
+    width: 100%;
+    margin-top: 20px;
+    p {
+        text-transform: uppercase;
+        justify-content: space-evenly;
+        padding: 2px;
+        font-size: 1rem;
+        color: #002fa7;
+        
+      
+    }
+    p:hover {
+        font-weight: bold;
+    }
+    
+    }
+
 
 .product_container {
     display: flex;
@@ -140,12 +192,23 @@ header {
         padding-top: 20px;
         padding-bottom: 20px;
         border-bottom: 3px solid #002fa7;
+        img {
+            width: 450px;
+        }
         h3 {
             font-size: 1.5rem;
             color: black;
         }
         .product_price {
             font-size: 1.8rem;
+        }
+        .product_rating {
+            font-size: 1.2rem;
+            span {
+                font-size: 1.1rem;
+            }
+            
+            
         }
         .product_buttons {
             display: flex;
@@ -159,7 +222,7 @@ header {
                 font-size: 1.2rem;
             }
             .minus, .plus {
-                @include add_buttons;
+                @include blue_buttons;
             }
         }
     }    
@@ -212,11 +275,11 @@ header {
                     display: flex;
                     flex-direction: row;
                     button {
-                        @include add_buttons;
+                        @include blue_buttons;
                     }
                 }
                 .cartorder_info {
-                    @include add_buttons;
+                    @include blue_buttons;
                     display: flex;
                     flex-direction: row;
                 }
@@ -289,7 +352,6 @@ header {
         }
 
         .payment_info {
-            display: flex;
             margin-bottom: 30px;
             .payment_card {
                 margin-bottom: 30px;
@@ -310,12 +372,15 @@ header {
                     border: 2px solid #002fa7;
                 }
             }
+            #order_button:enabled {
+                @include blue_buttons;
+            }
 
 
         }
         .reset_button {
             
-            @include blue_buttons;
+           @include other_buttons;
           
         }
         
@@ -342,15 +407,8 @@ header {
     bottom: 0;
     z-index: 4;
     button {
-        
-        background-color: #002fa7;
-        padding-left: 15px;
-        padding-right: 15px;
-        color: white;
-        text-transform: uppercase;
-        border-radius: 10px;
-        border: none;
-        font-size: 1.2rem;
+        @include other_buttons;
+        font-size: 1rem;
         
     }
     .timeout_info {
@@ -375,10 +433,10 @@ header {
 
 
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 100px;
     background-color: #d35400;
     p {
         color: black;

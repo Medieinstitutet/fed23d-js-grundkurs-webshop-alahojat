@@ -5,9 +5,8 @@
 
 @mixin blue_buttons {
     background-color: #002fa7;
-    padding: 3px;
-    padding-left: 7px;
-    padding-right: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
     color: white;
     text-transform: uppercase;
     border-radius: 10px;
@@ -20,14 +19,15 @@
 }
 
 
-@mixin add_buttons {
-    background-color: #002fa7;
+@mixin other_buttons {
+    background-color: #fbfbfbdd;
+    border: 2px solid #002fa7;
     padding-left: 15px;
     padding-right: 15px;
-    color: white;
+    color: #002fa7;
     text-transform: uppercase;
     border-radius: 10px;
-    border: none;
+    
 }
 
 
@@ -35,4 +35,8 @@
     padding: 20px;
 }
 
+
+@mixin clicked_items {
+    font-weight: bold;
+}
 

@@ -6,8 +6,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +41,20 @@
             </p>
         </div>
     </div>
-    <div>Sort products</div>
+
+    <div class="sortproduct_title">
+        <button class="sortproduct_button"> <span class="material-symbols-outlined" id="sortproduct_icon">sort
+        </span>Sort products</button>
+    </div>
+
+    <div class="sortproduct_content hidden">
+        <p class="sort_name">Name</p>
+        <p class="sort_price">Price</p>
+        <p class="sort_category">Category</p>
+        <p class="sort_rating">Rating</p>
+    </div>
+    
+
     <div class="product_container">
     </div>
     <div class="order_confirmation visually_hidden">
@@ -59,7 +75,6 @@
                 <h4><span class="shipping_cost"></span></h4>
             </article>
         </div>
-
         <div class="discount_code">
             <p>Do you have a discount code?</p>
             <input type="text" aria-label="Type in your discount code">
@@ -204,6 +219,7 @@
 
     <footer>
         <p> &copy;Bowls by Baba. All rights reserved</p>
+        <p>Follow us on Instagram</p>
     </footer>
     <script src="script.js"></script>
 </body>

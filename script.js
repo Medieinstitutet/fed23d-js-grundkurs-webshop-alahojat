@@ -9,6 +9,19 @@ const cartContainer = document.querySelector('.cartorder_container'); // variabl
 const summaryTotal = document.querySelector('.order_amount'); // variable for the total price amount showing in the order summary section
 const today = new Date();
 
+// VARIABLES - sort according to name, price and category
+const sortProductBtnContainer = document.querySelector('.sortproduct_title'); // variable for sortproduct btn and icon
+const sortProductBtn = document.querySelector('.sortproduct_button'); // variable for sortproduct button
+const sortProductDiv = document.querySelector('.sortproduct_content'); // variable for sort product container
+const sortName = document.querySelector('.sort_name');
+const sortPrice = document.querySelector('.sort_price');
+const sortCategory = document.querySelector('.sort_category');
+const sortRating = document.querySelector('.sort_rating');
+let nameOrder = true; // variable to declare the sorting order for name
+let priceOrder = true; // variable to declare the sorting order for price
+let categoryOrder = true; // variable to declare the sorting order for price
+let ratingOrder = true; // variable to declare the sorting order for rating
+
 // VARIABLES - date and time for discounts
 const isFriday = today.getDay() === 5; // variable for true or false Friday
 const isSaturday = today.getDay() === 6; // variable for true or false Saturday
@@ -39,35 +52,25 @@ const nameInput = document.querySelector('#fname'); // variable for forminput: n
 const nameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
 const nameError = document.querySelector('#name_error'); // variable for the errormessage in the name inputfield
 let nameErrorShown = false; // lets errormessage = false by default.
-
 const surnameInput = document.querySelector('#lname'); // variable to declare the 'surname' input
 const surnameError = document.querySelector('#surname_error'); // variable for errormessage in name input
 let surnameErrorShown = false; // lets errormessage = false by default.
 const surnameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
-
 const addressInput = document.querySelector('#street-address');
 const addressRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the address RegEx
 const addressError = document.querySelector('#address_error');
-
 const postcodeInput = document.querySelector('#zip'); // variable to declare the 'postcode' input
 const postcodeRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the postcode RegEx
 const postcodeError = document.querySelector('#postcode_error');
-
 const cityInput = document.querySelector('#city'); // variable to declare the 'city' input
 const cityRegEx = new RegExp(/^[a-z ,.'-]+$/i); // variable for the city RegEx
 const cityError = document.querySelector('#city_error');
-
-
 const numberInput = document.querySelector('#tel'); // variable to declare the 'number' (phonenumber) input
 const numberRegEx = new RegExp(/^[0-9]+$/); // variable for the number RegEx
 const numberError = document.querySelector('#number_error');
-
-
 const emailInput = document.querySelector('#email'); // variable to declare the 'email' input
 const emailRegEx = new RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,6}$/); // variable for the email RegEx
 const emailError = document.querySelector('#email_error');
-
-
 const personalId = document.querySelector('#ssn'); // variable to declare the 'personal ID' input
 const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8} \d{4}|\d{6} \d{4})/); // variable for the Swedish Persona number RegEx
 const personalIdError = document.querySelector('#personalid_error');
@@ -253,59 +256,112 @@ let cartTotal = []
 //--------------------------FUNCTIONS AND EVENTLISTENERS-----------------------------------
 // ----------------------------------------------------------------------------------------
 
+//--------------------------SORTING PRODUCTS-----------------------------------------------
+// function that toggles the visibility of the sortproduction section and it's collapsible
+function showSort() {
+    sortProductDiv.classList.toggle('hidden');
+    console.log('show the sorting');      
+}
+sortProductBtn.addEventListener('click', showSort);
+
+
+// function that toggles and removes the visibility of the 'sort' button when the cartbutton is clicked
+function hideSort() {
+    sortProductBtnContainer.classList.toggle('hidden');
+    sortProductDiv.classList.add('hidden');
+    console.log('hide sorting button');
+}
+cartBtn.addEventListener('click', hideSort); // eventlistener to trigger above function when the cartbutton is clicked
+
+
+// function to toggle of all items in alphabetical order
+function sortByName() {
+    if (nameOrder) { // A -Z
+        shopItems.sort((product1, product2) => {
+            return product1.name === product2.name ? 0 : product1.name < product2.name ? -1 : 1;
+        });
+    } else { // Z - A
+        shopItems.sort((product1, product2) => {
+            return product1.name === product2.name ? 0 : product1.name > product2.name ? -1 : 1;
+        });
+    }
+    nameOrder = !nameOrder // toggles the order for the next click on 'name'
+    printItems()
+}
+sortName.addEventListener('click', sortByName); // eventlistener to sort products by name when clicked
+
+
+// function to toggle of all items according to price
+function sortByPrice() {
+    if (priceOrder) { // 1 - 9
+        shopItems.sort((product1, product2) => {
+            return product1.price === product2.price ? 0 : product1.price < product2.price ? -1 : 1;
+        });
+    } else { // 9 - 1
+        shopItems.sort((product1, product2) => {
+            return product1.price === product2.price ? 0 : product1.price > product2.price ? -1 : 1;
+        });
+    }
+    priceOrder = !priceOrder // toggles the order for the next click on 'price'
+    printItems()
+}
+sortPrice.addEventListener('click', sortByPrice); // eventlistener to sort products by price when clicked
+
+
+// function to toggle of all items according to category in alphabetical order as well
+function sortByCategory() {
+    if (categoryOrder) { // A - Z
+        shopItems.sort((product1, product2) => {
+            return product1.category === product2.category ? 0 : product1.category < product2.category ? -1 : 1;
+        });
+    } else { // Z - A
+        shopItems.sort((product1, product2) => {
+            return product1.category === product2.category ? 0 : product1.category > product2.category ? -1 : 1;
+        });
+    }
+    categoryOrder = !categoryOrder // toggles the order for the next click on 'category'
+    printItems()
+}
+sortCategory.addEventListener('click', sortByCategory); // eventlistener to sort products by category when clicked
+
+// function to toggle of all items according to rating of item
+function sortByRating() {
+    if (ratingOrder) { // 1 - 9
+        shopItems.sort((product1, product2) => {
+            return product1.rating === product2.rating ? 0 : product1.rating < product2.rating ? -1 : 1;
+        });
+    } else { // 9 - 1
+        shopItems.sort((product1, product2) => {
+            return product1.rating === product2.rating ? 0 : product1.rating > product2.rating ? -1 : 1;
+        });
+    }
+    ratingOrder = !ratingOrder // toggles the order for the next click on 'rating'
+    printItems()
+}
+sortRating.addEventListener('click', sortByRating); // eventlistener to sort products by rating when clicked
+
+//--------------------------TOGGLING PAGE VIEWS-----------------------------------------------
+
 //function that toggles the page view between products vs order summary
 function orderSummary() {
     const productPage = document.querySelector('.product_container');
     productPage.classList.toggle('visually_hidden');
-
-
     const orderConfirmation = document.querySelector('.order_confirmation');
-    orderConfirmation.classList.toggle('visually_hidden');
+    orderConfirmation.classList.toggle('visually_hidden');  
 }
-
 cartBtn.addEventListener('click', orderSummary); // ???????
 
 // Toggle between order summary and confirmation order
 function thankYouNote() {
-    // if all input fields are validated the thank you note is activated
-   /* if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
-        isNameInputValid() &&
-        isSurnameValid() &&
-        isPostcodeValid() &&
-        isCityValid() &&
-        isNumberValid() &&
-        isEmailValid() &&
-        isPersonalIdNumberValid() &&
-        nameInput.value.trim() !== '' &&
-        surnameInput.value.trim() !== '' &&
-        postcodeInput.value.trim() !== '' &&
-        cityInput.value.trim() !== '' &&
-        numberInput.value.trim() !== '' &&
-        emailInput.value.trim() !== '') {*/
-        const confirmationNote = document.querySelector('.confirmation_container');
-        confirmationNote.classList.toggle('visually_hidden');
-        const orderConfirmation = document.querySelector('.order_confirmation');
-        orderConfirmation.classList.toggle('visually_hidden');
-    /*} else {
-        // if all input fields AREN'T validated, then customer is alerted with an error message
-
-        // if the name input is incorrectly typed out after 2 round of errors
-        if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
-            !isNameInputValid() &&
-            nameInput.value.trim() !== '') {
-            alert('One of your inputs are incorrect!');
-        }
-
-        if ((selectedPaymentOption === 'invoice' || selectedPaymentOption === 'card') &&
-            !isSurnameValid() &&
-            surnameInput.value.trim() !== '') {
-            alert('Your surname input is incorrect!');
-        }
-    }*/
-
+    const confirmationNote = document.querySelector('.confirmation_container');
+    confirmationNote.classList.toggle('visually_hidden');
+    const orderConfirmation = document.querySelector('.order_confirmation');
+    orderConfirmation.classList.toggle('visually_hidden');
+    
 }
 orderBtn.addEventListener('click', thankYouNote); // click-function that enables thank you note to popup
 
+//--------------------------TOGGLE FOR PAYMENT OPTIONS-----------------------------------------------
 
 // loop that adds a function to the radiobuttons for card/invoice payment option
 cardInvoiceRadios.forEach(radioButton => {
@@ -320,13 +376,14 @@ function switchPaymentMethod(e) {
     activateOrderButton();
 }
 
+//--------------------------REGEX AND FORM FUNCTIONS-----------------------------------------------
+
 // RegEx functions and eventlisteners
 function isPersonalIdNumberValid() {
     return personalIdRegEx.exec(personalId.value) !== null;
 }
 personalId.addEventListener('change', activateOrderButton);
 personalId.addEventListener('change', displayPersonalIdError);
-
 
 // function to check if value of name input is correct
 function isNameInputValid() { //function to check if the name input is valid   
@@ -354,14 +411,12 @@ function isSurnameValid() {
 surnameInput.addEventListener('input', activateOrderButton); // eventlistener for when surname input changes
 surnameInput.addEventListener('input', displaySurnameError); // eventlistener for when surname input changes
 
-
 // function to check if value of address input is correct
 function isAddressInputValid() { //function to check if the name input is valid   
     return addressRegEx.exec(addressInputInput.value) !== null;
 }
 addressInput.addEventListener('input', activateOrderButton); // eventlistener for when address input changes
 addressInput.addEventListener('input', displayAddressError); // eventlistener for when address input changes
-
 
 // function to check if value of postcode input is correct
 function isPostcodeValid() {
@@ -384,7 +439,6 @@ function isNumberValid() {
 numberInput.addEventListener('input', activateOrderButton); // eventlistener for when number-input changes
 numberInput.addEventListener('input', displayNumberError); // eventlistener for when number-input changes
 
-
 // function to check if value of email input is correct 
 function isEmailValid() {
     return emailRegEx.exec(emailInput.value) !== null;
@@ -392,6 +446,7 @@ function isEmailValid() {
 emailInput.addEventListener('input', activateOrderButton); // eventlistener for when email-input changes
 emailInput.addEventListener('input', displayEmailError); // eventlistener for when email-input changes
 
+// errormessage and red outline shown when personal ID input is incorrect
 function displayPersonalIdError() {
     const personalIdMatch = personalIdRegEx.exec(personalId.value);
     if (personalIdMatch === null) {
@@ -407,7 +462,7 @@ function displayPersonalIdError() {
        }
 }
 
-
+// errormessage and red outline shown when name input is incorrect
 function displayNameError() {
     const nameMatch = nameRegEx.exec(nameInput.value);
     if (nameMatch === null) {
@@ -424,8 +479,7 @@ function displayNameError() {
        }
 }
 
-
-
+// errormessage and red outline shown when surname input is incorrect
 function displaySurnameError() {
     const surnameMatch = surnameRegEx.exec(surnameInput.value);
     if (surnameMatch === null) {
@@ -441,10 +495,7 @@ function displaySurnameError() {
        }
 }
 
-
-
-
-
+// errormessage and red outline shown when address input is incorrect
 function displayAddressError() {
     const addressMatch = addressRegEx.exec(addressInputInput.value);
     if (addressMatch === null) {
@@ -460,8 +511,7 @@ function displayAddressError() {
        }
 }
 
-
-
+// errormessage and red outline shown when postcode input is incorrect
 function displayPostcodeError() {
     const postcodeMatch = postcodeRegEx.exec(postcodeInput.value);
     if (postcodeMatch === null) {
@@ -477,8 +527,7 @@ function displayPostcodeError() {
        }
 }
 
-
-
+// errormessage and red outline shown when city input is incorrect
 function displayCityError() {
     const cityMatch = cityRegEx.exec(cityInput.value);
     if (cityMatch === null) {
@@ -494,9 +543,7 @@ function displayCityError() {
        }
 }
 
-
-
-
+// errormessage and red outline shown when number input is incorrect
 function displayNumberError() {
     const numberMatch = numberRegEx.exec(numberInput.value);
     if (numberMatch === null) {
@@ -512,7 +559,7 @@ function displayNumberError() {
        }
 }
 
-
+// errormessage and red outline shown when email input is incorrect
 function displayEmailError() {
     const emailMatch = emailRegEx.exec(emailInput.value)
     if (emailMatch === null) {
@@ -527,7 +574,6 @@ function displayEmailError() {
         return false;
        }
 }
-
 
 // function for when and how the order button is activated and enabled vs disabled.
 function activateOrderButton() {   
@@ -578,6 +624,8 @@ function activateOrderButton() {
     orderButton.setAttribute('disabled', '');    
 }
 
+//--------------------------PRINTING PRODUCTS AND DISCOUNTS-----------------------------------------------
+
 // specialrules
 function getPriceMultiplier() {
     if (isFriday && currentHour >= 15 || isSaturday || isSunday || isMonday && currentHour <= 3) {
@@ -596,18 +644,20 @@ function printItems() {
 
     for (let i = 0; i < shopItems.length; i++) {
         itemContainer.innerHTML += // container for all HTML code for products
-            `<div class="product_items"> 
-    <img src='${shopItems[i].img.source}' loading="lazy">
-    <h3> ${shopItems[i].name} </h3>
-    <p class="product_price"> ${Math.round(shopItems[i].price * priceIncrease)} ${shopItems[i].unit}</p>
-    <div class="product_buttons">
+        `<div class="product_items"> 
+        <img src='${shopItems[i].img.source}'>
+        <h3> ${shopItems[i].name} </h3>
+        <p class="product_price"> ${Math.round(shopItems[i].price * priceIncrease)} ${shopItems[i].unit}</p>
+        <div class="product_buttons">
         <button class="minus" id="minus-${i}">-</button>
         <p id="amountInput"> ${shopItems[i].amount} </p>
         <button class="plus" id="plus-${i}">+</button>
-    </div>
-    <p> Rating: ${shopItems[i].rating}</p>
-    <p class"category"> Category: ${shopItems[i].category}</p>
-    </div>`;
+        </div>
+        <p class="product_rating"> <span class="material-symbols-outlined">
+        star_rate
+        </span> ${shopItems[i].rating}</p>
+        <p class"category">${shopItems[i].category}</p>
+        </div>`;
     }
 
     //variabel for the plus button and function
@@ -805,6 +855,8 @@ function updateViews() {
     printItems();
     cartOverview();
 }
+
+//--------------------------PAGE TIMER AND EMPTYING OF CART-----------------------------------------------
 
 // function for the timer to be set to 15 minutes
 function startTimer() {
