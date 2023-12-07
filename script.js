@@ -52,13 +52,16 @@ const nameInput = document.querySelector('#fname'); // variable for forminput: n
 const nameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
 const nameError = document.querySelector('#name_error'); // variable for the errormessage in the name inputfield
 let nameErrorShown = false; // lets errormessage = false by default.
+
 const surnameInput = document.querySelector('#lname'); // variable to declare the 'surname' input
 const surnameError = document.querySelector('#surname_error'); // variable for errormessage in name input
 let surnameErrorShown = false; // lets errormessage = false by default.
 const surnameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
+
 const addressInput = document.querySelector('#street-address');
 const addressRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the address RegEx
 const addressError = document.querySelector('#address_error');
+
 const postcodeInput = document.querySelector('#zip'); // variable to declare the 'postcode' input
 const postcodeRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the postcode RegEx
 const postcodeError = document.querySelector('#postcode_error');
@@ -80,6 +83,11 @@ let timeLimitMessage = document.querySelector('#timeout_message'); // variable f
 let timeLimit; // variable for the starting timer of popup-message for slow customer
 const timeoutBtn = document.querySelector('#timeout_button'); // variable for button that takes customer back to the form once popup message is triggered
 const timeOutMessage = document.querySelector('.timeout_message'); // variable for popup message that shows when customers time has run out
+
+// VARIABLES - orderconfirmation thank you note
+const confirmationNote = document.querySelector('.confirmation_container'); // variable for the thank you note after customer has clicked 'order'
+const goBackToStartBtn = document.querySelector('#gobacktostart'); // variable for the close button inside the thank you note
+
 
 // ----------------------------------------------------------------------------------------
 //------------------------------ARRAYS-----------------------------------------------------
@@ -289,7 +297,7 @@ function sortByName() {
     printItems()
 }
 sortName.addEventListener('click', sortByName); // eventlistener to sort products by name when clicked
-
+sortName.addEventListener('keypress', sortByName); // eventlistener to sort products by name when tabbed through and 'enter' key is used
 
 // function to toggle of all items according to price
 function sortByPrice() {
@@ -306,7 +314,7 @@ function sortByPrice() {
     printItems()
 }
 sortPrice.addEventListener('click', sortByPrice); // eventlistener to sort products by price when clicked
-
+sortPrice.addEventListener('keypress', sortByPrice); // eventlistener to sort products by price when tabbed through and 'enter' key is used
 
 // function to toggle of all items according to category in alphabetical order as well
 function sortByCategory() {
@@ -323,6 +331,7 @@ function sortByCategory() {
     printItems()
 }
 sortCategory.addEventListener('click', sortByCategory); // eventlistener to sort products by category when clicked
+sortCategory.addEventListener('keypress', sortByCategory); // eventlistener to sort products by category when tabbed through and 'enter' key is used
 
 // function to toggle of all items according to rating of item
 function sortByRating() {
@@ -339,6 +348,7 @@ function sortByRating() {
     printItems()
 }
 sortRating.addEventListener('click', sortByRating); // eventlistener to sort products by rating when clicked
+sortRating.addEventListener('keypress', sortByRating); // eventlistener to sort products by rating when tabbed through and 'enter' key is used
 
 //--------------------------TOGGLING PAGE VIEWS-----------------------------------------------
 
@@ -353,11 +363,8 @@ cartBtn.addEventListener('click', orderSummary); // ???????
 
 // Toggle between order summary and confirmation order
 function thankYouNote() {
-    const confirmationNote = document.querySelector('.confirmation_container');
-    confirmationNote.classList.toggle('visually_hidden');
-    const orderConfirmation = document.querySelector('.order_confirmation');
-    orderConfirmation.classList.toggle('visually_hidden');
-    
+    confirmationNote.style.display = 'block';
+    clearTimeout( timeLimit); // stops the timer for the timeout message
 }
 orderBtn.addEventListener('click', thankYouNote); // click-function that enables thank you note to popup
 
@@ -394,19 +401,7 @@ nameInput.addEventListener('input', displayNameError); // when the inputfield fo
 
 // function to check if value of surname input is correct
 function isSurnameValid() {
-
     return nameRegEx.exec(surnameInput.value) !== null;
-    /*const surnameValid = nameRegEx.exec(surnameInput.value);
-    if (!surnameValid && !surnameErrorShown) {
-        surnameErrorShown = true;
-        surnameError.textContent = 'Please type your surname using letters!';
-        console.log('surname is wrong');
-    } else if (surnameValid && surnameErrorShown) {  // if customer retypes in right value the error message is removed
-        surnameErrorShown = false;
-        surnameError.textContent = '';
-    }
-    return surnameValid !== null;*/
-    
 }
 surnameInput.addEventListener('input', activateOrderButton); // eventlistener for when surname input changes
 surnameInput.addEventListener('input', displaySurnameError); // eventlistener for when surname input changes
@@ -497,7 +492,7 @@ function displaySurnameError() {
 
 // errormessage and red outline shown when address input is incorrect
 function displayAddressError() {
-    const addressMatch = addressRegEx.exec(addressInputInput.value);
+    const addressMatch = addressRegEx.exec(addressInput.value);
     if (addressMatch === null) {
         addressInput.classList.add('error_input');
         addressError.textContent = 'Invalid address input!'
@@ -577,13 +572,7 @@ function displayEmailError() {
 
 // function for when and how the order button is activated and enabled vs disabled.
 function activateOrderButton() {   
-    // const isNameError = displayNameError();
-    // const isSurnameError = displaySurnameError();
-    // const isAddresserror
-    // const isPostcodeError
-    // const isCityError = displayCityError();
-    // const isNumberError = displayNumberError();
-    // const isEmailError = displayEmailError();
+    // let atLeastOneProductInCart = (cartTotal.amount > 0);
 
     const allPersonFieldsValid = 
     isNameInputValid() &&
@@ -599,28 +588,23 @@ function activateOrderButton() {
     numberInput.value.trim() !== '' &&
     emailInput.value.trim() !== '';
 
-    if (isNameInputValid )
-
-
-    
-
-    if (selectedPaymentOption === 'card')
+   
+    // if cardpayment is applied and all form inputs are validated the order button becomes active
+    if (selectedPaymentOption === 'card' )
  {
-        if (allPersonFieldsValid /* && !isNameError && 
-        !isSurnameError && 
-        !isCityError && 
-        !isNumberError && 
-        !isEmailError)*/) {
+        if (allPersonFieldsValid) {
             orderButton.removeAttribute('disabled');
             return;
         }
     }
 
+    // if invoicepayment is applied and all form inputs are validated the order button becomes active
     if (selectedPaymentOption === 'invoice' && isPersonalIdNumberValid()) {
         orderButton.removeAttribute('disabled');
             return;
     }
 
+    // otherwise the order button is set to inactive
     orderButton.setAttribute('disabled', '');    
 }
 
@@ -645,18 +629,19 @@ function printItems() {
     for (let i = 0; i < shopItems.length; i++) {
         itemContainer.innerHTML += // container for all HTML code for products
         `<div class="product_items"> 
-        <img src='${shopItems[i].img.source}'>
+        <img src='${shopItems[i].img.source}' width="${shopItems[i].img.width}" height="${shopItems[i].img.height}"
+        alt="${shopItems[i].img.alt}">
         <h3> ${shopItems[i].name} </h3>
         <p class="product_price"> ${Math.round(shopItems[i].price * priceIncrease)} sek</p>
         <div class="product_buttons">
         <button class="minus" id="minus-${i}">-</button>
-        <p id="amountInput"> ${shopItems[i].amount} </p>
+        <p class="amountInput"> ${shopItems[i].amount} </p>
         <button class="plus" id="plus-${i}">+</button>
         </div>
         <p class="product_rating"> <span class="material-symbols-outlined">
         star_rate
         </span> ${shopItems[i].rating}</p>
-        <p class"category">${shopItems[i].category}</p>
+        <p class="category">${shopItems[i].category}</p>
         </div>`;
     }
 
@@ -749,6 +734,7 @@ function deleteCartItem(e) {
         cartTotal.splice(i, 1);
         cartOverview(); // Update the cart view after removing the item
         calculateTotalAmount();
+        updateViews();
     }
 
 }
@@ -782,7 +768,8 @@ function cartOverview() {
                 `<div class="cartorder_items">
                 <h3>${shopItems.name}</h3>
                 <div class="image_wrapper">
-                    <img src='${shopItems.img.source}' loading="lazy">        
+                    <img src='${shopItems.img.source}' width="${shopItems.img.width}" height="${shopItems.img.height}"
+                    alt="${shopItems.img.alt}">        
                 </div>       
                 <p>Quantity: ${shopItems.amount}</p>                                
                 <div class="cartorder_buttons">
@@ -860,7 +847,7 @@ function updateViews() {
 
 // function for the timer to be set to 15 minutes
 function startTimer() {
-    timeLimit = setTimeout(tooSlow, 1000 * 20); // Set a time limit of 3 seconds (adjust as needed)  
+    timeLimit = setTimeout(tooSlow, 1000 * 200); // Set a time limit of 3 seconds (adjust as needed)  
 }
 
 // Popup-message with a 15 minute timelimit. Display overlay element which notifies customer as well as resets the form inputs by customer.
@@ -894,5 +881,18 @@ function emptyCart() {
     calculateTotalAmount();
     updateViews();
 }
+
+// function that removes the thank you note and resets all products and forminputs when button 'close' is clicked
+function goToStartPageAfterOrder() {
+    window.scrollTo({ top: 0, behavior: 'smooth'});
+    confirmationNote.style.display = 'none'; // removes the modal showing the thank you note
+    const productPage = document.querySelector('.product_container'); // variable for the intial printed products
+    productPage.classList.remove('visually_hidden');
+    const orderConfirmation = document.querySelector('.order_confirmation');
+    orderConfirmation.classList.add('visually_hidden'); 
+    resetAll();
+    hideSort();
+}
+goBackToStartBtn.addEventListener('click', goToStartPageAfterOrder); // eventlistener for the 'close' button inside thankyou-note
 
 

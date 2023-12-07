@@ -14,6 +14,26 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:url" content="https://www.bowlsbybaba.com">
+    <meta property="og:title" content="Bowls by Baba">
+
+    <meta property="og:description" content="Discover exquisite handmade modern wooden bowls at our webshop. 
+    Each bowl is expertly crafted from high-quality wood, showcasing a perfect blend of elegance and functionality. 
+    Elevate your dining experience with our unique collection of artisanal bowls, ideal for serving and home decor. 
+    Explore our selection today!">
+
+    <meta property="og:image" content="https://www.bowlsbybaba.com/images/twin-set.jpg">
+
+    <meta name="description" content="Explore our collection of exquisite handmade modern wooden bowls at our webshop. 
+    Each bowl is expertly crafted from high-quality wood, showcasing a perfect blend of elegance and functionality. 
+    Elevate your dining experience with our unique artisanal bowls, ideal for serving and home decor.">
+
+    <meta name="keywords" content="wooden bowls, handmade bowls, modern bowls, artisanal bowls, home decor, dining accessories">
+
+
+
+
     <link rel="stylesheet" href="css/style.css">
     <title>Baba's Bowls </title>
 </head>
@@ -48,10 +68,10 @@
     </div>
 
     <div class="sortproduct_content hidden">
-        <p class="sort_name">Name</p>
-        <p class="sort_price">Price</p>
-        <p class="sort_category">Category</p>
-        <p class="sort_rating">Rating</p>
+        <p class="sort_name" tabindex="0" aria-label="Sort by name">Name</p>
+        <p class="sort_price" tabindex="0" aria-label="Sort by price">Price</p>
+        <p class="sort_category" tabindex="0" aria-label="Sort by category">Category</p>
+        <p class="sort_rating" tabindex="0" aria-label="Sort by rating">Rating</p>
     </div>
     
 
@@ -137,7 +157,7 @@
 
 
                 </form>
-                
+
 
               
 
@@ -154,6 +174,15 @@
                         Count me in for the newsletter!
                     </label>
                 </div>
+
+
+                
+                <div class="discount_code">
+                    <p>Do you have a discount code?</p>
+                    <input type="text">
+                    <button type="submit">Submit</button>
+                </div>
+                
 
                 
 
@@ -177,13 +206,13 @@
                         </div>
                         <div>
                             <label for="expirydate">Expiry
-                                <input type="text" id="expirydate" size="2" placeholder="YY">
-                                <input type="text" id="expirydate" size="2" placeholder="MM">
+                                <input type="text" id="expirydate" size="2" placeholder="YYMM">
+                                
                             </label>
                         </div>
                         <div>
                             <label for="cvc">CVC
-                                <input type="text" size="3" minlength="3" maxlength="3" id="cvc">
+                                <input type="text" size="3" minlength="3" maxlength="3" id="cvc" placeholder="123">
                             </label>
                         </div>
                     </form>
@@ -202,13 +231,14 @@
             <button class="reset_button">Reset</button>
         </div>
     </div>
-    <div class="confirmation_container visually_hidden">
+    <div class="confirmation_container" id="confirmation_container">
         <section>
-            <h2>Thank you for placing your order!</h2>
-            <p> Here's a summary of your purchase along with delivery information. Your order will be dispatched
-                shortly,
-                expect delivery in 3-5 working days. For any queries about delivery or assistance, please don't hesitate
+            <h3>Thank you for placing your order!</h3>
+            <p>Your order will be dispatched shortyly, expect delivery in 3-5 working days. </p>
+            <p>We will notify you via email once your order has been shipped. For any queries about delivery or assistance, please don't hesitate
                 to reach out.</p>
+            <h4>The team at Baba's</h4>
+            <button id="gobacktostart">Close</button>
         </section>
     </div>
 
@@ -221,8 +251,28 @@
     </div>
 
     <footer>
+        <div class="footer_section">
+            <p>Mon - Fri 9 - 15</p>
+            <p>Oakstreet 18</p>
+            <p>Contact us</p>
+        </div>
+
+
+        <div class="footer_section">
+            <p>Follow us on Instagram</p>
+            <p>Join us on Tiktok</p>
+        </div>
+
+        <div class="footer_section">
+            <p>Terms & conditions</p> 
+            <p>Customer service</p> 
+            <p>International shipment</p>
+            
+        </div>
+
+
         <p> &copy;Bowls by Baba. All rights reserved</p>
-        <p>Follow us on Instagram</p>
+        
     </footer>
     <script src="script.js"></script>
 </body>

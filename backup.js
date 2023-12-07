@@ -311,7 +311,6 @@ function isSurnameValid() {
        }
     
 }
-
 surnameInput.addEventListener('input', isSurnameValid); // eventlistener for when surname input changes
 
 // function to check if value of address input is correct
@@ -371,7 +370,7 @@ function activateOrderButton() {
     // DisplayErrors();
     
     const allPersonFieldsValid = 
-    isNameInputValid();
+    isNameInputValid() &&
     isSurnameValid() &&
     isPostcodeValid() &&
     isEmailValid() &&
