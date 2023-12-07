@@ -770,13 +770,15 @@ function cartOverview() {
                 <div class="image_wrapper">
                     <img src='${shopItems.img.source}' width="${shopItems.img.width}" height="${shopItems.img.height}"
                     alt="${shopItems.img.alt}">        
-                </div>       
+                </div> 
+                <div class="cartinfo_wrapper">      
                 <p>Quantity: ${shopItems.amount}</p>                                
                 <div class="cartorder_buttons">
                     <button class="cart-minus" data-id="${index}">-</button>
                     <button class="cart-plus" data-id="${index}">+</button>
                 </div>
-                <p> Total: ${shopItems.amount * newItemPrice} sek</p>        
+                <p> Total: ${shopItems.amount * newItemPrice} sek</p>
+                </div>        
                 <button class="remove_item_cart" id="delete-${shopItems.id}">Remove</button>
                 </div>`;
         }
@@ -847,7 +849,7 @@ function updateViews() {
 
 // function for the timer to be set to 15 minutes
 function startTimer() {
-    timeLimit = setTimeout(tooSlow, 1000 * 200); // Set a time limit of 3 seconds (adjust as needed)  
+    timeLimit = setTimeout(tooSlow, 1000 * 900); // Set a time limit of 3 seconds (adjust as needed)  
 }
 
 // Popup-message with a 15 minute timelimit. Display overlay element which notifies customer as well as resets the form inputs by customer.
