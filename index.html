@@ -57,7 +57,8 @@
         <div class="about">
             <p>
                 We are a creative bunch passionate about crafting unique handmade wooden bowls.
-                Each bowl is a work of art, made with love and care.
+                Each bowl is a work of art, made with love and care. 
+                We pour our hearts into the creation process, ensuring every grain of wood is treated with care and respect.
             </p>
         </div>
     </div>
@@ -87,10 +88,11 @@
             <div class="ordersummary_container">
             </div>
 
-            <article class="monday_message">
-            </article>
+           
 
             <article class="total_shipment_message">
+                <article class="monday_message">
+                </article>
                 <h3>Total order: <span class="order_amount"></span> sek</h3>
                 <h4><span class="shipping_cost"></span></h4>
             </article>
@@ -100,62 +102,71 @@
             <section>
                 <h2>Payment details</h2>
                 <form class="cartform" id="cartform">
-                    <div>
-                        <label for="fname">First name
-                            <input type="text" id="fname" aria-label="Enter your first name" required>
-                            <span id="name_error"></span>
-                        </label>
+                    <div class="cartform_column1">
+                        
+                        <div>
+                            <label for="fname">First name
+                                <input type="text" id="fname" aria-label="Enter your first name" required>
+                                <span id="name_error"></span>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label for="lname">Surname
+                                <input type="text" id="lname" required>
+                                <span id="surname_error"></span>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label for="street-address">Address
+                                <input type="text" id="street-address" required>
+                                <span id="address_error"></span>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label for="zip">Postcode
+                                <input type="text" id="zip" minlength="5" maxlength="5" required>
+                                <span id="postcode_error"></span>
+                            </label>
+                        </div>
+
+
                     </div>
+                    <div class="cartform_column2">
+                        
+                        <div>
+                            <label for="city">City
+                                <input type="text" id="city" required>
+                                <span id="city_error"></span>
+                            </label>
+                        </div>
 
-                    <div>
-                        <label for="lname">Surname
-                            <input type="text" id="lname" required>
-                            <span id="surname_error"></span>
-                        </label>
+                        <div>
+                            <label for="doorcode">Entry code
+                                <input type="number" id="doorcode" placeholder="Optional" required>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label for="tel">Number
+                                <input type="number" id="tel" required>
+                                <span id="number_error"></span>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label for="email">Email
+                                <input type="email" id="email" required>
+                                <span id="email_error"></span>
+                            </label>
+                        </div>
+
+
+
+
                     </div>
-
-                    <div>
-                        <label for="street-address">Address
-                            <input type="text" id="street-address" required>
-                            <span id="address_error"></span>
-                        </label>
-                    </div>
-
-                    <div>
-                        <label for="zip">Postcode
-                            <input type="text" id="zip" minlength="5" maxlength="5" required>
-                            <span id="postcode_error"></span>
-                        </label>
-                    </div>
-
-                    <div>
-                        <label for="city">City
-                            <input type="text" id="city" required>
-                            <span id="city_error"></span>
-                        </label>
-                    </div>
-
-                    <div>
-                        <label for="doorcode">Entry code
-                            <input type="number" id="doorcode" placeholder="Optional" required>
-                        </label>
-                    </div>
-
-                    <div>
-                        <label for="tel">Number
-                            <input type="number" id="tel" required>
-                            <span id="number_error"></span>
-                        </label>
-                    </div>
-
-                    <div>
-                        <label for="email">Email
-                            <input type="email" id="email" required>
-                            <span id="email_error"></span>
-                        </label>
-                    </div>
-
-
                 </form>
 
 
@@ -238,6 +249,7 @@
             <p>We will notify you via email once your order has been shipped. For any queries about delivery or assistance, please don't hesitate
                 to reach out.</p>
             <h4>The team at Baba's</h4>
+            <div class="confirmation_circle"></div>
             <button id="gobacktostart">Close</button>
         </section>
     </div>

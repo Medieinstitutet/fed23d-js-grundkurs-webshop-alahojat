@@ -36,12 +36,9 @@ body {
     }
 }
 
-
-
 .hidden {
     display: none !important;
 }
-
 
 .visually_hidden {
     display: none !important;
@@ -85,7 +82,7 @@ header {
             z-index: 3;           
         }
         .material-symbols-outlined {
-            font-size: 45px;
+            font-size: 2.8rem;
             color: #002fa7;
         }
         
@@ -100,7 +97,8 @@ header {
     .about {
         padding: 20px;
         text-transform: uppercase;
-        border-bottom: 3px solid #002fa7;
+        border-bottom: 3px solid #d35400;
+        margin-top: 40px;
     }
 
     
@@ -241,7 +239,7 @@ header {
 }
 
 .order_confirmation {
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -249,10 +247,17 @@ header {
         width: 100%;
         padding: 0px 30px 10px 30px;    
         border-radius: 40px;
+        
         .total_shipment_message {
-            border-top: 2px solid #002fa7;
+            background-color:  rgb(215, 208, 208);
+            padding: 20px 40px 20px 40px;
+            border-radius: 40px;
+            
+            
             h3, h4 {
-                text-align: center;
+                text-align: right;
+                padding-bottom: 10px;
+                font-size: 1rem;
             } 
         }
         h2 {
@@ -265,27 +270,43 @@ header {
         .cartorder_container { 
             display: flex;
             flex-direction: column;
-            background-color: rgb(215, 208, 208);
-            border-radius: 40px;
+            align-items: center;
+            justify-content: center;
+            
+            
             padding-bottom: 20px;
             .cartorder_items {
+                width: 80vw;
+                background-color: rgb(215, 208, 208);
+                border-radius: 25px;
                 padding: 10px 30px 10px 30px;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
+                margin-bottom: 15px;
+                p {
+                    color: #002fa7;
+                    padding: 5px;
+                }
+                
                 .image_wrapper {
-                    display: inline;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     img {
-                        width: 100px;
+                        width: 130px;
                         border-radius: 50px;
                         height: auto;
                         padding: 5px;
+                           
                     }  
                 }
                 .cartorder_buttons {
                     gap: 5px;
                     display: flex;
                     flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 5px;
                     button {
                         @include blue_buttons;
                     }
@@ -293,12 +314,13 @@ header {
                 .cartorder_info {
                     @include blue_buttons;
                     display: flex;
-                    flex-direction: row;
+                    flex-direction: column;
                 }
                 button { 
-                    border-radius: 10px;
-                    border: none;
-                    right: 20px;
+                    padding-top: 5px;
+                    @include other_buttons;
+                    margin-bottom: 10px;
+                    
                 }
             }   
         }
@@ -366,6 +388,8 @@ header {
         .cart_personaldata {
             padding-top: 15px;
             font-size: 0.7rem;
+            justify-content: center;
+            align-items: center;
         }
         .cart_newsletter {
             padding-top: 5px;
@@ -474,6 +498,7 @@ header {
             margin-right: auto;
             
         }
+    
     } 
 
 
@@ -540,7 +565,7 @@ footer {
     height: auto;
     background-color: #d35400;
     .footer_section {
-        padding: 10px 5px 10px 5px; 
+        padding: 15px 10px 15px 10px; 
         
     }
     

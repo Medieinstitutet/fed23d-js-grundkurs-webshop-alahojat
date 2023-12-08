@@ -7,7 +7,7 @@ let cartViewNumber = document.querySelector('.cartNumber'); // variable for cart
 const itemContainer = document.querySelector(".product_container"); // variable for product container on startpage
 const cartContainer = document.querySelector('.cartorder_container'); // variable for container of printed products in order summary
 const summaryTotal = document.querySelector('.order_amount'); // variable for the total price amount showing in the order summary section
-const today = new Date();
+const today = new Date(); // next time move this variable inside function to prevent customer from utilising discount on other day than specified
 
 // VARIABLES - sort according to name, price and category
 const sortProductBtnContainer = document.querySelector('.sortproduct_title'); // variable for sortproduct btn and icon
@@ -30,6 +30,7 @@ const isMonday = today.getDay() === 1; // variable for true or false Monday
 const currentHour = today.getHours(); // variable for setting the time
 const mondayMsg = document.querySelector('.monday_message'); // variable for discount message on mondays
 
+
 // VARIABLES - order and shipment overview
 let shippingCost = document.querySelector('.shipping_cost'); // variable for shipping cost container
 const resetBtn = document.querySelector('.reset_button'); // variable for resetbutton at the end of the cart page that resets form input and cart total
@@ -51,23 +52,25 @@ const orderButton = document.querySelector('#order_button');
 const nameInput = document.querySelector('#fname'); // variable for forminput: name
 const nameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
 const nameError = document.querySelector('#name_error'); // variable for the errormessage in the name inputfield
-let nameErrorShown = false; // lets errormessage = false by default.
+// let nameErrorShown = false; // lets errormessage = false by default.
 
 const surnameInput = document.querySelector('#lname'); // variable to declare the 'surname' input
-const surnameError = document.querySelector('#surname_error'); // variable for errormessage in name input
-let surnameErrorShown = false; // lets errormessage = false by default.
+const surnameError = document.querySelector('#surname_error'); // variable for errormessage in surname input
+// let surnameErrorShown = false; // lets errormessage = false by default.
 const surnameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
 
 const addressInput = document.querySelector('#street-address');
 const addressRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the address RegEx
-const addressError = document.querySelector('#address_error');
+const addressError = document.querySelector('#address_error'); // variable for the errormessage in the address inputfield
 
 const postcodeInput = document.querySelector('#zip'); // variable to declare the 'postcode' input
 const postcodeRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the postcode RegEx
-const postcodeError = document.querySelector('#postcode_error');
+const postcodeError = document.querySelector('#postcode_error'); // variable for the errormessage in the postcode inputfield
+
 const cityInput = document.querySelector('#city'); // variable to declare the 'city' input
 const cityRegEx = new RegExp(/^[a-z ,.'-]+$/i); // variable for the city RegEx
-const cityError = document.querySelector('#city_error');
+const cityError = document.querySelector('#city_error'); // variable for the errormessage in the city inputfield
+
 const numberInput = document.querySelector('#tel'); // variable to declare the 'number' (phonenumber) input
 const numberRegEx = new RegExp(/^[0-9]+$/); // variable for the number RegEx
 const numberError = document.querySelector('#number_error');
@@ -572,7 +575,12 @@ function displayEmailError() {
 
 // function for when and how the order button is activated and enabled vs disabled.
 function activateOrderButton() {   
-    // let atLeastOneProductInCart = (cartTotal.amount > 0);
+    // let atLeastOneProductInCart = (cartTotal.length == 0);
+
+    // if there is no items in the cart, keep the order button set as disabled
+    if (cartTotal.length == 0) {
+        orderButton.setAttribute('disabled')
+    }
 
     const allPersonFieldsValid = 
     isNameInputValid() &&
@@ -747,6 +755,7 @@ function cartOverview() {
     let orderedItemAmount = 0;
     let orderMsg = '';
     let priceIncrease = getPriceMultiplier();
+    
 
     //loop that shows ordered products in cartoverview
     cartTotal.forEach((shopItems, index) => {
@@ -754,12 +763,17 @@ function cartOverview() {
 
         orderedItemAmount += shopItems.amount;
 
+
+       
+
         // discount for 10 or more donuts
         if (shopItems.amount > 0) {
             let itemPrice = shopItems.price
             if (shopItems.amount >= 0) {
                 itemPrice *= 0.9;
             }
+
+
 
             const newItemPrice = Math.round(itemPrice * priceIncrease);
             sum += shopItems.amount * newItemPrice;
@@ -772,11 +786,12 @@ function cartOverview() {
                     alt="${shopItems.img.alt}">        
                 </div> 
                 <div class="cartinfo_wrapper">      
-                <p>Quantity: ${shopItems.amount}</p>                                
+                                               
                 <div class="cartorder_buttons">
                     <button class="cart-minus" data-id="${index}">-</button>
                     <button class="cart-plus" data-id="${index}">+</button>
                 </div>
+                <p>Quantity: ${shopItems.amount}</p> 
                 <p> Total: ${shopItems.amount * newItemPrice} sek</p>
                 </div>        
                 <button class="remove_item_cart" id="delete-${shopItems.id}">Remove</button>
@@ -786,15 +801,17 @@ function cartOverview() {
 
     summaryTotal.innerHTML = `${sum}`;
 
-    // apply discount on mondays
-    if (today.getDay() === 1 && today.getHours() < 10) {
+    // apply discount on mondays // day 1 < 10 BYT TILLBAKA
+    if (today.getDay() === 5 && today.getHours() > 10) {
         sum *= 0.9; //Monday discount on all of order
         orderMsg += '<p></p>';
         mondayMsg.innerHTML =
             `<p>Yay! You have just received a Monday discount on your order!</p>
             `;
-    }
+    } 
 
+
+  
 
     //shipping free/discount when ordering 15 or more donuts       
     if (orderedItemAmount > 15) {
@@ -882,6 +899,7 @@ function emptyCart() {
     cartTotal = [];
     calculateTotalAmount();
     updateViews();
+    
 }
 
 // function that removes the thank you note and resets all products and forminputs when button 'close' is clicked
