@@ -50,17 +50,17 @@ const orderButton = document.querySelector('#order_button');
 
 // VARIABLES - all RegEx and inputs in order form
 const nameInput = document.querySelector('#fname'); // variable for forminput: name
-const nameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
+const nameRegEx = new RegExp(/^[a-zåäö ,.'-]+$/i); // RegEx for name and surname input
 const nameError = document.querySelector('#name_error'); // variable for the errormessage in the name inputfield
 // let nameErrorShown = false; // lets errormessage = false by default.
 
 const surnameInput = document.querySelector('#lname'); // variable to declare the 'surname' input
 const surnameError = document.querySelector('#surname_error'); // variable for errormessage in surname input
 // let surnameErrorShown = false; // lets errormessage = false by default.
-const surnameRegEx = new RegExp(/^[a-z ,.'-]+$/i); // RegEx for name and surname input
+const surnameRegEx = new RegExp(/^[a-zåäö ,.'-]+$/i); // RegEx for name and surname input
 
 const addressInput = document.querySelector('#street-address');
-const addressRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the address RegEx
+const addressRegEx = new RegExp(/^[a-zåäöA-ZÅÄÖ0-9\s,'.-]*$/i); // variable for the address RegEx
 const addressError = document.querySelector('#address_error'); // variable for the errormessage in the address inputfield
 
 const postcodeInput = document.querySelector('#zip'); // variable to declare the 'postcode' input
@@ -72,7 +72,7 @@ const cityRegEx = new RegExp(/^[a-z ,.'-]+$/i); // variable for the city RegEx
 const cityError = document.querySelector('#city_error'); // variable for the errormessage in the city inputfield
 
 const numberInput = document.querySelector('#tel'); // variable to declare the 'number' (phonenumber) input
-const numberRegEx = new RegExp(/^[0-9]+$/); // variable for the number RegEx
+const numberRegEx = new RegExp(/^[0-9+()]+$/); // variable for the number RegEx
 const numberError = document.querySelector('#number_error');
 const emailInput = document.querySelector('#email'); // variable to declare the 'email' input
 const emailRegEx = new RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,6}$/); // variable for the email RegEx
@@ -762,8 +762,6 @@ function cartOverview() {
         summaryTotal.innerHTML += ``;
 
         orderedItemAmount += shopItems.amount;
-
-
        
 
         // discount for 10 or more donuts
@@ -772,8 +770,6 @@ function cartOverview() {
             if (shopItems.amount >= 0) {
                 itemPrice *= 0.9;
             }
-
-
 
             const newItemPrice = Math.round(itemPrice * priceIncrease);
             sum += shopItems.amount * newItemPrice;
@@ -801,8 +797,8 @@ function cartOverview() {
 
     summaryTotal.innerHTML = `${sum}`;
 
-    // apply discount on mondays // day 1 < 10 BYT TILLBAKA
-    if (today.getDay() === 5 && today.getHours() > 10) {
+    // apply discount on mondays
+    if (today.getDay() === 1 && today.getHours() < 10) {
         sum *= 0.9; //Monday discount on all of order
         orderMsg += '<p></p>';
         mondayMsg.innerHTML =
