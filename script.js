@@ -30,7 +30,6 @@ const isMonday = today.getDay() === 1; // variable for true or false Monday
 const currentHour = today.getHours(); // variable for setting the time
 const mondayMsg = document.querySelector('.monday_message'); // variable for discount message on mondays
 
-
 // VARIABLES - order and shipment overview
 let shippingCost = document.querySelector('.shipping_cost'); // variable for shipping cost container
 const resetBtn = document.querySelector('.reset_button'); // variable for resetbutton at the end of the cart page that resets form input and cart total
@@ -39,8 +38,6 @@ resetBtn.addEventListener('click', resetAll); // eventlistner for the end of pag
 // VARIABLES - inside ordersummary
 const orderBtn = document.querySelector('#order_button'); //variable for the orderbutton in order summary
 const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="payment-option"]')); // variable for card and invoice radiobuttons in the ordersummary
-
-//variables for card and invoice radiobuttons
 const cardOption = document.querySelector('#payment_card'); // variable for the cardpayment form input container
 const invoiceOption = document.querySelector('#payment_invoice'); // variable for the invoicepayment form input container
 let selectedPaymentOption = 'card'; // set default payment option to card
@@ -52,25 +49,18 @@ const orderButton = document.querySelector('#order_button'); // variable for the
 const nameInput = document.querySelector('#fname'); // variable for forminput: name
 const nameRegEx = new RegExp(/^[a-zåäö ,.'-]+$/i); // RegEx for name and surname input
 const nameError = document.querySelector('#name_error'); // variable for the errormessage in the name inputfield
-// let nameErrorShown = false; // lets errormessage = false by default.
-
 const surnameInput = document.querySelector('#lname'); // variable to declare the 'surname' input
 const surnameError = document.querySelector('#surname_error'); // variable for errormessage in surname input
-// let surnameErrorShown = false; // lets errormessage = false by default.
 const surnameRegEx = new RegExp(/^[a-zåäö ,.'-]+$/i); // RegEx for name and surname input
-
 const addressInput = document.querySelector('#street-address'); // variable for forunput: address
 const addressRegEx = new RegExp(/^[a-zåäöA-ZÅÄÖ0-9\s,'.-]*$/i); // variable for the address RegEx
 const addressError = document.querySelector('#address_error'); // variable for the errormessage in the address inputfield
-
 const postcodeInput = document.querySelector('#zip'); // variable to declare the 'postcode' input
 const postcodeRegEx = new RegExp('^\\d{3}\\s*\\d{2}$'); // variable for the postcode RegEx
 const postcodeError = document.querySelector('#postcode_error'); // variable for the errormessage in the postcode inputfield
-
 const cityInput = document.querySelector('#city'); // variable to declare the 'city' input
 const cityRegEx = new RegExp(/^[a-z ,.'-]+$/i); // variable for the city RegEx
 const cityError = document.querySelector('#city_error'); // variable for the errormessage in the city inputfield
-
 const numberInput = document.querySelector('#tel'); // variable to declare the 'number' (phonenumber) input
 const numberRegEx = new RegExp(/^[0-9+()]+$/); // variable for the number RegEx
 const numberError = document.querySelector('#number_error'); // variable for the errormessage in the city inputfield
@@ -90,7 +80,6 @@ const timeOutMessage = document.querySelector('.timeout_message'); // variable f
 // VARIABLES - orderconfirmation thank you note
 const confirmationNote = document.querySelector('.confirmation_container'); // variable for the thank you note after customer has clicked 'order'
 const goBackToStartBtn = document.querySelector('#gobacktostart'); // variable for the close button inside the thank you note
-
 
 // ----------------------------------------------------------------------------------------
 //------------------------------ARRAYS-----------------------------------------------------
@@ -232,7 +221,7 @@ let shopItems = [
             width: 250,
             height: 250,
         },
-        name: 'Triplets set',
+        name: 'The three´s',
         price: 550,
         unit: 'kr',
         rating: 5,
@@ -248,7 +237,7 @@ let shopItems = [
             width: 250,
             height: 250,
         },
-        name: 'Triplets set',
+        name: 'Three in 1',
         price: 550,
         unit: 'kr',
         rating: 5,
@@ -268,13 +257,11 @@ let cartTotal = []
 // ----------------------------------------------------------------------------------------
 
 //--------------------------SORTING PRODUCTS-----------------------------------------------
-// function that toggles the visibility of the sortproduction section and it's collapsible
+// function that toggles the visibility of the sortproduct section and it's options to sort from
 function showSort() {
-    sortProductDiv.classList.toggle('hidden');
-      
+    sortProductDiv.classList.toggle('hidden');  
 }
 sortProductBtn.addEventListener('click', showSort); // eventlistener to show sort product options when button is clicked
-
 
 // function that toggles and removes the visibility of the 'sort' button when the cartbutton is clicked
 function hideSort() {
@@ -282,7 +269,6 @@ function hideSort() {
     sortProductDiv.classList.add('hidden'); // hide options 
 }
 cartBtn.addEventListener('click', hideSort); // eventlistener to trigger above function when the cartbutton is clicked
-
 
 // function to toggle of all items in alphabetical order
 function sortByName() {
@@ -449,12 +435,10 @@ function displayPersonalIdError() {
     if (personalIdMatch === null) { // if the value of personal id isn't correct
         personalId.classList.add('error_input'); // add this class to the input field that shows a red dotted border
         personalIdError.textContent = 'Invalid Personal ID input!' // display this errormessage inside the empty span
-        console.log('Invalid ID');
         return true;
        } else {
         personalId.classList.remove('error_input'); // otherwise remove the red dotted border
         personalIdError.textContent = '' // empty the textcontent inside the span
-        console.log('Valid ID');
         return false;
        }
 }
@@ -465,13 +449,11 @@ function displayNameError() {
     if (nameMatch === null) { // if the value of name isn't correct
         nameInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
         nameError.textContent = 'Invalid name input!' // display this errormessage inside the empty span
-        console.log('Invalid name');
         return true;
         
        } else {
         nameInput.classList.remove('error_input'); // otherwise remove the red dotted border
         nameError.textContent = '' // empty the textcontent inside the span
-        console.log('Valid name');
         return false;
        }
 }
@@ -482,12 +464,10 @@ function displaySurnameError() {
     if (surnameMatch === null) { // if the value of surname isn't correct
         surnameInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
         surnameError.textContent = 'Invalid surname input!' // display this errormessage inside the empty span
-        console.log('FEL SURNAME');
         return true;
        } else {
         surnameInput.classList.remove('error_input'); // otherwise remove the red dotted border
         surnameError.textContent = '' // empty the textcontent inside the span
-        console.log('RÄTT SURNAME');
         return false
        }
 }
@@ -498,12 +478,10 @@ function displayAddressError() {
     if (addressMatch === null) { // if the value of address isn't correct
         addressInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
         addressError.textContent = 'Invalid address input!' // display this errormessage inside the empty span
-        console.log('Wrong address');
         return true;
        } else {
         addressInput.classList.remove('error_input'); // otherwise remove the red dotted border
         addressError.textContent = '' // empty the textcontent inside the span
-        console.log('Right address');
         return false;
        }
 }
@@ -514,12 +492,10 @@ function displayPostcodeError() {
     if (postcodeMatch === null) { // if the value of postcode isn't correct
         postcodeInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
         postcodeError.textContent = 'Invalid postcode input!' // display this errormessage inside the empty span
-        console.log('FEL POSTCODE');
         return true;
        } else {
         postcodeInput.classList.remove('error_input'); // otherwise remove the red dotted border
         postcodeError.textContent = '' // empty the textcontent inside the span
-        console.log('RÄTT POSTCODE');
         return false;
        }
 }
@@ -530,12 +506,10 @@ function displayCityError() {
     if (cityMatch === null) { // if the value of city isn't correct
         cityInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
         cityError.textContent = 'Invalid city input!' // display this errormessage inside the empty span
-        console.log('FEL CITY');
         return true;
        } else {
         cityInput.classList.remove('error_input'); // otherwise remove the red dotted border
         cityError.textContent = '' // empty the textcontent inside the span
-        console.log('RÄTT CITY');
         return false;
        }
 }
@@ -546,12 +520,10 @@ function displayNumberError() {
     if (numberMatch === null) { // if the value of number isn't correct
         numberInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
         numberError.textContent = 'Invalid number input!' // display this errormessage inside the empty span
-        console.log('FEL NUMBER');
         return true;
        } else {
         numberInput.classList.remove('error_input'); // otherwise remove the red dotted border
         numberError.textContent = '' // empty the textcontent inside the span
-        console.log('RÄTT NUMBER');
         return false;
        }
 }
@@ -562,12 +534,10 @@ function displayEmailError() {
     if (emailMatch === null) { // if the value of email isn't correct
         emailInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
         emailError.textContent = 'Invalid email input!' // display this errormessage inside the empty span
-        console.log('FEL EMAIL');
         return true;
        } else {
         emailInput.classList.remove('error_input'); // otherwise remove the red dotted border
         emailError.textContent = '' // empty the textcontent inside the span
-        console.log('RÄTT EMAIL');
         return false;
        }
 }
@@ -618,7 +588,7 @@ function activateOrderButton() {
 //--------------------------PRINTING PRODUCTS AND DISCOUNTS-----------------------------------------------
 
 // function for weekend price increase
-function getPriceMultiplier() {
+function getPriceMultiplier() { // Increase all product prices with 1.15 if the day customer orders is between 3pm friday through until monday 3am
     if (isFriday && currentHour >= 15 || isSaturday || isSunday || isMonday && currentHour <= 3) {
         return 1.15;
     }
@@ -629,38 +599,35 @@ function getPriceMultiplier() {
 function printItems() {
     itemContainer.innerHTML = '';
 
-
     let priceIncrease = getPriceMultiplier();
-
 
     for (let i = 0; i < shopItems.length; i++) {
         itemContainer.innerHTML += // container for all HTML code for products
         `<div class="product_items"> 
-        <img src='${shopItems[i].img.source}' width="${shopItems[i].img.width}" height="${shopItems[i].img.height}"
-        alt="${shopItems[i].img.alt}">
-        <h3> ${shopItems[i].name} </h3>
-        <p class="product_price"> ${Math.round(shopItems[i].price * priceIncrease)} sek</p>
-        <div class="product_buttons">
-        <button class="minus" id="minus-${i}">-</button>
-        <p class="amountInput"> ${shopItems[i].amount} </p>
-        <button class="plus" id="plus-${i}">+</button>
-        </div>
-        <p class="product_rating"> <span class="material-symbols-outlined">
-        star_rate
-        </span> ${shopItems[i].rating}</p>
-        <p class="category">${shopItems[i].category}</p>
+            <img src='${shopItems[i].img.source}' width="${shopItems[i].img.width}" height="${shopItems[i].img.height}"
+            alt="${shopItems[i].img.alt}">
+            <h3> ${shopItems[i].name} </h3>
+            <p class="product_price"> ${Math.round(shopItems[i].price * priceIncrease)} sek</p>
+            <div class="product_buttons">
+                <button class="minus" id="minus-${i}">-</button>
+                <p class="amountInput"> ${shopItems[i].amount} </p>
+                <button class="plus" id="plus-${i}">+</button>
+            </div>
+            <p class="product_rating"> <span class="material-symbols-outlined">
+            star_rate</span> ${shopItems[i].rating}</p>
+            <p class="category">${shopItems[i].category}</p>
         </div>`;
     }
 
     //variabel for the plus button and function
     const plusBtn = document.querySelectorAll('.plus');
-    for (let i = 0; i < plusBtn.length; i++) {
+    for (let i = 0; i < plusBtn.length; i++) { // add a eventlistener to all plusBtn in the loop
         plusBtn[i].addEventListener('click', increaseAmount)
     };
 
     //variabel for the minus button and function
     const minusBtn = document.querySelectorAll('.minus');
-    for (let i = 0; i < minusBtn.length; i++) {
+    for (let i = 0; i < minusBtn.length; i++) { // add a eventlistener to all minusBtn in the loop
         minusBtn[i].addEventListener('click', decreaseAmount)
     };
 }
@@ -671,27 +638,23 @@ printItems(); //calling on the array to be printed out in the webshop
 function increaseAmount(e) {
     if (cartTotal.length === 0) {
         startTimer();   // starts timer when item is added to the cart
-        console.log('item is added');
     } else if (shopItems.every(item => item.amount < 1)) {
         startTimer(); // restarts the timer again AFTER cart has manually been reduced to 0 by customer
-        console.log('timer has restarted');
     }
 
     let index = e.target.id.replace('plus-', '');
     index = Number(index);
     shopItems[index].amount += 1;
     cartTotal = shopItems.filter(item => item.amount > 0);
-
-
     printItems();
     cartOverview();
     calculateTotalAmount();
 }
 
+// function to stops the timer that starts when a customr puts an item in the cart
 function stopTimer() {
-    if (shopItems.every(item => item.amount === 0)) {
-        clearTimeout(timeLimit);
-        console.log('timer stopped');
+    if (shopItems.every(item => item.amount === 0)) { // if the cartamount is reduced back to zero, the timer is stopped
+        clearTimeout(timeLimit); // clear the timeout
     }
 }
 
@@ -733,9 +696,6 @@ function decreaseCartMinus(e) {
 function deleteCartItem(e) {
     const productId = Number(e.currentTarget.id.replace('delete-', ''));
     const i = cartTotal.findIndex((product) => product.id === productId);
-    console.log(productId);
-    console.log(i);
-
 
     if (i !== -1) {
         cartTotal.splice(i, 1);
@@ -743,7 +703,6 @@ function deleteCartItem(e) {
         calculateTotalAmount();
         updateViews();
     }
-
 }
 
 // function that pushes ordered amount into order summary overview
@@ -755,15 +714,13 @@ function cartOverview() {
     let orderMsg = '';
     let priceIncrease = getPriceMultiplier();
     
-
     //loop that shows ordered products in cartoverview
     cartTotal.forEach((shopItems, index) => {
         summaryTotal.innerHTML += ``;
 
         orderedItemAmount += shopItems.amount;
        
-
-        // discount for 10 or more donuts
+        // 10% discount when customer orders 10 or more of the same donut
         if (shopItems.amount > 0) {
             let itemPrice = shopItems.price
             if (shopItems.amount >= 0) {
@@ -773,74 +730,66 @@ function cartOverview() {
             const newItemPrice = Math.round(itemPrice * priceIncrease);
             sum += shopItems.amount * newItemPrice;
 
-            cartContainer.innerHTML +=
+            cartContainer.innerHTML += //print out this html inside cartContainer when product is added to cart
                 `<div class="cartorder_items">
-                <h3>${shopItems.name}</h3>
-                <div class="image_wrapper">
-                    <img src='${shopItems.img.source}' width="${shopItems.img.width}" height="${shopItems.img.height}"
-                    alt="${shopItems.img.alt}">        
-                </div> 
-                <div class="cartinfo_wrapper">      
-                                               
-                <div class="cartorder_buttons">
-                    <button class="cart-minus" data-id="${index}">-</button>
-                    <button class="cart-plus" data-id="${index}">+</button>
-                </div>
-                <p>Quantity: ${shopItems.amount}</p> 
-                <p> Total: ${shopItems.amount * newItemPrice} sek</p>
-                </div>        
-                <button class="remove_item_cart" id="delete-${shopItems.id}">Remove</button>
+                    <h3>${shopItems.name}</h3>
+                    <div class="image_wrapper">
+                        <img src='${shopItems.img.source}' width="${shopItems.img.width}" height="${shopItems.img.height}"
+                        alt="${shopItems.img.alt}">        
+                    </div> 
+                    <div class="cartinfo_wrapper">                                
+                        <div class="cartorder_buttons">
+                            <button class="cart-minus" data-id="${index}">-</button>
+                            <button class="cart-plus" data-id="${index}">+</button>
+                        </div>
+                        <p>Quantity: ${shopItems.amount}</p> 
+                        <p> Total: ${shopItems.amount * newItemPrice} sek</p>
+                    </div>        
+                    <button class="remove_item_cart" id="delete-${shopItems.id}">Remove</button>
                 </div>`;
         }
     });
 
-    summaryTotal.innerHTML = `${sum}`;
+    summaryTotal.innerHTML = `${sum}`; // let the 'Total' inside cart summary display the dynamic sum
 
-    // apply discount on mondays
+    // apply 10% discount when customers buys any items before 10am on Mondays
     if (today.getDay() === 1 && today.getHours() < 10) {
         sum *= 0.9; //Monday discount on all of order
         orderMsg += '<p></p>';
-        mondayMsg.innerHTML =
+        mondayMsg.innerHTML = // when this happens, display this content
             `<p>Yay! You have just received a Monday discount on your order!</p>
             `;
     } 
 
-
-  
-
     //shipping free/discount when ordering 15 or more donuts       
-    if (orderedItemAmount > 15) {
-        shippingCost.innerHTML = `Shipping is free with your order!`;
+    if (orderedItemAmount > 15) { // if customer orders more than 15 items in total
+        shippingCost.innerHTML = `Shipping is free with your order!`; // display this message inside the shippingCost element 
     } else {
-        shippingCost.innerHTML = `Shipping: ${Math.round(25 + (0.1 * sum))} sek`;
+        shippingCost.innerHTML = `Shipping: ${Math.round(25 + (0.1 * sum))} sek`; // otherwise display this message showing the default cost of shipping
     }
 
-    let invoiceRadioOption = document.querySelector('#invoice_radio');
-    //if order more than 800SEK, invoice option isn't available
+    let invoiceRadioOption = document.querySelector('#invoice_radio'); // variable for the invoice radio button in the payment section
+    //if order is more than 800SEK, invoice as selected payment option isn't available
     if (sum > 800) {
-        invoiceRadioOption.classList.add('hidden');
+        invoiceRadioOption.classList.add('hidden'); // hide option to pay by invoice
     } else {
-        invoiceRadioOption.classList.remove('hidden');
+        invoiceRadioOption.classList.remove('hidden'); // otherwise remove the hidden class
     }
 
-    //variable for the plusbutton inside order summary
-    const cartPlus = document.querySelectorAll('.cart-plus');
-    for (let i = 0; i < cartPlus.length; i++) {
-        cartPlus[i].addEventListener('click', increaseCartPlus)
+    const cartPlus = document.querySelectorAll('.cart-plus'); //variable for the plusbutton inside order summary
+    for (let i = 0; i < cartPlus.length; i++) { // for each plusbutton inside cart, add a click event that calls the function increaseCartPlus
+        cartPlus[i].addEventListener('click', increaseCartPlus) // eventlistener for the button
     };
 
-    //variable for the minusbutton inside order summary
-    const cartMinus = document.querySelectorAll('.cart-minus');
-    for (let i = 0; i < cartMinus.length; i++) {
-        cartMinus[i].addEventListener('click', decreaseCartMinus)
+    const cartMinus = document.querySelectorAll('.cart-minus'); //variable for the minusbutton inside order summary
+    for (let i = 0; i < cartMinus.length; i++) { // for each minusbutton inside cart, add a click event that calls the function decreaseCartMinus
+        cartMinus[i].addEventListener('click', decreaseCartMinus) // eventlistener for the button
     };
 
-    // remove single item in cart
+    // add a click eventlistener to each removebutton in the cartTotal array
     Array.from(document.querySelectorAll('.remove_item_cart')).forEach((btn) => {
-        btn.addEventListener('click', deleteCartItem);
+        btn.addEventListener('click', deleteCartItem); 
     });
-
-
 }
 
 // function that changes the total amount of items in the carticon at the top of the page when customer adds or deducts a product
@@ -852,6 +801,7 @@ function calculateTotalAmount() {
     }
 }
 
+// update the views in printItems and cartOverview
 function updateViews() {
     printItems();
     cartOverview();
@@ -859,54 +809,52 @@ function updateViews() {
 
 //--------------------------PAGE TIMER AND EMPTYING OF CART-----------------------------------------------
 
-// function for the timer to be set to 15 minutes
+// function for the timeout time to be set to 15 minutes
 function startTimer() {
     timeLimit = setTimeout(tooSlow, 1000 * 900); // Set a time limit of 3 seconds (adjust as needed)  
 }
 
 // Popup-message with a 15 minute timelimit. Display overlay element which notifies customer as well as resets the form inputs by customer.
 function tooSlow() {
-    timeLimitMessage.style.display = 'block';
-    document.querySelector('#cartform').reset();
-    console.log('You were too slow');
+    timeLimitMessage.style.display = 'block'; // display the overlay element saying customer is too slow
+    document.querySelector('#cartform').reset(); // reset all inputs inside form
 }
 
-// Button inside the 15-minute popup-message, when customer clicks on it, it removes the message overlay.
+// Button inside the 15-minute popup-message, when customer clicks on it, it removes the message overlay and empties cart.
 function goBackBtn() {
-    timeLimitMessage.style.display = 'none';
-    emptyCart();
-    console.log('Cart is emptied');
+    timeLimitMessage.style.display = 'none'; //remove overlay element saying customer is too slow
+    emptyCart(); // empties cart once button has been clicked
 }
 timeoutBtn.addEventListener('click', goBackBtn); // eventlistener: 'go back' button inside timelimit popup message
 
 // function that resets all form inputs and cart total 
 function resetAll() {
-    document.querySelector('#cartform').reset(); // form for customer details
-    document.querySelector('.payment_card').reset(); // form for card payment info
-    document.querySelector('.payment_invoice').reset(); // form for invoice payment info
-    emptyCart();
+    document.querySelector('#cartform').reset(); // resets form for customer details
+    document.querySelector('.payment_card').reset(); // resets form for card payment info
+    document.querySelector('.payment_invoice').reset(); // resters form for invoice payment info
+    emptyCart(); // empties any items inside cart
 }
 
+// function that sets empties cart and updates the total amount in cart icon as well as product overview on mainpage
 function emptyCart() {
     shopItems.forEach((product) => {
         product.amount = 0;
     });
-    cartTotal = [];
+    cartTotal = []; // lets cartTotal be empty
     calculateTotalAmount();
-    updateViews();
-    
+    updateViews();   
 }
 
 // function that removes the thank you note and resets all products and forminputs when button 'close' is clicked
 function goToStartPageAfterOrder() {
-    window.scrollTo({ top: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth'}); // when button is clicked, page scrolls back to top of page
     confirmationNote.style.display = 'none'; // removes the modal showing the thank you note
     const productPage = document.querySelector('.product_container'); // variable for the intial printed products
-    productPage.classList.remove('visually_hidden');
-    const orderConfirmation = document.querySelector('.order_confirmation');
-    orderConfirmation.classList.add('visually_hidden'); 
-    resetAll();
-    hideSort();
+    productPage.classList.remove('visually_hidden'); // removes the hidden class from productPage
+    const orderConfirmation = document.querySelector('.order_confirmation'); // variable for the cofirmation section
+    orderConfirmation.classList.add('visually_hidden');  // removes the hidden class from orderConfirmation
+    resetAll(); // resets all form inputs and items in cart
+    hideSort(); // 
 }
 goBackToStartBtn.addEventListener('click', goToStartPageAfterOrder); // eventlistener for the 'close' button inside thankyou-note
 
