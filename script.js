@@ -720,10 +720,10 @@ function cartOverview() {
 
         orderedItemAmount += shopItems.amount;
        
-        // 10% discount when customer orders 10 or more of the same donut
+        // 10% discount when customer orders 10 or more of the same product
         if (shopItems.amount > 0) {
             let itemPrice = shopItems.price
-            if (shopItems.amount >= 0) {
+            if (shopItems.amount >= 10) {
                 itemPrice *= 0.9;
             }
 
