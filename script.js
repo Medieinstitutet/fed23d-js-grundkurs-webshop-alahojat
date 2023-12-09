@@ -13,10 +13,10 @@ const today = new Date(); // next time move this variable inside function to pre
 const sortProductBtnContainer = document.querySelector('.sortproduct_title'); // variable for sortproduct btn and icon
 const sortProductBtn = document.querySelector('.sortproduct_button'); // variable for sortproduct button
 const sortProductDiv = document.querySelector('.sortproduct_content'); // variable for sort product container
-const sortName = document.querySelector('.sort_name');
-const sortPrice = document.querySelector('.sort_price');
-const sortCategory = document.querySelector('.sort_category');
-const sortRating = document.querySelector('.sort_rating');
+const sortName = document.querySelector('.sort_name'); // variable for the 'name' p-element in the sortproduct section
+const sortPrice = document.querySelector('.sort_price'); // variable for the 'price' p-element in the sortproduct section
+const sortCategory = document.querySelector('.sort_category'); // variable for the 'category' p-element in the sortproduct section
+const sortRating = document.querySelector('.sort_rating'); // variable for the 'rating' p-element in the sortproduct section
 let nameOrder = true; // variable to declare the sorting order for name
 let priceOrder = true; // variable to declare the sorting order for price
 let categoryOrder = true; // variable to declare the sorting order for price
@@ -38,15 +38,15 @@ resetBtn.addEventListener('click', resetAll); // eventlistner for the end of pag
 
 // VARIABLES - inside ordersummary
 const orderBtn = document.querySelector('#order_button'); //variable for the orderbutton in order summary
-const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="payment-option"]')); // variable for card and invoicebuttons in the ordersummary
+const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="payment-option"]')); // variable for card and invoice radiobuttons in the ordersummary
 
 //variables for card and invoice radiobuttons
-const cardOption = document.querySelector('#payment_card');
-const invoiceOption = document.querySelector('#payment_invoice');
-let selectedPaymentOption = 'card';
+const cardOption = document.querySelector('#payment_card'); // variable for the cardpayment form input container
+const invoiceOption = document.querySelector('#payment_invoice'); // variable for the invoicepayment form input container
+let selectedPaymentOption = 'card'; // set default payment option to card
 
 // VARIABLES - orderform
-const orderButton = document.querySelector('#order_button');
+const orderButton = document.querySelector('#order_button'); // variable for the orderbutton at the end of all forminputs
 
 // VARIABLES - all RegEx and inputs in order form
 const nameInput = document.querySelector('#fname'); // variable for forminput: name
@@ -59,7 +59,7 @@ const surnameError = document.querySelector('#surname_error'); // variable for e
 // let surnameErrorShown = false; // lets errormessage = false by default.
 const surnameRegEx = new RegExp(/^[a-zåäö ,.'-]+$/i); // RegEx for name and surname input
 
-const addressInput = document.querySelector('#street-address');
+const addressInput = document.querySelector('#street-address'); // variable for forunput: address
 const addressRegEx = new RegExp(/^[a-zåäöA-ZÅÄÖ0-9\s,'.-]*$/i); // variable for the address RegEx
 const addressError = document.querySelector('#address_error'); // variable for the errormessage in the address inputfield
 
@@ -73,13 +73,13 @@ const cityError = document.querySelector('#city_error'); // variable for the err
 
 const numberInput = document.querySelector('#tel'); // variable to declare the 'number' (phonenumber) input
 const numberRegEx = new RegExp(/^[0-9+()]+$/); // variable for the number RegEx
-const numberError = document.querySelector('#number_error');
+const numberError = document.querySelector('#number_error'); // variable for the errormessage in the city inputfield
 const emailInput = document.querySelector('#email'); // variable to declare the 'email' input
 const emailRegEx = new RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,6}$/); // variable for the email RegEx
-const emailError = document.querySelector('#email_error');
+const emailError = document.querySelector('#email_error'); // variable for the errormessage in the email inputfield
 const personalId = document.querySelector('#ssn'); // variable to declare the 'personal ID' input
 const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8} \d{4}|\d{6} \d{4})/); // variable for the Swedish Persona number RegEx
-const personalIdError = document.querySelector('#personalid_error');
+const personalIdError = document.querySelector('#personalid_error'); // variable for the errormessage in the Personal ID inputfield
 
 // VARIABLES - 15 minute timelimit and popup-message
 let timeLimitMessage = document.querySelector('#timeout_message'); // variable for container pop up message when customer is too slow
@@ -96,7 +96,7 @@ const goBackToStartBtn = document.querySelector('#gobacktostart'); // variable f
 //------------------------------ARRAYS-----------------------------------------------------
 // ----------------------------------------------------------------------------------------
 
-// array with all products
+// original array with all 10 products as objects
 let shopItems = [
     {
         img: {
@@ -271,27 +271,26 @@ let cartTotal = []
 // function that toggles the visibility of the sortproduction section and it's collapsible
 function showSort() {
     sortProductDiv.classList.toggle('hidden');
-    console.log('show the sorting');      
+      
 }
-sortProductBtn.addEventListener('click', showSort);
+sortProductBtn.addEventListener('click', showSort); // eventlistener to show sort product options when button is clicked
 
 
 // function that toggles and removes the visibility of the 'sort' button when the cartbutton is clicked
 function hideSort() {
-    sortProductBtnContainer.classList.toggle('hidden');
-    sortProductDiv.classList.add('hidden');
-    console.log('hide sorting button');
+    sortProductBtnContainer.classList.toggle('hidden'); // hide sortbutton
+    sortProductDiv.classList.add('hidden'); // hide options 
 }
 cartBtn.addEventListener('click', hideSort); // eventlistener to trigger above function when the cartbutton is clicked
 
 
 // function to toggle of all items in alphabetical order
 function sortByName() {
-    if (nameOrder) { // A -Z
+    if (nameOrder) { // order A -Z
         shopItems.sort((product1, product2) => {
             return product1.name === product2.name ? 0 : product1.name < product2.name ? -1 : 1;
         });
-    } else { // Z - A
+    } else { // order Z - A
         shopItems.sort((product1, product2) => {
             return product1.name === product2.name ? 0 : product1.name > product2.name ? -1 : 1;
         });
@@ -304,11 +303,11 @@ sortName.addEventListener('keypress', sortByName); // eventlistener to sort prod
 
 // function to toggle of all items according to price
 function sortByPrice() {
-    if (priceOrder) { // 1 - 9
+    if (priceOrder) { // order 1 - 9, smallest amount to highest
         shopItems.sort((product1, product2) => {
             return product1.price === product2.price ? 0 : product1.price < product2.price ? -1 : 1;
         });
-    } else { // 9 - 1
+    } else { // order 9 - 1, highest amount to smallest
         shopItems.sort((product1, product2) => {
             return product1.price === product2.price ? 0 : product1.price > product2.price ? -1 : 1;
         });
@@ -321,11 +320,11 @@ sortPrice.addEventListener('keypress', sortByPrice); // eventlistener to sort pr
 
 // function to toggle of all items according to category in alphabetical order as well
 function sortByCategory() {
-    if (categoryOrder) { // A - Z
+    if (categoryOrder) { // order A - Z
         shopItems.sort((product1, product2) => {
             return product1.category === product2.category ? 0 : product1.category < product2.category ? -1 : 1;
         });
-    } else { // Z - A
+    } else { // order Z - A
         shopItems.sort((product1, product2) => {
             return product1.category === product2.category ? 0 : product1.category > product2.category ? -1 : 1;
         });
@@ -338,11 +337,11 @@ sortCategory.addEventListener('keypress', sortByCategory); // eventlistener to s
 
 // function to toggle of all items according to rating of item
 function sortByRating() {
-    if (ratingOrder) { // 1 - 9
+    if (ratingOrder) { // order 1 - 9, smallest amount to highest
         shopItems.sort((product1, product2) => {
             return product1.rating === product2.rating ? 0 : product1.rating < product2.rating ? -1 : 1;
         });
-    } else { // 9 - 1
+    } else { // order 9 - 1, highest amount to smallest
         shopItems.sort((product1, product2) => {
             return product1.rating === product2.rating ? 0 : product1.rating > product2.rating ? -1 : 1;
         });
@@ -357,19 +356,19 @@ sortRating.addEventListener('keypress', sortByRating); // eventlistener to sort 
 
 //function that toggles the page view between products vs order summary
 function orderSummary() {
-    const productPage = document.querySelector('.product_container');
+    const productPage = document.querySelector('.product_container'); // variable for the section that shows all printed products
     productPage.classList.toggle('visually_hidden');
-    const orderConfirmation = document.querySelector('.order_confirmation');
+    const orderConfirmation = document.querySelector('.order_confirmation'); // variable for the section that shows all order confirmation content
     orderConfirmation.classList.toggle('visually_hidden');  
 }
-cartBtn.addEventListener('click', orderSummary); // ???????
+cartBtn.addEventListener('click', orderSummary); // eventlistener that toggles between the different page views (productpage/order confirmation) when the cartlogo is clicked
 
-// Toggle between order summary and confirmation order
+// Function that shows the thank you note/confirmation of order (div) when the order button is clicked
 function thankYouNote() {
     confirmationNote.style.display = 'block';
-    clearTimeout( timeLimit); // stops the timer for the timeout message
+    clearTimeout( timeLimit); // stops the timer for the timeout message when customer has clicked on the orderbutton
 }
-orderBtn.addEventListener('click', thankYouNote); // click-function that enables thank you note to popup
+orderBtn.addEventListener('click', thankYouNote); // click-function that enables thank you note/confirmation div
 
 //--------------------------TOGGLE FOR PAYMENT OPTIONS-----------------------------------------------
 
@@ -383,24 +382,24 @@ function switchPaymentMethod(e) {
     cardOption.classList.toggle('hidden');
     invoiceOption.classList.toggle('hidden');
     selectedPaymentOption = e.target.value;
-    activateOrderButton();
+    activateOrderButton(); // call on the activateOrderButton function
 }
 
 //--------------------------REGEX AND FORM FUNCTIONS-----------------------------------------------
 
-// RegEx functions and eventlisteners
+// function to check if value of name input is correct
 function isPersonalIdNumberValid() {
     return personalIdRegEx.exec(personalId.value) !== null;
 }
-personalId.addEventListener('change', activateOrderButton);
-personalId.addEventListener('change', displayPersonalIdError);
+personalId.addEventListener('input', activateOrderButton); // eventlistener when the inputfield for personalID changes, 
+personalId.addEventListener('input', displayPersonalIdError); // // eventlistener when the inputfield for personalID changes, 
 
 // function to check if value of name input is correct
-function isNameInputValid() { //function to check if the name input is valid   
+function isNameInputValid() {   
     return nameRegEx.exec(nameInput.value) !== null;
 }
-nameInput.addEventListener('input', activateOrderButton); // when the inputfield for name changes, 
-nameInput.addEventListener('input', displayNameError); // when the inputfield for name changes, 
+nameInput.addEventListener('input', activateOrderButton); // eventlistener when the inputfield for name changes, 
+nameInput.addEventListener('input', displayNameError); // eventlistener when the inputfield for name changes, 
 
 // function to check if value of surname input is correct
 function isSurnameValid() {
@@ -447,14 +446,14 @@ emailInput.addEventListener('input', displayEmailError); // eventlistener for wh
 // errormessage and red outline shown when personal ID input is incorrect
 function displayPersonalIdError() {
     const personalIdMatch = personalIdRegEx.exec(personalId.value);
-    if (personalIdMatch === null) {
-        personalId.classList.add('error_input');
-        personalIdError.textContent = 'Invalid Personal ID input!'
+    if (personalIdMatch === null) { // if the value of personal id isn't correct
+        personalId.classList.add('error_input'); // add this class to the input field that shows a red dotted border
+        personalIdError.textContent = 'Invalid Personal ID input!' // display this errormessage inside the empty span
         console.log('Invalid ID');
         return true;
        } else {
-        personalId.classList.remove('error_input');
-        personalIdErrorr.textContent = ''
+        personalId.classList.remove('error_input'); // otherwise remove the red dotted border
+        personalIdError.textContent = '' // empty the textcontent inside the span
         console.log('Valid ID');
         return false;
        }
@@ -463,15 +462,15 @@ function displayPersonalIdError() {
 // errormessage and red outline shown when name input is incorrect
 function displayNameError() {
     const nameMatch = nameRegEx.exec(nameInput.value);
-    if (nameMatch === null) {
-        nameInput.classList.add('error_input');
-        nameError.textContent = 'Invalid name input!'
+    if (nameMatch === null) { // if the value of name isn't correct
+        nameInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
+        nameError.textContent = 'Invalid name input!' // display this errormessage inside the empty span
         console.log('Invalid name');
         return true;
         
        } else {
-        nameInput.classList.remove('error_input');
-        nameError.textContent = ''
+        nameInput.classList.remove('error_input'); // otherwise remove the red dotted border
+        nameError.textContent = '' // empty the textcontent inside the span
         console.log('Valid name');
         return false;
        }
@@ -480,14 +479,14 @@ function displayNameError() {
 // errormessage and red outline shown when surname input is incorrect
 function displaySurnameError() {
     const surnameMatch = surnameRegEx.exec(surnameInput.value);
-    if (surnameMatch === null) {
-        surnameInput.classList.add('error_input');
-        surnameError.textContent = 'Invalid surname input!'
+    if (surnameMatch === null) { // if the value of surname isn't correct
+        surnameInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
+        surnameError.textContent = 'Invalid surname input!' // display this errormessage inside the empty span
         console.log('FEL SURNAME');
         return true;
        } else {
-        surnameInput.classList.remove('error_input');
-        surnameError.textContent = ''
+        surnameInput.classList.remove('error_input'); // otherwise remove the red dotted border
+        surnameError.textContent = '' // empty the textcontent inside the span
         console.log('RÄTT SURNAME');
         return false
        }
@@ -496,14 +495,14 @@ function displaySurnameError() {
 // errormessage and red outline shown when address input is incorrect
 function displayAddressError() {
     const addressMatch = addressRegEx.exec(addressInput.value);
-    if (addressMatch === null) {
-        addressInput.classList.add('error_input');
-        addressError.textContent = 'Invalid address input!'
+    if (addressMatch === null) { // if the value of address isn't correct
+        addressInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
+        addressError.textContent = 'Invalid address input!' // display this errormessage inside the empty span
         console.log('Wrong address');
         return true;
        } else {
-        addressInput.classList.remove('error_input');
-        addressError.textContent = ''
+        addressInput.classList.remove('error_input'); // otherwise remove the red dotted border
+        addressError.textContent = '' // empty the textcontent inside the span
         console.log('Right address');
         return false;
        }
@@ -512,14 +511,14 @@ function displayAddressError() {
 // errormessage and red outline shown when postcode input is incorrect
 function displayPostcodeError() {
     const postcodeMatch = postcodeRegEx.exec(postcodeInput.value);
-    if (postcodeMatch === null) {
-        postcodeInput.classList.add('error_input');
-        postcodeError.textContent = 'Invalid postcode input!'
+    if (postcodeMatch === null) { // if the value of postcode isn't correct
+        postcodeInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
+        postcodeError.textContent = 'Invalid postcode input!' // display this errormessage inside the empty span
         console.log('FEL POSTCODE');
         return true;
        } else {
-        postcodeInput.classList.remove('error_input');
-        postcodeError.textContent = ''
+        postcodeInput.classList.remove('error_input'); // otherwise remove the red dotted border
+        postcodeError.textContent = '' // empty the textcontent inside the span
         console.log('RÄTT POSTCODE');
         return false;
        }
@@ -528,14 +527,14 @@ function displayPostcodeError() {
 // errormessage and red outline shown when city input is incorrect
 function displayCityError() {
     const cityMatch = cityRegEx.exec(cityInput.value);
-    if (cityMatch === null) {
-        cityInput.classList.add('error_input');
-        cityError.textContent = 'Invalid city input!'
+    if (cityMatch === null) { // if the value of city isn't correct
+        cityInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
+        cityError.textContent = 'Invalid city input!' // display this errormessage inside the empty span
         console.log('FEL CITY');
         return true;
        } else {
-        cityInput.classList.remove('error_input');
-        cityError.textContent = ''
+        cityInput.classList.remove('error_input'); // otherwise remove the red dotted border
+        cityError.textContent = '' // empty the textcontent inside the span
         console.log('RÄTT CITY');
         return false;
        }
@@ -544,14 +543,14 @@ function displayCityError() {
 // errormessage and red outline shown when number input is incorrect
 function displayNumberError() {
     const numberMatch = numberRegEx.exec(numberInput.value);
-    if (numberMatch === null) {
-        numberInput.classList.add('error_input');
-        numberError.textContent = 'Invalid number input!'
+    if (numberMatch === null) { // if the value of number isn't correct
+        numberInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
+        numberError.textContent = 'Invalid number input!' // display this errormessage inside the empty span
         console.log('FEL NUMBER');
         return true;
        } else {
-        numberInput.classList.remove('error_input');
-        numberError.textContent = ''
+        numberInput.classList.remove('error_input'); // otherwise remove the red dotted border
+        numberError.textContent = '' // empty the textcontent inside the span
         console.log('RÄTT NUMBER');
         return false;
        }
@@ -560,14 +559,14 @@ function displayNumberError() {
 // errormessage and red outline shown when email input is incorrect
 function displayEmailError() {
     const emailMatch = emailRegEx.exec(emailInput.value)
-    if (emailMatch === null) {
-        emailInput.classList.add('error_input');
-        emailError.textContent = 'Invalid email input!'
+    if (emailMatch === null) { // if the value of email isn't correct
+        emailInput.classList.add('error_input'); // add this class to the input field that shows a red dotted border
+        emailError.textContent = 'Invalid email input!' // display this errormessage inside the empty span
         console.log('FEL EMAIL');
         return true;
        } else {
-        emailInput.classList.remove('error_input');
-        emailError.textContent = ''
+        emailInput.classList.remove('error_input'); // otherwise remove the red dotted border
+        emailError.textContent = '' // empty the textcontent inside the span
         console.log('RÄTT EMAIL');
         return false;
        }
