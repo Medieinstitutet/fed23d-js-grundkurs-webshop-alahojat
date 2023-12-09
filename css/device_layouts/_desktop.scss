@@ -1,6 +1,6 @@
 body {
     display: grid;
-    grid-template-columns: repeat(8, minmax(1fr));
+    grid-template-columns: repeat(7, 1fr);
 }
 
 header {
@@ -67,6 +67,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    margin: 20px;
 
     .product_items {
         padding: 10px;
