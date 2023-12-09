@@ -38,8 +38,36 @@
     padding: 20px;
 }
 
-
 @mixin clicked_items {
     font-weight: bold;
 }
 
+@mixin headings_dark {
+    color: #4471e4;
+}
+
+@mixin text_dark {
+    color: #fdfdfd;
+}
+
+@mixin background_colors_dark {
+    background-color: #283454;
+}
+
+@mixin backgroundsections_dark {
+    background-color: #334064;
+}
+
+@mixin buttons_dark {
+    color: #f1f1f1;
+    background-color: #353596;
+    
+    
+    padding-left: 15px;
+    padding-right: 15px;
+    
+    text-transform: uppercase;
+    border-radius: 10px;
+    font-size: 1rem;
+    
+}

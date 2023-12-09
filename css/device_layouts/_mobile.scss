@@ -47,6 +47,65 @@ body {
     border: 2px dotted red;
 }
 
+.darkmode {
+    @include headings_dark;
+    @include text_dark;
+    @include background_colors_dark;
+    header, h1, h2, h3, h4, h5  {
+       
+        @include headings_dark;
+        @include text_dark;
+        @include background_colors_dark;
+        div button {
+            @include text_dark;
+
+        }
+    }
+    p { 
+        @include text_dark;
+    }
+    
+    div {
+        @include background_colors_dark;
+    }
+
+    .product_container .product_items{
+        .product_buttons button {
+            @include buttons_dark;
+        }
+        @include backgroundsections_dark;
+        @include text_dark;
+    }
+    
+    .order_confirmation .summary_container .cartorder_container .cartorder_items, h3, h4 {
+        @include backgroundsections_dark;
+        @include text_dark;
+        .cartinfo_wrapper, .cartorder_buttons, p {
+            @include backgroundsections_dark;  
+            @include text_dark;
+        }
+    }
+
+    .order_confirmation .summary_container .total_shipment_message {
+        @include backgroundsections_dark;
+        @include text_dark;
+    }
+
+    .order_confirmation .cartform_container, .cartform_column1, .cartform_column2, section, h2, 
+    label, .discount_code, .payment_buttons, .payment_info {
+        @include backgroundsections_dark;
+        @include text_dark;
+    }
+
+
+    footer, .footer_container, .footer_container div {
+        @include backgroundsections_dark;
+    }
+
+ 
+}
+
+
 header {
     height: 50px;
     width: 100%;
