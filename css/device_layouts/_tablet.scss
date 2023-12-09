@@ -10,7 +10,6 @@ header {
 .pagetop {
     position: relative;
     grid-column: 1 / 4;
-
     .pagetitle {
         padding: 50px 50px 20px 50px;
 
@@ -48,12 +47,10 @@ header {
     grid-column: 1 / 4;
     justify-content: center;
     align-items: center;
- 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     height: auto;
-
     .product_items {
         padding: 10px;
         background-color: #e8e7e7;
@@ -66,7 +63,6 @@ header {
     }    
 }
 
-
 .order_confirmation {
     grid-column: 1 / 4;
     width: 100%;
@@ -74,7 +70,6 @@ header {
     display: flex;   
     align-items: center;
     justify-content: center;
-
     .summary_container {
         width: 100%;
         display: flex;
@@ -82,7 +77,6 @@ header {
         justify-content: center;
         align-items: center;
         width: 100%;
-        
         h2 {
             font-size: 2.2rem;
         }
@@ -92,8 +86,7 @@ header {
             }
             h4 {
                 font-size: 1.4rem;
-            }
-            
+            } 
         }
 
         .cartorder_container {
@@ -145,7 +138,6 @@ header {
         }
         
     }
-
     .cartform_container {
         width: 80vw;
         background-color: #e8e7e7;
@@ -155,14 +147,8 @@ header {
     }
 }
 
-
-
-
-
-
 .cartorder_items {
-    padding: 0;
-    
+    padding: 0; 
 }
 
 .cartform_container {
@@ -178,29 +164,18 @@ header {
             }
         } 
         .cart_personaldata {
-           
             label {
                 padding-top: 15px;
-                font-size: 1rem;
-                
+                font-size: 1rem; 
             }
-           
         }
         .cart_newsletter {
             label {
                 padding-top: 5px;
                 font-size: 1rem;
-            }
-            
+            } 
         }
-
-
-
-
-
-
-    }
-    
+    }  
 }
 
 .discount_code {
@@ -208,7 +183,6 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     button {
         width: 100px;
     }
@@ -232,8 +206,5 @@ footer {
         flex-direction: row;
         align-items: start;
         justify-content: space-between;
-        
-
     } 
-   
 }

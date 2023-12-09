@@ -16,15 +16,12 @@ header {
     flex-direction: row;
     align-items: center;
     margin-top: 100px;
-    padding-bottom: 50px;
-    
-   
+    padding-bottom: 50px;  
     .pagetitle {
         margin-top: 0;
         padding: 0;
         grid-column: 1 / 5;
         height: auto;
-       
         .pagetitle1 {
             top: 10%;
             left: 15%;
@@ -39,7 +36,6 @@ header {
             top: 5%;
             left: 19%;
         }
-
     }
     .about {
         grid-column: 6 / 8;
@@ -48,10 +44,6 @@ header {
         margin-left: 100px;
         font-size: 3rem;       
     }
-
-
-
-
 }
 
 .sortproduct_title {
@@ -68,7 +60,6 @@ header {
     flex-wrap: wrap;
     gap: 30px;
     margin: 20px;
-
     .product_items {
         padding: 10px;
         background-color: #e8e7e7;
@@ -78,7 +69,6 @@ header {
         border-bottom: none;
     }    
 }
-
 
 .order_confirmation{
     grid-column: 1 / 8;
@@ -149,7 +139,6 @@ header {
    
 }
 
-
 .confirmation_container {
     background-color: #e8e7e777;
     section {
@@ -160,7 +149,6 @@ header {
             color: #002fa7;
         }
     }
-
 }
 
 footer {

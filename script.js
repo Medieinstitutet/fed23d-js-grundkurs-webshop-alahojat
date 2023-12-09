@@ -238,7 +238,7 @@ let shopItems = [
             height: 250,
         },
         name: 'Three in 1',
-        price: 550,
+        price: 659,
         unit: 'kr',
         rating: 5,
         category: 'Bowls',
