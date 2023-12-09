@@ -811,7 +811,7 @@ function updateViews() {
 
 // function for the timeout time to be set to 15 minutes
 function startTimer() {
-    timeLimit = setTimeout(tooSlow, 1000 * 900); // Set a time limit of 3 seconds (adjust as needed)  
+    timeLimit = setTimeout(tooSlow, 1000 * 900); // 
 }
 
 // Popup-message with a 15 minute timelimit. Display overlay element which notifies customer as well as resets the form inputs by customer.
