@@ -557,12 +557,10 @@ function displayEmailError() {
 
 // function for when and how the order button is activated and enabled vs disabled.
 function activateOrderButton() {   
-    // let atLeastOneProductInCart = (cartTotal.length == 0);
-
     // if there is no items in the cart, keep the order button set as disabled
     if (cartTotal.length == 0) {
         orderButton.setAttribute('disabled')
-    }
+    } 
 
     const allPersonFieldsValid = 
     isNameInputValid() &&
@@ -770,9 +768,8 @@ function cartOverview() {
         sum *= 0.9; //Monday discount on all of order
         orderMsg += '<p></p>';
         mondayMsg.innerHTML = // when this happens, display this content
-            `<p>Yay! You have just received a Monday discount on your order!</p>
-            `;
-    } 
+            `<p>Yay! You have just received a Monday discount on your order!</p>`;
+        }
 
     //shipping free/discount when ordering 15 or more donuts       
     if (orderedItemAmount > 15) { // if customer orders more than 15 items in total
