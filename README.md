@@ -63,9 +63,9 @@ Javascript specific lessons:
 Re accessibility: I had to reevaluate the use of the colourpalette to truly optimize full accessibility as there was a slight discrepancy in the contrast of the orange font-colour against the chosen grey background. If I had more time I would thoroughly research a better combination of colours.
 
 ## Validation reports
-[CSS Validation](<Inl. 2 Webbshop Ala Hojat Jalali CSS validation.pdf>)
+[CSS Validation](<Validation-reports/Inl. 2 Webbshop Ala Hojat Jalali CSS validation.pdf>)
 
-[HTML Validation](<Inl. 2 Webbshop Ala Hojat Jalali CSS validation.pdf>)
+[HTML Validation](<Validation-reports/Inl. 2 Webbshop Ala Hojat Jalali HTML validation.pdf>)
 
 ## 🚀 About Me
 blue is the warmest colour. a sucker for visual communication. currently studying frontend development at @Medieinstitutet
