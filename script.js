@@ -8,6 +8,8 @@ const itemContainer = document.querySelector(".product_container"); // variable 
 const cartContainer = document.querySelector('.cartorder_container'); // variable for container of printed products in order summary
 const summaryTotal = document.querySelector('.order_amount'); // variable for the total price amount showing in the order summary section
 const today = new Date(); // next time move this variable inside function to prevent customer from utilising discount on other day than specified
+const darkModeToggle = document.querySelector('#darkmode_icon'); // variable for the darkmode icon in the header
+
 
 // VARIABLES - sort according to name, price and category
 const sortProductBtnContainer = document.querySelector('.sortproduct_title'); // variable for sortproduct btn and icon
@@ -256,7 +258,18 @@ let cartTotal = []
 //--------------------------FUNCTIONS AND EVENTLISTENERS-----------------------------------
 // ----------------------------------------------------------------------------------------
 
+
+// function that toggles between default mode and darkmode when clicking the icon in top left corner
+function toggleDarkMode() {
+    document.body.classList.toggle('darkmode');
+    console.log('knapp funkar');
+}
+darkModeToggle.addEventListener('click', toggleDarkMode); // eventlistener that triggers darkmode toggle when clicked
+
+
+
 //--------------------------SORTING PRODUCTS-----------------------------------------------
+
 // function that toggles the visibility of the sortproduct section and it's options to sort from
 function showSort() {
     sortProductDiv.classList.toggle('hidden');  
@@ -589,7 +602,7 @@ function activateOrderButton() {
 
 // function for weekend price increase
 function getPriceMultiplier() { // Increase all product prices with 1.15 if the day customer orders is between 3pm friday through until monday 3am
-    if (isFriday && currentHour >= 15 || isSaturday || isSunday || isMonday && currentHour <= 3) {
+    if (isFriday && currentHour >= 15 || isSaturday || isSunday || isMonday && currentHour < 3) {
         return 1.15;
     }
     return 1;
@@ -811,7 +824,7 @@ function updateViews() {
 
 // function for the timeout time to be set to 15 minutes
 function startTimer() {
-    timeLimit = setTimeout(tooSlow, 1000 * 1); // 
+    timeLimit = setTimeout(tooSlow, 1000 * 60 * 15); // 
 }
 
 // Popup-message with a 15 minute timelimit. Display overlay element which notifies customer as well as resets the form inputs by customer.
