@@ -15,18 +15,29 @@ https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/
 
 
 
-## Outtakes from final result
+## Outtakes from final result default mode
 
-![Desktop](bowls-by-baba-1.png)
-![Mobile](bowls-by-baba-mobile.png)
-![Cart overview](cart-overview.png)
-![Payment section](payment-section.png)
-![Order note](ordered.png)
-![Sorry text](sorry-popup.png)
+![Desktop](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/bowls-by-baba-1.png)
+![Mobile](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/bowls-by-baba-mobile.png)
+![Cart overview](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/cart-overview.png)
+![Payment section](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/payment-section.png)
+![Order note](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/ordered.png)
+![Sorry text](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/sorry-popup.png)
+
+
+## Outtakes from final result darkmode
+
+![darkmode desktop start](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/Desktop-start-darkmode.png)
+![darkmode desktop form](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/Desktop-form-darkmode.png)
+
+![darkmode mobile start](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/Mobile-start-darkmode.png)
+![darkmode mobile product in cart](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/Mobile-productincart-darkmode.png)
+
+
 
 ## Outtakes from initial wireframes
-![Desktop open](Desktop-opencart-1.png)
-![Desktop start](Desktop-start-1.png)
+![Desktop open](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/Desktop-opencart.png)
+![Desktop start](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/Desktop-start.png)
 
 
 ## Assignment requirements
