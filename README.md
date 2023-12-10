@@ -40,6 +40,10 @@ https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/
 ![Desktop start](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/Desktop-start.png)
 
 
+## Lighthouse validation reports for desktop and mobile
+![Alt text](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/Validation-reports/Lighthouse-light-desktop.PNG)
+![Alt text](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/Validation-reports/Lighthouse-light-mobile.PNG)
+
 ## Assignment requirements
 Code logic, selfdocumented code with clear comments,
 codequality. conditionals (if-satser), events, DOM manipulation, functions, variables, arithmetic, objects, arrays, timers, loops, date
