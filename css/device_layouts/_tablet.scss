@@ -43,6 +43,13 @@ header {
     grid-column: 1 / 4;
 }
 
+.darkmode {
+    .product_container .product_items {
+        @include backgroundsections_dark;
+        border-bottom: none;
+    }
+}
+
 .product_container {
     grid-column: 1 / 4;
     justify-content: center;

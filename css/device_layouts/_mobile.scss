@@ -51,58 +51,106 @@ body {
     @include headings_dark;
     @include text_dark;
     @include background_colors_dark;
-    header, h1, h2, h3, h4, h5  {
-       
-        @include headings_dark;
-        @include text_dark;
-        @include background_colors_dark;
-        div button {
-            @include text_dark;
-
-        }
-    }
-    p { 
+    h1, h2, h3, h4, h5 {
         @include text_dark;
     }
     
+    header {
+        @include background_colors_dark;
+       div h2, h3, h4 {
+            background-color: none;
+        }
+        div button {
+            @include text_dark;
+        }
+        div span {
+            @include text_dark;
+        }
+    }
+
+    .pagetitle .pagetitle1, .pagetitle2 {
+        background: none;
+    }
+
+    .sortproduct_content p {
+        @include text_dark;
+    }
+
+    p { 
+        @include text_dark;
+    }
+
     div {
         @include background_colors_dark;
     }
 
     .product_container .product_items{
-        .product_buttons button {
-            @include buttons_dark;
+        .product_buttons {
+            background: none;
+            button {
+                @include other_buttons;
+                }
+                p {
+                    @include text_dark;    
+                }
         }
-        @include backgroundsections_dark;
+        border-bottom: 2px solid #d35400;
         @include text_dark;
     }
-    
-    .order_confirmation .summary_container .cartorder_container .cartorder_items, h3, h4 {
-        @include backgroundsections_dark;
-        @include text_dark;
-        .cartinfo_wrapper, .cartorder_buttons, p {
-            @include backgroundsections_dark;  
+
+    .order_confirmation {
+        .summary_container h2, .cartorder_container {
+            background: none;
+        }
+        .summary_container .cartorder_container .cartorder_items .image_wrapper  {
+            background: none;
+        }
+        .summary_container .cartorder_container .cartorder_items, h3, h4 {
+            @include backgroundsections_dark;
+            @include text_dark;
+            .cartinfo_wrapper, .cartorder_buttons, p {
+                @include backgroundsections_dark;  
+                @include text_dark;    
+            }
+            .cartinfo_wrapper .cartorder_buttons  {
+                .cart-minus, .cart-plus {
+                    @include other_buttons;
+                }
+            }
+        }
+        .summary_container .total_shipment_message {
+            @include backgroundsections_dark;
+            @include text_dark;
+        }
+        .cartform_container, .cartform_column1, .cartform_column2, section, h2, 
+        label, .discount_code, .payment_buttons, .payment_info {
+            @include backgroundsections_dark;
             @include text_dark;
         }
     }
 
-    .order_confirmation .summary_container .total_shipment_message {
-        @include backgroundsections_dark;
-        @include text_dark;
+    .confirmation_container {
+        background-color: rgba(35, 43, 82, 0.616);
+        section {
+            background: none;
+            @include background_colors_dark;
+            border: 2px solid white;
+        }
     }
 
-    .order_confirmation .cartform_container, .cartform_column1, .cartform_column2, section, h2, 
-    label, .discount_code, .payment_buttons, .payment_info {
-        @include backgroundsections_dark;
-        @include text_dark;
+    .timeout_message {
+        background-color: rgba(35, 43, 82, 0.616);
+        .timeout_info {
+            background: none;
+            @include background_colors_dark;
+            border: 2px solid white;
+        }
     }
-
-
+       
+    
     footer, .footer_container, .footer_container div {
         @include backgroundsections_dark;
-    }
-
- 
+    } 
 }
 
 

@@ -15,11 +15,9 @@
     font-size: 1rem;
 }
 
-
 @mixin labels {
     color: black;
 }
-
 
 @mixin other_buttons {
     background-color: #f1f1f1;
@@ -33,7 +31,6 @@
     
 }
 
-
 @mixin positions {
     padding: 20px;
 }
@@ -43,11 +40,11 @@
 }
 
 @mixin headings_dark {
-    color: #4471e4;
+    color: #d6c9c5;
 }
 
 @mixin text_dark {
-    color: #fdfdfd;
+    color: rgb(217, 217, 224);
 }
 
 @mixin background_colors_dark {
@@ -61,8 +58,6 @@
 @mixin buttons_dark {
     color: #f1f1f1;
     background-color: #353596;
-    
-    
     padding-left: 15px;
     padding-right: 15px;
     
