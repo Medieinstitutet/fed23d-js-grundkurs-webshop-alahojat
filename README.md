@@ -8,7 +8,7 @@ https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/
 - [@alahojat](https://www.github.com/alahojat)
 
 ## Built with
-![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Adobe Photoshop](https://img.shields.io/badge/adobe%20photoshop-%2331A8FF.svg?style=for-the-badge&logo=adobe%20photoshop&logoColor=white) ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 
 ## Outtakes from final result default mode
 
@@ -31,9 +31,11 @@ https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/
 ![Desktop open](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/Desktop-opencart.png)
 ![Desktop start](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/Desktop-start.png)
 
-## Lighthouse validation reports for desktop and mobile
-![Alt text](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/Validation-reports/Lighthouse-light-desktop.PNG)
-![Alt text](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/Validation-reports/Lighthouse-light-mobile.PNG)
+## Lighthouse validation reports
+| Desktop Lighthouse Validation         | Mobile Lighthouse Validation   |
+| ----------------- | ------------------------------------------------------------------ |
+|  ![Desktop Lighthouse validation](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/Lighthouse-desktop-screenshot.PNG)  | ![Mobile Lighthouse validation](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/readme-screenshots/Lighthouse-mobile-screenshot.PNG)|
+
 
 ## Assignment requirements
 For this assignment we were instructed to create a one paged webshop built with vanilla Javascript, containing at least 10 items in the shop with various specifications such as a form input, option to pay with card vs invoice, a popup message which resets the form once 15 minutes has passed etc. These are the requirements we are assessed on: code logic, selfdocumented code with clear comments,
