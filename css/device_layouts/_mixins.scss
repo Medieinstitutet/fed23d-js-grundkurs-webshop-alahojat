@@ -1,0 +1,68 @@
+@mixin image_style {
+    padding: 20px;
+    border-radius: 100px;
+}
+
+@mixin blue_buttons {
+    background-color: #002fa7;
+    border: 2px solid #002fa7;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+}
+
+@mixin labels {
+    color: black;
+}
+
+@mixin other_buttons {
+    background-color: #f1f1f1;
+    border: 2px solid #002fa7;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #002fa7;
+    text-transform: uppercase;
+    border-radius: 10px;
+    font-size: 1rem;
+    
+}
+
+@mixin positions {
+    padding: 20px;
+}
+
+@mixin clicked_items {
+    font-weight: bold;
+}
+
+@mixin headings_dark {
+    color: #d6c9c5;
+}
+
+@mixin text_dark {
+    color: rgb(217, 217, 224);
+}
+
+@mixin background_colors_dark {
+    background-color: #283454;
+}
+
+@mixin backgroundsections_dark {
+    background-color: #334064;
+}
+
+@mixin buttons_dark {
+    color: #f1f1f1;
+    background-color: #353596;
+    padding-left: 15px;
+    padding-right: 15px;
+    
+    text-transform: uppercase;
+    border-radius: 10px;
+    font-size: 1rem;
+    
+}

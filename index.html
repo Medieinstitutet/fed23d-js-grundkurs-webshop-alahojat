@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url" content="https://www.bowlsbybaba.com">
+    <meta property="og:title" content="Bowls by Baba">
+    <meta property="og:description" content="Discover exquisite handmade modern wooden bowls at our webshop. 
+    Each bowl is expertly crafted from high-quality wood, showcasing a perfect blend of elegance and functionality. 
+    Elevate your dining experience with our unique collection of artisanal bowls, ideal for serving and home decor. 
+    Explore our selection today!">
+    <meta property="og:image" content="https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-alahojat/assets/bowls/twin-set.jpg">
+    <meta name="description" content="Explore our collection of exquisite handmade modern wooden bowls at our webshop. 
+    Each bowl is expertly crafted from high-quality wood, showcasing a perfect blend of elegance and functionality. 
+    Elevate your dining experience with our unique artisanal bowls, ideal for serving and home decor.">
+    <meta name="keywords" content="wooden bowls, handmade bowls, modern bowls, artisanal bowls, home decor, dining accessories">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Baba's Bowls </title>
+</head>
+<body>
+    <header>
+        <button class="material-symbols-outlined" id="darkmode_icon" title="Darkmode">
+            contrast
+        </button>
+        <h1>Baba's</h1>
+        <div>
+            <span class="cartNumber"></span>
+            <button id="cartBtn" class="material-symbols-outlined">shopping_bag
+            </button>
+        </div>
+        
+    </header>
+    <div class="pagetop">
+        <section class="pagetitle">
+            <h2 class="pagetitle1">Bowls</h2>
+            <h2 class="pagetitle2">by Baba</h2>
+            <div class="circle"></div>
+        </section>
+        <div class="about">
+            <p>
+                We are a creative bunch passionate about crafting unique handmade wooden bowls.
+                Each bowl is a work of art, made with love and care.
+                We pour our hearts into the creation process, ensuring every grain of wood is treated with care and
+                respect.
+            </p>
+        </div>
+    </div>
+    <div class="sortproduct_title">
+        <button class="sortproduct_button"> <span class="material-symbols-outlined" 
+        id="sortproduct_icon">sort</span>Sort products</button>
+    </div>
+    <div class="sortproduct_content hidden">
+        <p class="sort_name" tabindex="0">Name</p>
+        <p class="sort_price" tabindex="0">Price</p>
+        <p class="sort_category" tabindex="0">Category</p>
+        <p class="sort_rating" tabindex="0">Rating</p>
+    </div>
+    <div class="product_container">
+    </div>
+    <div class="order_confirmation visually_hidden">
+        <div class="summary_container">
+            <h2>Order summary</h2>
+            <section class="cartorder_container">
+            </section>
+            <div class="ordersummary_container">
+            </div>
+            <article class="total_shipment_message">
+                <article class="monday_message">
+                </article>
+                <h3>Total order: <span class="order_amount"></span> sek</h3>
+                <h4><span class="shipping_cost"></span></h4>
+            </article>
+        </div>
+        <div class="cartform_container">
+            <section>
+                <h2>Payment details</h2>
+                <form class="cartform" id="cartform">
+                    <div class="cartform_column1">
+                        <div>
+                            <label for="fname">First name
+                                <input type="text" id="fname" aria-label="Enter your first name" required>
+                                <span id="name_error"></span>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="lname">Surname
+                                <input type="text" id="lname" required>
+                                <span id="surname_error"></span>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="street-address">Address
+                                <input type="text" id="street-address" required>
+                                <span id="address_error"></span>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="zip">Postcode
+                                <input type="text" id="zip" minlength="5" maxlength="5" required>
+                                <span id="postcode_error"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="cartform_column2">
+                        <div>
+                            <label for="city">City
+                                <input type="text" id="city" required>
+                                <span id="city_error"></span>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="doorcode">Entry code
+                                <input type="number" id="doorcode" placeholder="Optional" required>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="tel">Number
+                                <input type="text" id="tel" required>
+                                <span id="number_error"></span>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="email">Email
+                                <input type="email" id="email" required>
+                                <span id="email_error"></span>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+                <div class="cart_personaldata">
+                    <label>
+                        <input type="checkbox" name="personalData" required>
+                        I consent to my personal data being collected for order processing!
+                    </label>
+                </div>
+                <div class="cart_newsletter">
+                    <label>
+                        <input type="checkbox" name="newsletter" checked>
+                        Count me in for the newsletter!
+                    </label>
+                </div>
+                <div class="discount_code">
+                    <p>Do you have a discount code?</p>
+                    <input type="text">
+                    <button type="submit">Submit</button>
+                </div>
+                <div class="payment_buttons">
+                    <label>
+                        <input type="radio" name="payment-option" value="card" checked>
+                        <span>Card</span>
+                    </label>
+                    <label id="invoice_radio">
+                        <input type="radio" name="payment-option" value="invoice">
+                        <span>Invoice</span>
+                    </label>
+                </div>
+                <div class="payment_info">
+                    <form class="payment_card" id="payment_card">
+                        <div>
+                            <label for="cardno">Cardnumber
+                                <input type="number" id="cardno">
+                            </label>
+                        </div>
+                        <div>
+                            <label for="expirydate">Expiry
+                                <input type="text" id="expirydate" size="2" placeholder="YYMM">
+                            </label>
+                        </div>
+                        <div>
+                            <label for="cvc">CVC
+                                <input type="text" size="3" minlength="3" maxlength="3" id="cvc" placeholder="123">
+                            </label>
+                        </div>
+                    </form>
+                    <form class="payment_invoice hidden" id="payment_invoice">
+                        <div>
+                            <label for="ssn">Personal ID
+                                <input type="text" id="ssn" required placeholder="YYYYMMDD-XXX">
+                                <span id="personalid_error"></span>
+                            </label>
+                        </div>
+                    </form>
+                    <button type="submit" id="order_button" disabled>Order</button>
+                </div>
+            </section>
+            <button class="reset_button">Reset</button>
+        </div>
+    </div>
+    <div class="confirmation_container" id="confirmation_container">
+        <section>
+            <h3>Thank you for placing your order!</h3>
+            <p>Your order will be dispatched shortyly, expect delivery in 3-5 working days. </p>
+            <p>We will notify you via email once your order has been shipped. For any queries about delivery or
+                assistance, please don't hesitate
+                to reach out.</p>
+            <h4>The team at Baba's</h4>
+            <div class="confirmation_circle"></div>
+            <button id="gobacktostart">Close</button>
+        </section>
+    </div>
+    <div class="timeout_message" id="timeout_message">
+        <div class="timeout_info">
+            <h3>Sorry!</h3>
+            <p>You were too slow to order. Please fill out your form again to proceed.</p>
+            <button id="timeout_button">Go back</button>
+        </div>
+    </div>
+    <footer>
+        <div class="footer_container">
+            <div class="footer_section">
+                <p>Mon - Fri 9 - 15</p>
+                <p>Oakstreet 18</p>
+                <p>Contact us</p>
+            </div>
+            <div class="footer_section">
+                <p>Follow us on Instagram</p>
+                <p>Join us on Tiktok</p>
+            </div>
+            <div class="footer_section">
+                <p>Terms & conditions</p>
+                <p>Customer service</p>
+                <p>International shipment</p>
+            </div>
+        </div>
+        <p> &copy;Bowls by Baba. All rights reserved</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
