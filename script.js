@@ -10,7 +10,6 @@ const summaryTotal = document.querySelector('.order_amount'); // variable for th
 const today = new Date(); // next time move this variable inside function to prevent customer from utilising discount on other day than specified
 const darkModeToggle = document.querySelector('#darkmode_icon'); // variable for the darkmode icon in the header
 
-
 // VARIABLES - sort according to name, price and category
 const sortProductBtnContainer = document.querySelector('.sortproduct_title'); // variable for sortproduct btn and icon
 const sortProductBtn = document.querySelector('.sortproduct_button'); // variable for sortproduct button
@@ -258,15 +257,11 @@ let cartTotal = []
 //--------------------------FUNCTIONS AND EVENTLISTENERS-----------------------------------
 // ----------------------------------------------------------------------------------------
 
-
 // function that toggles between default mode and darkmode when clicking the icon in top left corner
 function toggleDarkMode() {
     document.body.classList.toggle('darkmode');
-    console.log('knapp funkar');
 }
 darkModeToggle.addEventListener('click', toggleDarkMode); // eventlistener that triggers darkmode toggle when clicked
-
-
 
 //--------------------------SORTING PRODUCTS-----------------------------------------------
 

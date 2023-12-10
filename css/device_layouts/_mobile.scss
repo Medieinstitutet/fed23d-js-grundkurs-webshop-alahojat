@@ -3,13 +3,12 @@ body {
     min-height: 100vh;
     background-color: #dddd;
     font-family: 'Inter', sans-serif;
-    
+
     img {
         @include image_style;
         object-fit: cover;
         object-position: center;
     }
-
     h1, h2, h3, h4 {
         color: #002fa7;
         text-transform: uppercase;
@@ -20,16 +19,13 @@ body {
         font-size: 1.1rem;
         text-align: center; 
     }
-
     label {
         color: #002fa7;
     }
-   
     input {
         border-radius: 10px;
         border: 1px solid grey;
     }
-
     button {
         cursor: pointer;
         touch-action: manipulation;
@@ -55,7 +51,6 @@ body {
     h1, h2, h3, h4, h5 {
         @include text_dark;
     }
-    
     header {
         @include background_colors_dark;
         #darkmode_icon {
@@ -71,23 +66,18 @@ body {
             @include text_dark;
         }
     }
-
     .pagetitle .pagetitle1, .pagetitle2 {
         background: none;
     }
-
     .sortproduct_content p {
         @include text_dark;
     }
-
     p { 
         @include text_dark;
     }
-
     div {
         @include background_colors_dark;
     }
-
     .product_container .product_items{
         .product_buttons {
             background: none;
@@ -101,7 +91,6 @@ body {
         border-bottom: 2px solid #d35400;
         @include text_dark;
     }
-
     .order_confirmation {
         .summary_container h2, .cartorder_container {
             background: none;
@@ -132,7 +121,6 @@ body {
             @include text_dark;
         }
     }
-
     .confirmation_container {
         background-color: rgba(35, 43, 82, 0.616);
         section {
@@ -141,7 +129,6 @@ body {
             border: 2px solid white;
         }
     }
-
     .timeout_message {
         background-color: rgba(35, 43, 82, 0.616);
         .timeout_info {
@@ -150,8 +137,6 @@ body {
             border: 2px solid white;
         }
     }
-       
-    
     footer, .footer_container, .footer_container div {
         @include backgroundsections_dark;
     } 
@@ -171,17 +156,12 @@ header {
         border: none;
         background: none;    
     }
-
     h1 {
-        
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
-
-        
+        transform: translate(-50%, -50%);   
     }
-
     div {
         display: flex;
         align-items: center;
@@ -202,11 +182,8 @@ header {
         }
         .material-symbols-outlined {
             font-size: 2.8rem;
-            color: #002fa7;
-            
-        }
-
-        
+            color: #002fa7;    
+        }   
     }
 }
 
